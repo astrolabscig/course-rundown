@@ -5,6 +5,7 @@ import Card from "../Card";
 import CodeBlock from "../CodeBlock";
 import OutputPanel from "../OutputPanel";
 import ErrorPanel from "../ErrorPanel";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 const code = `#include <iostream>
@@ -54,6 +55,17 @@ export default function EncapsulationDemo() {
       why="private protects the data; public methods are the controlled gateway."
       examTip="Making everything public defeats encapsulation and loses marks."
     >
+      <ExplainerBox>
+        <p>
+          Think of your bank balance like cash in a safe. You can&rsquo;t just reach in and grab
+          it directly — you have to go through the teller (a method like{" "}
+          <span className="font-mono">deposit()</span>), who checks the amount makes sense before
+          touching the money. Marking <span className="font-mono">balance</span> as{" "}
+          <span className="font-mono">private</span> is what makes the direct reach-in impossible
+          in the first place — the compiler simply refuses to compile it.
+        </p>
+      </ExplainerBox>
+
       <CodeBlock code={code} />
 
       <div className="flex flex-wrap gap-3">

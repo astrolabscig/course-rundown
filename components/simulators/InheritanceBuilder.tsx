@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 type AccessLevel = "private" | "protected" | "public";
@@ -158,6 +159,19 @@ export default function InheritanceBuilder() {
 
   return (
     <div className="space-y-8">
+      <ExplainerBox>
+        <p>
+          Inheritance is like a child inheriting traits from a parent: a{" "}
+          <span className="font-mono">Dog</span> automatically gets everything an{" "}
+          <span className="font-mono">Animal</span> already knows how to do (like{" "}
+          <span className="font-mono">eat()</span>), without anyone rewriting that code — then Dog
+          just adds its own extra trick (<span className="font-mono">bark()</span>) on top. And
+          just like building a real house, you always pour the foundation before putting up walls:
+          the base class finishes building itself first, before the derived class adds its own
+          parts.
+        </p>
+      </ExplainerBox>
+
       {/* Hierarchy builder */}
       <div className="space-y-3">
         <h4 className="text-base font-semibold text-heading">Build the hierarchy</h4>

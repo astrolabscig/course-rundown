@@ -10,6 +10,8 @@
   --secondary: #6b7280;
   --accent: #0056d2;
   --accent-hover: #00419e;
+  --accent-warm: #f59e0b;
+  --accent-warm-bg: #fef3e2;
   --success: #137333;
   --error: #d93025;
   --error-bg: #fce8e6;
@@ -26,6 +28,8 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-warm-bg: var(--accent-warm-bg);
   --color-success: var(--success);
   --color-error: var(--error);
   --color-error-bg: var(--error-bg);
@@ -36,7 +40,9 @@
 }
 
 body {
-  background: var(--page);
+  background-color: var(--page);
+  background-image: radial-gradient(var(--card-border) 1px, transparent 1px);
+  background-size: 22px 22px;
   color: var(--body);
   font-family: var(--font-sans);
 }

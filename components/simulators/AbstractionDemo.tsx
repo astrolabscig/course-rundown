@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import CodeBlock from "../CodeBlock";
 import OutputPanel from "../OutputPanel";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 const interfaceCode = `class ATM {
@@ -57,6 +58,17 @@ export default function AbstractionDemo() {
 
   return (
     <div className="space-y-4">
+      <ExplainerBox>
+        <p>
+          When you use an ATM, you press a few simple buttons — you never see the wiring,
+          security checks, or bank logs happening behind the screen. That&rsquo;s abstraction:
+          hiding the complicated inner workings and only showing a simple set of actions you can
+          take. Press the buttons below to use the &ldquo;simple screen&rdquo; version, then click{" "}
+          <span className="font-mono">Show implementation</span> to peek at everything that was
+          secretly happening the whole time.
+        </p>
+      </ExplainerBox>
+
       <div className="flex flex-wrap gap-3">
         <button
           type="button"

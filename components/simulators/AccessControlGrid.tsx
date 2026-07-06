@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 type Modifier = "public" | "protected" | "private";
@@ -43,6 +44,16 @@ export default function AccessControlGrid() {
 
   return (
     <div className="space-y-4">
+      <ExplainerBox>
+        <p>
+          Think of a class like a house with three kinds of doors. <span className="font-mono">public</span>{" "}
+          is the front door — anyone can walk in. <span className="font-mono">protected</span> is a
+          door that only family members (a derived class) can use. <span className="font-mono">private</span>{" "}
+          is locked from everyone except people already inside that exact room (the class itself) —
+          not even family members from another room can open it.
+        </p>
+      </ExplainerBox>
+
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-collapse">
           <thead>

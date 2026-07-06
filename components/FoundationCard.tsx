@@ -5,6 +5,7 @@ import Card from "./Card";
 import CodeBlock from "./CodeBlock";
 import OutputPanel from "./OutputPanel";
 import ErrorPanel from "./ErrorPanel";
+import ExplainerBox from "./ExplainerBox";
 import { trackInteract } from "@/lib/track";
 import type { FoundationCardData } from "@/lib/foundations";
 
@@ -14,6 +15,10 @@ export default function FoundationCard({ data }: { data: FoundationCardData }) {
 
   return (
     <Card id={data.id} title={data.title} situation={data.situation} why={data.why} examTip={data.examTip}>
+      <ExplainerBox>
+        <p>{data.eli5}</p>
+      </ExplainerBox>
+
       <div
         role="tablist"
         aria-label={`${data.title} code variants`}

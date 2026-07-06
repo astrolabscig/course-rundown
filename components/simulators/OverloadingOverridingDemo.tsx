@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import CodeBlock from "../CodeBlock";
 import OutputPanel from "../OutputPanel";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 const overloadCode = `void f(int x)    { std::cout << "f(int)\\n"; }
@@ -47,6 +48,19 @@ export default function OverloadingOverridingDemo() {
 
   return (
     <div className="space-y-8">
+      <ExplainerBox>
+        <p>
+          <strong>Overloading</strong> and <strong>overriding</strong> sound alike but mean very
+          different things. Overloading is having several recipes with the same name but different
+          ingredients (e.g. one f() for whole numbers, another f() for decimals) — the compiler
+          picks one just by looking at what you handed it, before the program even runs.{" "}
+          <strong>Overriding</strong> is a child class swapping out a specific recipe it inherited
+          with its own version, but keeping the exact same name and ingredient list — this
+          decision happens later, while the program is actually running, based on what the object
+          really is.
+        </p>
+      </ExplainerBox>
+
       <div className="space-y-3">
         <h4 className="text-base font-semibold text-heading">Overload resolution</h4>
         <CodeBlock code={overloadCode} />

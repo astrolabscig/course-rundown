@@ -4,6 +4,7 @@ import { useState } from "react";
 import Card from "../Card";
 import CodeBlock from "../CodeBlock";
 import OutputPanel from "../OutputPanel";
+import ExplainerBox from "../ExplainerBox";
 import { trackInteract } from "@/lib/track";
 
 const code = `#include <iostream>
@@ -63,6 +64,16 @@ export default function ClassesObjectsDemo() {
       why="A class is a blueprint; objects are instances that each hold their own data."
       examTip="The class doesn't store data — the objects do."
     >
+      <ExplainerBox>
+        <p>
+          Think of a class like a cookie cutter, and objects like the actual cookies. The cutter
+          (<span className="font-mono">Student</span>) defines the shape — what every cookie will
+          have (a name, an age). Each cookie you actually cut out (each object) is real and separate:
+          decorating one doesn&rsquo;t change any other cookie, even though they all came from the
+          same cutter.
+        </p>
+      </ExplainerBox>
+
       <CodeBlock code={code} />
 
       <form onSubmit={addObject} className="flex flex-wrap items-end gap-3">
