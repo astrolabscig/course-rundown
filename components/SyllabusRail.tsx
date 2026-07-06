@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { curriculum } from "@/lib/curriculum";
+import type { CurriculumPart } from "@/lib/curriculum";
 
-const VISITED_KEY = "cpp_visited_parts";
-
-function NavLinks({ visited }: { visited: Set<string> }) {
+function NavLinks({ parts, visited }: { parts: CurriculumPart[]; visited: Set<string> }) {
   return (
     <nav aria-label="Course contents" className="space-y-1">
-      {curriculum.map((part) => (
+      {parts.map((part) => (
         <a
           key={part.id}
           href={`#${part.id}`}
@@ -32,13 +30,19 @@ function NavLinks({ visited }: { visited: Set<string> }) {
   );
 }
 
-export default function SyllabusRail() {
+export default function SyllabusRail({
+  parts,
+  storageKey,
+}: {
+  parts: CurriculumPart[];
+  storageKey: string;
+}) {
   const [visited, setVisited] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let stored: string[] = [];
     try {
-      stored = JSON.parse(localStorage.getItem(VISITED_KEY) ?? "[]");
+      stored = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
     } catch {
       stored = [];
     }
@@ -58,7 +62,7 @@ export default function SyllabusRail() {
             }
           }
           if (changed) {
-            localStorage.setItem(VISITED_KEY, JSON.stringify(Array.from(next)));
+            localStorage.setItem(storageKey, JSON.stringify(Array.from(next)));
             return next;
           }
           return prev;
@@ -67,13 +71,13 @@ export default function SyllabusRail() {
       { rootMargin: "-35% 0px -55% 0px" }
     );
 
-    curriculum.forEach((part) => {
+    parts.forEach((part) => {
       const el = document.getElementById(part.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [parts, storageKey]);
 
   return (
     <>
@@ -82,13 +86,14 @@ export default function SyllabusRail() {
           Course contents
         </summary>
         <div className="px-4 pb-4">
-          <NavLinks visited={visited} />
+          <NavLinks parts={parts} visited={visited} />
+           Built by <span className="font-mono font-medium text-heading">@astrolab</span>
         </div>
       </details>
 
       <aside className="hidden md:block w-64 shrink-0 border-r border-card-border">
         <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto p-6">
-          <NavLinks visited={visited} />
+          <NavLinks parts={parts} visited={visited} />
         </div>
       </aside>
     </>

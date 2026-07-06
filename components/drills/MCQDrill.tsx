@@ -1,18 +1,18 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { mcqBank } from "@/lib/mcqBank";
+import type { MCQ } from "@/lib/mcqBank";
 import { trackInteract } from "@/lib/track";
 
-export default function MCQDrill() {
+export default function MCQDrill({ questions }: { questions: MCQ[] }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const interactedRef = useRef(false);
 
-  const total = mcqBank.length;
-  const question = mcqBank[index];
+  const total = questions.length;
+  const question = questions[index];
 
   function markInteracted() {
     if (!interactedRef.current) {

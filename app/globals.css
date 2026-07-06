@@ -41,8 +41,13 @@
 
 body {
   background-color: var(--page);
-  background-image: radial-gradient(var(--card-border) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--card-border) 0px,
+    var(--card-border) 1px,
+    transparent 1px,
+    transparent 24px
+  );
   color: var(--body);
   font-family: var(--font-sans);
 }

@@ -244,6 +244,29 @@ std::string name = "Ama";    // std::string: manages its own memory`,
           "std::string is safer and easier than C-strings: it supports +, ==, .length(), and resizes itself.",
         ],
       },
+      {
+        id: "cstring-mistakes",
+        title: "Common C-string exam mistakes",
+        summary: "The three C-string traps that show up again and again on exams.",
+        eli5:
+          "A C-string is like a sentence written on a strip of paper with a period at the very end — the period IS the null terminator. Forget to leave room for it, copy a longer sentence onto a shorter strip, or try to compare two strips by just checking if they're the same PIECE OF PAPER instead of reading the words on them, and you get exactly the three classic mistakes below.",
+        code: `char small[4] = "Ama";       // 'A','m','a','\\0' — exactly fits, no room to spare
+char oops[3] = "Ama";        // ERROR/UB: no room left for the '\\0' terminator
+
+char dest[4];
+strcpy(dest, "Kwame");       // UB: "Kwame" + '\\0' needs 6 bytes, dest only has 4 — buffer overflow
+
+char a[] = "hi";
+char b[] = "hi";
+if (a == b) { /* ... */ }    // WRONG: compares the two array addresses, not the text
+if (strcmp(a, b) == 0) { /* ... */ }  // correct: compares the actual characters`,
+        points: [
+          "A char array holding a C-string needs room for the text PLUS one extra byte for the hidden '\\0' — a 3-letter word needs a 4-byte array, not 3.",
+          "strcpy doesn't check the destination's size — copying a longer string into a smaller buffer silently corrupts memory (a classic buffer overflow).",
+          "== on two C-strings (char arrays/pointers) compares their addresses, not their contents — even if the text is identical, it's usually false. Use strcmp(a, b) == 0 instead.",
+          "std::string sidesteps all three: it manages its own size automatically and == compares actual characters.",
+        ],
+      },
     ],
   },
   {

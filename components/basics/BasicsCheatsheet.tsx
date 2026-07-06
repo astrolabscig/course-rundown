@@ -2,10 +2,10 @@
 
 import { useRef } from "react";
 import BasicsEntryCard from "./BasicsEntryCard";
-import { basicsGroups } from "@/lib/basics";
+import type { BasicsGroup } from "@/lib/basics";
 import { trackInteract } from "@/lib/track";
 
-export default function BasicsCheatsheet() {
+export default function BasicsCheatsheet({ groups }: { groups: BasicsGroup[] }) {
   const interacted = useRef(false);
 
   function handleToggle() {
@@ -17,7 +17,7 @@ export default function BasicsCheatsheet() {
 
   return (
     <div className="space-y-3">
-      {basicsGroups.map((group, i) => (
+      {groups.map((group, i) => (
         <details
           key={group.id}
           id={group.id}

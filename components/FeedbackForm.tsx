@@ -43,7 +43,7 @@ export default function FeedbackForm() {
       <form onSubmit={handleSubmit} className="mt-4 space-y-4">
         <div>
           <p className="text-sm font-medium text-heading mb-2">
-            If a full version of this existed, would it help you study for your C++ course?
+            Do you think this was useful?
           </p>
           <div className="flex gap-3" role="group" aria-label="Would this help you study?">
             <button
@@ -76,7 +76,7 @@ export default function FeedbackForm() {
         <div>
           <label htmlFor="feedback-comment" className="block text-sm font-medium text-heading mb-1">
             What would make this genuinely useful to you? Tell me what confused you, what&rsquo;s
-            missing, or what you&rsquo;d add. Be honest — it shapes the next version.
+            missing, or what you&rsquo;d add. Be honest.
           </label>
           <textarea
             id="feedback-comment"

@@ -15,7 +15,11 @@
       "Bash(curl -sS -m 20 -o /dev/null -w \"npmjs: %{http_code} time=%{time_total}\\\\n\" https://registry.npmjs.org/react)",
       "Bash(curl -sS -m 20 -o /dev/null -w \"fonts: %{http_code} time=%{time_total}\\\\n\" https://fonts.googleapis.com/css2?family=Inter)",
       "Bash(npx tsc *)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(python3 -c \"import pypdf\")",
+      "Bash(python3 -c \"import fitz\")",
+      "Bash(python3 -c \"import pdfplumber\")",
+      "Bash(pip list *)"
     ]
   }
 }
