@@ -74,26 +74,28 @@ export default function FirewallSimulator() {
         <p className="text-xs font-semibold uppercase tracking-wide text-secondary mb-2">
           Firewall rules (checked in order)
         </p>
-        <table className="w-full text-sm border-collapse">
-          <thead>
-            <tr>
-              <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Action</th>
-              <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Protocol</th>
-              <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Port</th>
-              <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rules.map((r, i) => (
-              <tr key={i} className="border-b border-card-border last:border-0">
-                <td className={`p-1 font-semibold ${r.action === "Allow" ? "text-success" : "text-error"}`}>{r.action}</td>
-                <td className="p-1 font-mono">{r.protocol}</td>
-                <td className="p-1 font-mono">{r.port}</td>
-                <td className="p-1 text-body">{r.note}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr>
+                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Action</th>
+                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Protocol</th>
+                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Port</th>
+                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Note</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {rules.map((r, i) => (
+                <tr key={i} className="border-b border-card-border last:border-0">
+                  <td className={`p-1 font-semibold ${r.action === "Allow" ? "text-success" : "text-error"}`}>{r.action}</td>
+                  <td className="p-1 font-mono">{r.protocol}</td>
+                  <td className="p-1 font-mono">{r.port}</td>
+                  <td className="p-1 text-body">{r.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-1.5">

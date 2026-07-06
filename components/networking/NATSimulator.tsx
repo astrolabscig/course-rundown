@@ -87,24 +87,26 @@ export default function NATSimulator() {
         {entries.length === 0 ? (
           <p className="text-sm text-secondary">Empty — click a client above to send a request.</p>
         ) : (
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr>
-                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Private (inside)</th>
-                <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Public (outside)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entries.map((e, i) => (
-                <tr key={i} className="border-b border-card-border last:border-0">
-                  <td className="p-1 font-mono">{e.privateAddr}</td>
-                  <td className="p-1 font-mono">
-                    {publicIp}:{e.publicPort}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Private (inside)</th>
+                  <th className="text-left p-1 text-heading font-semibold border-b border-card-border">Public (outside)</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {entries.map((e, i) => (
+                  <tr key={i} className="border-b border-card-border last:border-0">
+                    <td className="p-1 font-mono">{e.privateAddr}</td>
+                    <td className="p-1 font-mono">
+                      {publicIp}:{e.publicPort}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
         {entries.length > 1 && (
           <p className="text-xs text-secondary mt-2">

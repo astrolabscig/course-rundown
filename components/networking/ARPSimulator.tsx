@@ -121,14 +121,16 @@ export default function ARPSimulator() {
           Host A's ARP cache
         </p>
         {stage.cacheEntry ? (
-          <table className="text-sm font-mono text-body">
-            <tbody>
-              <tr>
-                <td className="pr-4 font-semibold text-heading">192.168.1.20</td>
-                <td>BB:BB:BB:BB:BB:BB</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="text-sm font-mono text-body">
+              <tbody>
+                <tr>
+                  <td className="pr-4 font-semibold text-heading">192.168.1.20</td>
+                  <td>BB:BB:BB:BB:BB:BB</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         ) : (
           <p className="text-sm text-secondary">Empty.</p>
         )}

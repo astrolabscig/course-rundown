@@ -148,16 +148,18 @@ export default function SwitchingSimulator() {
         {stage.cam.length === 0 ? (
           <p className="text-sm text-secondary">Empty.</p>
         ) : (
-          <table className="text-sm font-mono text-body">
-            <tbody>
-              {stage.cam.map((entry) => (
-                <tr key={entry.mac}>
-                  <td className="pr-4 font-semibold text-heading">{entry.mac}</td>
-                  <td>port {entry.port}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="text-sm font-mono text-body">
+              <tbody>
+                {stage.cam.map((entry) => (
+                  <tr key={entry.mac}>
+                    <td className="pr-4 font-semibold text-heading">{entry.mac}</td>
+                    <td>port {entry.port}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
