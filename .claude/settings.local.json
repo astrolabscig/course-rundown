@@ -4,7 +4,18 @@
       "Bash(npm --version)",
       "Bash(git --version)",
       "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --no-src-dir --import-alias \"@/*\" --use-npm)",
-      "Bash(mv SPEC.md ../SPEC.md.bak)"
+      "Bash(mv SPEC.md ../SPEC.md.bak)",
+      "Bash(npm install *)",
+      "Bash(mv \"F:/External_drive_files/projects/cl_projects/SPEC.md.bak\" \"F:/External_drive_files/projects/cl_projects/simulator/SPEC.md\")",
+      "Bash(node -e \"console.log\\(require\\('next/package.json'\\).version\\)\")",
+      "Bash(npm run *)",
+      "Bash(npm config *)",
+      "Bash(env)",
+      "Read(//c/Users/Astrolab/**)",
+      "Bash(curl -sS -m 20 -o /dev/null -w \"npmjs: %{http_code} time=%{time_total}\\\\n\" https://registry.npmjs.org/react)",
+      "Bash(curl -sS -m 20 -o /dev/null -w \"fonts: %{http_code} time=%{time_total}\\\\n\" https://fonts.googleapis.com/css2?family=Inter)",
+      "Bash(npx tsc *)",
+      "Bash(git check-ignore *)"
     ]
   }
 }
