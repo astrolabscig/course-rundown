@@ -93,9 +93,6 @@ export default function SyllabusRail({
       <aside className="hidden md:block w-64 shrink-0 border-r border-card-border">
         <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto p-6">
           <NavLinks parts={parts} visited={visited} />
-          <p className="mt-6 text-xs text-secondary">
-            Built by <span className="font-mono font-medium text-heading">@astrolab</span>
-          </p>
         </div>
       </aside>
     </>

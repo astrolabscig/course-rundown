@@ -11,6 +11,9 @@ export default function TopBar() {
           </span>
           <span className="text-lg font-semibold text-heading">Course Rundown</span>
         </Link>
+        <span className="ml-auto shrink-0 rounded-full border border-card-border bg-muted px-3 py-1 text-sm sm:text-base font-mono font-semibold text-accent">
+          @astrolab
+        </span>
       </div>
     </header>
   );
