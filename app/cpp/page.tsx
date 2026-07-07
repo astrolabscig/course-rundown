@@ -35,7 +35,6 @@ import { mcqBank } from "@/lib/mcqBank";
 import { basicsGroups } from "@/lib/basics";
 import { examBank } from "@/lib/examBank";
 import { passcoBank } from "@/lib/passcoBank";
-import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -79,6 +78,22 @@ export default function CppRoom() {
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
               Start exam
+            </span>
+          </a>
+
+          <a
+            href="/cpp/passco"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{passcoBank.length}-question Passco Cheatsheet →</p>
+              <p className="text-sm text-body mt-0.5">
+                Real past-exam questions with correct answers and explanations — filter by type,
+                click to reveal.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open cheatsheet
             </span>
           </a>
 
@@ -320,16 +335,6 @@ export default function CppRoom() {
               course reference material is added.
             </p>
             <OutputPredictionDrill />
-          </section>
-
-          <section id="part-10" className="space-y-6 scroll-mt-24">
-            <PartHeading number="10" title="Passco Cheatsheet" />
-            <p className="text-sm text-secondary">
-              {passcoBank.length} real past-exam-style questions with correct answers and short
-              explanations, straight from a C++ past-questions booklet — filter by type, click a
-              question to reveal the answer.
-            </p>
-            <PasscoCheatsheet questions={passcoBank} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">
