@@ -2,7 +2,19 @@
 
 import { useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
-import type { PassQuestion } from "@/lib/passcoBank";
+
+// Generic Q&A shape shared by every subject's Passco room (lib/passcoBank.ts,
+// lib/econs/passcoBank.ts, ...). Each bank's own section union type is a
+// string, so it structurally satisfies this.
+export interface PassQuestion {
+  id: string;
+  section: string;
+  question: string;
+  code?: string;
+  options?: string[];
+  answer: string;
+  explanation: string;
+}
 
 export default function PassQuestionCard({
   item,

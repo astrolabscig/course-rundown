@@ -1,12 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import PassQuestionCard from "./PassQuestionCard";
-import { PASS_SECTIONS, type PassQuestion, type PassSection } from "@/lib/passcoBank";
+import PassQuestionCard, { type PassQuestion } from "./PassQuestionCard";
 import { trackInteract } from "@/lib/track";
 
-export default function PasscoCheatsheet({ questions }: { questions: PassQuestion[] }) {
-  const [active, setActive] = useState<PassSection | "all">("all");
+export default function PasscoCheatsheet({
+  questions,
+  sections,
+}: {
+  questions: PassQuestion[];
+  sections: { id: string; label: string }[];
+}) {
+  const [active, setActive] = useState<string>("all");
   const interactedRef = useRef(false);
 
   function markInteracted() {
@@ -30,7 +35,7 @@ export default function PasscoCheatsheet({ questions }: { questions: PassQuestio
         >
           All ({questions.length})
         </button>
-        {PASS_SECTIONS.map((s) => {
+        {sections.map((s) => {
           const count = questions.filter((q) => q.section === s.id).length;
           return (
             <button

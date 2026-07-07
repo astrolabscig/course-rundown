@@ -2,7 +2,7 @@ import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
-import { passcoBank } from "@/lib/passcoBank";
+import { passcoBank, PASS_SECTIONS } from "@/lib/passcoBank";
 
 export default function CppPasscoPage() {
   return (
@@ -20,7 +20,7 @@ export default function CppPasscoPage() {
             question to reveal the answer.
           </p>
         </div>
-        <PasscoCheatsheet questions={passcoBank} />
+        <PasscoCheatsheet questions={passcoBank} sections={PASS_SECTIONS} />
       </main>
       <Footer />
     </div>
