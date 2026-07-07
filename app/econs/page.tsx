@@ -20,6 +20,7 @@ import { econsFundamentalsGroups } from "@/lib/econs/fundamentals";
 import { econsComparisonTables } from "@/lib/econs/comparisonTables";
 import { econsMcqBank } from "@/lib/econs/mcqBank";
 import { econsExamBank } from "@/lib/econs/examBank";
+import { econsPasscoBank } from "@/lib/econs/passcoBank";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -70,6 +71,22 @@ export default function EconsRoom() {
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
               Start exam
+            </span>
+          </a>
+
+          <a
+            href="/econs/passco"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{econsPasscoBank.length}-question Passco Quiz →</p>
+              <p className="text-sm text-body mt-0.5">
+                Real past-exam questions with correct answers and explanations — filter by
+                topic, click to reveal.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open quiz
             </span>
           </a>
 
