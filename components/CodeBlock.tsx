@@ -3,11 +3,11 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-export default function CodeBlock({ code }: { code: string }) {
+export default function CodeBlock({ code, language = "cpp" }: { code: string; language?: string }) {
   return (
     <div className="rounded-xl border border-card-border bg-code-bg overflow-hidden">
       <SyntaxHighlighter
-        language="cpp"
+        language={language}
         style={oneLight}
         customStyle={{
           margin: 0,

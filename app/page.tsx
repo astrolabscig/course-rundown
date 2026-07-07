@@ -18,6 +18,13 @@ const rooms = [
     description:
       "Network basics, IPv4 addressing, and subnetting calculations built for the exam — with live calculators, not just formulas to memorise.",
   },
+  {
+    href: "/econs",
+    tag: "Macroeconomics",
+    title: "Economics II",
+    description:
+      "The circular flow, national income, unemployment, inflation, the Phillips curve, balance of payments, and exchange rates — with real calculators and simulations for every concept.",
+  },
 ];
 
 export default function Home() {
