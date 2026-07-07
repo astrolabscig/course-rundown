@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
+import PassChart from "./PassChart";
 
 // Generic Q&A shape shared by every subject's Passco room (lib/passcoBank.ts,
 // lib/econs/passcoBank.ts, ...). Each bank's own section union type is a
@@ -18,6 +19,7 @@ export interface PassQuestion {
   question: string;
   code?: string;
   table?: PassTable;
+  chartId?: string;
   options?: string[];
   answer: string;
   explanation: string;
@@ -88,6 +90,8 @@ export default function PassQuestionCard({
           </div>
         </div>
       )}
+
+      {item.chartId && <PassChart id={item.chartId} />}
 
       {item.options && (
         <div className="space-y-2">

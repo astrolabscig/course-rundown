@@ -18,6 +18,7 @@ export interface EconsPassQuestion {
   question: string;
   code?: string;
   table?: EconsPassTable;
+  chartId?: string;
   options?: string[];
   answer: string;
   explanation: string;
@@ -726,6 +727,24 @@ export const econsPasscoBank: EconsPassQuestion[] = [
     options: ["less than one", "negative", "greater than one", "equal to one"],
     answer: "equal to one",
     explanation: "Every extra unit of income is either consumed or saved, so MPC + MPS always equals exactly 1.",
+  },
+  {
+    id: "econs-passco-consumption-slopes",
+    section: "consumption-multiplier-fiscal",
+    chartId: "consumption-function-slopes",
+    question: "In the figure above, an increase in the marginal propensity to consume is represented by a change in the consumption function from",
+    options: ["C1 to C2", "C3 to C1", "C2 to C1", "C1 to C3"],
+    answer: "C1 to C2",
+    explanation: "Pixel-measuring the source diagram's actual line slopes settles this: C1 and C3 have the identical slope (they're parallel — just a shift in autonomous consumption, not MPC), while C2 is measurably steeper than both. Since MPC is the slope of the consumption function, only a C1-to-C2 comparison shows a real slope increase; the source booklet's own answer key had this backwards (marked C2-to-C1, which is actually a decrease).",
+  },
+  {
+    id: "econs-passco-keynesian-cross",
+    section: "consumption-multiplier-fiscal",
+    chartId: "keynesian-cross-investment-change",
+    question: "In the figure above, the change in investment spending is represented as the distance between points",
+    options: ["D and F", "A and B", "C and E", "E and F"],
+    answer: "A and B",
+    explanation: "A and B mark the vertical gap between the old (C+I) and new (C+I') aggregate-expenditure lines at the SAME income level — that vertical shift is exactly the size of the investment increase itself, before the multiplier does anything. Any pairing measured along the 45° line instead would show the full multiplier-amplified change in equilibrium income, which is larger than the investment change alone. (The source PDF's original image for this figure is corrupted beyond recovery — confirmed after re-rendering at several scales — so this is a standard textbook reconstruction of the classic Keynesian-cross diagram, not a pixel copy of the original.)",
   },
   {
     id: "econs-passco-68",
