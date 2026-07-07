@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function TopBar() {
+export default function TopBar({ showCredit = false }: { showCredit?: boolean }) {
   return (
     <header className="sticky top-0 z-10 border-b border-card-border bg-white/90 backdrop-blur">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-3 flex items-center gap-2.5">
@@ -11,9 +11,11 @@ export default function TopBar() {
           </span>
           <span className="text-lg font-semibold text-heading">Course Rundown</span>
         </Link>
-        <span className="ml-auto shrink-0 rounded-full border border-card-border bg-muted px-3 py-1 text-sm sm:text-base font-mono font-semibold text-accent">
-          @astrolab
-        </span>
+        {showCredit && (
+          <span className="ml-auto shrink-0 rounded-full border border-card-border bg-muted px-3 py-1 text-sm sm:text-base font-mono font-semibold text-accent">
+            @astrolab
+          </span>
+        )}
       </div>
     </header>
   );

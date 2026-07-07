@@ -7,7 +7,7 @@ import { examBank } from "@/lib/examBank";
 export default function CppExamPage() {
   return (
     <div className="flex flex-col flex-1">
-      <TopBar />
+      <TopBar showCredit />
       <main className="flex-1 mx-auto w-full max-w-[900px] px-4 sm:px-8 py-8 space-y-6">
         <div className="space-y-2">
           <Link href="/cpp" className="text-sm font-medium text-accent hover:underline">

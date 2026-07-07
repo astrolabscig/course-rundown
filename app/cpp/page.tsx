@@ -50,7 +50,7 @@ export default function CppRoom() {
   return (
     <div className="flex flex-col flex-1">
       <Tracker />
-      <TopBar />
+      <TopBar showCredit />
       <div className="flex flex-col md:flex-row flex-1 mx-auto w-full max-w-[1280px]">
         <SyllabusRail parts={curriculum} storageKey="cpp_visited_parts" />
         <main className="flex-1 min-w-0 px-4 sm:px-8 py-8 space-y-12">
