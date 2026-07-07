@@ -6,11 +6,18 @@ import CodeBlock from "@/components/CodeBlock";
 // Generic Q&A shape shared by every subject's Passco room (lib/passcoBank.ts,
 // lib/econs/passcoBank.ts, ...). Each bank's own section union type is a
 // string, so it structurally satisfies this.
+export interface PassTable {
+  caption?: string;
+  columns: string[];
+  rows: (string | number)[][];
+}
+
 export interface PassQuestion {
   id: string;
   section: string;
   question: string;
   code?: string;
+  table?: PassTable;
   options?: string[];
   answer: string;
   explanation: string;
@@ -51,6 +58,36 @@ export default function PassQuestionCard({
       <p className="text-body font-medium whitespace-pre-wrap">{item.question}</p>
 
       {item.code && <CodeBlock code={item.code} />}
+
+      {item.table && (
+        <div className="space-y-1">
+          {item.table.caption && <p className="text-xs font-semibold text-secondary">{item.table.caption}</p>}
+          <div className="overflow-x-auto rounded-xl border border-card-border">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr>
+                  {item.table.columns.map((col, i) => (
+                    <th key={i} className="text-left p-2 text-heading font-semibold border-b border-card-border bg-muted">
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {item.table.rows.map((row, ri) => (
+                  <tr key={ri} className="border-b border-card-border last:border-0">
+                    {row.map((cell, ci) => (
+                      <td key={ci} className="p-2 text-body font-mono whitespace-nowrap">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {item.options && (
         <div className="space-y-2">

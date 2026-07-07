@@ -2,7 +2,7 @@ import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
-import { passcoBank, PASS_SECTIONS } from "@/lib/passcoBank";
+import { passcoBank } from "@/lib/passcoBank";
 
 export default function CppPasscoPage() {
   return (
@@ -16,11 +16,11 @@ export default function CppPasscoPage() {
           <h1 className="text-3xl font-semibold text-heading">Passco Cheatsheet</h1>
           <p className="text-body max-w-2xl">
             {passcoBank.length} real past-exam-style questions with correct answers and short
-            explanations, straight from a C++ past-questions booklet. Filter by type, click a
-            question to reveal the answer.
+            explanations, straight from a C++ past-questions booklet, presented in the same
+            order as the source material. Pick an answer to see if you're right.
           </p>
         </div>
-        <PasscoCheatsheet questions={passcoBank} sections={PASS_SECTIONS} />
+        <PasscoCheatsheet questions={passcoBank} />
       </main>
       <Footer />
     </div>

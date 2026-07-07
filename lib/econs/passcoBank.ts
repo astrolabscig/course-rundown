@@ -6,11 +6,18 @@ export type EconsPassSection =
   | "monetary-fiscal-policy-tools"
   | "ad-as-inflation";
 
+export interface EconsPassTable {
+  caption?: string;
+  columns: string[];
+  rows: (string | number)[][];
+}
+
 export interface EconsPassQuestion {
   id: string;
   section: EconsPassSection;
   question: string;
   code?: string;
+  table?: EconsPassTable;
   options?: string[];
   answer: string;
   explanation: string;
@@ -90,8 +97,17 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-8",
     section: "national-income-gdp",
-    code: "Base year = 2004\nGino's pizza: 2004 units 4,000 @ $10; 2005 units 4,000 @ $8\nBruno's dough: 2004 units 3,000 @ $9; 2005 units 1,000 @ $6\nCarlo's tomatoes: 2004 units 2,000 @ $6; 2005 units 1,000 @ $1\nAldo's pepperoni: 2004 units 5,000 @ $7; 2005 units 2,000 @ $4",
-    question: "(Table: Pizza Economy) Considering 2004 as the base year, real GDP in 2005 was",
+    table: {
+      caption: "Table: Pizza Economy (base year = 2004)",
+      columns: ["Good", "2004 units", "2004 price/unit", "2005 units", "2005 price/unit"],
+      rows: [
+        ["Gino's pizza", "4,000", "$10", "4,000", "$8"],
+        ["Bruno's dough", "3,000", "$9", "1,000", "$6"],
+        ["Carlo's tomatoes", "2,000", "$6", "1,000", "$1"],
+        ["Aldo's pepperoni", "5,000", "$7", "2,000", "$4"],
+      ],
+    },
+    question: "(Table: Pizza Economy above) Considering 2004 as the base year, real GDP in 2005 was",
     options: ["$69,000", "$72,000", "$114,000", "$47,000"],
     answer: "$69,000",
     explanation: "Real GDP prices 2005's quantities at 2004 (base-year) prices: (4,000×$10)+(1,000×$9)+(1,000×$6)+(2,000×$7) = $40,000+$9,000+$6,000+$14,000 = $69,000.",
@@ -99,8 +115,17 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-9",
     section: "national-income-gdp",
-    code: "Same table as the previous question.",
-    question: "(Table: Pizza Economy) Considering 2004 as the base year, nominal GDP in 2005 was",
+    table: {
+      caption: "Table: Pizza Economy (base year = 2004) — same table as the previous question",
+      columns: ["Good", "2004 units", "2004 price/unit", "2005 units", "2005 price/unit"],
+      rows: [
+        ["Gino's pizza", "4,000", "$10", "4,000", "$8"],
+        ["Bruno's dough", "3,000", "$9", "1,000", "$6"],
+        ["Carlo's tomatoes", "2,000", "$6", "1,000", "$1"],
+        ["Aldo's pepperoni", "5,000", "$7", "2,000", "$4"],
+      ],
+    },
+    question: "(Table: Pizza Economy above) Considering 2004 as the base year, nominal GDP in 2005 was",
     options: ["$69,000", "$72,000", "$114,000", "$47,000"],
     answer: "$47,000",
     explanation: "Nominal GDP uses each year's own prices: (4,000×$8)+(1,000×$6)+(1,000×$1)+(2,000×$4) = $32,000+$6,000+$1,000+$8,000 = $47,000 — far lower than real GDP here because most 2005 prices fell.",
@@ -270,8 +295,23 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-27",
     section: "national-income-gdp",
-    code: "$Billions\nDurable goods 800\nNonresidential investment 400\nFederal purchases of goods 300\nExports 400\nState and local purchases of goods 200\nResidential investment 50\nServices 500\nImports 250\nChange in business inventories -25\nNondurable goods 700",
-    question: "The value for gross private domestic investment in billions is",
+    table: {
+      caption: "$ Billions",
+      columns: ["Item", "Value"],
+      rows: [
+        ["Durable goods", 800],
+        ["Nonresidential investment", 400],
+        ["Federal purchases of goods", 300],
+        ["Exports", 400],
+        ["State and local purchases of goods", 200],
+        ["Residential investment", 50],
+        ["Services", 500],
+        ["Imports", 250],
+        ["Change in business inventories", -25],
+        ["Nondurable goods", 700],
+      ],
+    },
+    question: "(Table above) The value for gross private domestic investment in billions is",
     options: ["$300", "$375", "$425", "$450"],
     answer: "$425",
     explanation: "Gross private domestic investment = nonresidential investment + residential investment + change in business inventories = 400 + 50 + (−25) = $425bn.",
@@ -279,8 +319,24 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-28",
     section: "national-income-gdp",
-    code: "$Billions\nDepreciation 40\nReceipts of factor incomes from the rest of the world 30\nGovernment purchases 100\nImports 50\nPayments of factor income to the rest of the world 50\nNet private domestic investment 200\nPersonal income taxes 120\nPersonal consumption expenditures 600\nDividends 20\nExports 60\nAmount of national income not going to households 20",
-    question: "The value of GDP in billions is",
+    table: {
+      caption: "$ Billions",
+      columns: ["Item", "Value"],
+      rows: [
+        ["Depreciation", 40],
+        ["Receipts of factor incomes from the rest of the world", 30],
+        ["Government purchases", 100],
+        ["Imports", 50],
+        ["Payments of factor income to the rest of the world", 50],
+        ["Net private domestic investment", 200],
+        ["Personal income taxes", 120],
+        ["Personal consumption expenditures", 600],
+        ["Dividends", 20],
+        ["Exports", 60],
+        ["Amount of national income not going to households", 20],
+      ],
+    },
+    question: "(Table above) The value of GDP in billions is",
     options: ["$910", "$920", "$950", "$1,050"],
     answer: "$950",
     explanation: "Gross private domestic investment = net investment + depreciation = 200+40 = 240. GDP = C + I(gross) + G + (X−M) = 600 + 240 + 100 + (60−50) = $950bn.",
@@ -288,8 +344,24 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-29",
     section: "national-income-gdp",
-    code: "Same table as the previous question.",
-    question: "The value for GNP in billions is",
+    table: {
+      caption: "$ Billions — same table as the previous question",
+      columns: ["Item", "Value"],
+      rows: [
+        ["Depreciation", 40],
+        ["Receipts of factor incomes from the rest of the world", 30],
+        ["Government purchases", 100],
+        ["Imports", 50],
+        ["Payments of factor income to the rest of the world", 50],
+        ["Net private domestic investment", 200],
+        ["Personal income taxes", 120],
+        ["Personal consumption expenditures", 600],
+        ["Dividends", 20],
+        ["Exports", 60],
+        ["Amount of national income not going to households", 20],
+      ],
+    },
+    question: "(Table above) The value for GNP in billions is",
     options: ["$900", "$930", "$980", "$1,010"],
     answer: "$930",
     explanation: "GNP = GDP + net factor income from abroad = 950 + (30 − 50) = $930bn.",
@@ -297,8 +369,24 @@ export const econsPasscoBank: EconsPassQuestion[] = [
   {
     id: "econs-passco-30",
     section: "national-income-gdp",
-    code: "Same table as the previous question.",
-    question: "The value for NNP in billions is",
+    table: {
+      caption: "$ Billions — same table as the previous question",
+      columns: ["Item", "Value"],
+      rows: [
+        ["Depreciation", 40],
+        ["Receipts of factor incomes from the rest of the world", 30],
+        ["Government purchases", 100],
+        ["Imports", 50],
+        ["Payments of factor income to the rest of the world", 50],
+        ["Net private domestic investment", 200],
+        ["Personal income taxes", 120],
+        ["Personal consumption expenditures", 600],
+        ["Dividends", 20],
+        ["Exports", 60],
+        ["Amount of national income not going to households", 20],
+      ],
+    },
+    question: "(Table above) The value for NNP in billions is",
     options: ["$890", "$910", "$940", "$970"],
     answer: "$890",
     explanation: "NNP = GNP − depreciation = 930 − 40 = $890bn.",
