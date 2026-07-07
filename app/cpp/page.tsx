@@ -33,6 +33,7 @@ import { comparisonTables } from "@/lib/comparisonTables";
 import { curriculum } from "@/lib/curriculum";
 import { mcqBank } from "@/lib/mcqBank";
 import { basicsGroups } from "@/lib/basics";
+import { examBank } from "@/lib/examBank";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -68,7 +69,7 @@ export default function CppRoom() {
             className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
-              <p className="text-sm font-semibold text-accent">114-question exam room →</p>
+              <p className="text-sm font-semibold text-accent">{examBank.length}-question exam room →</p>
               <p className="text-sm text-body mt-0.5">
                 Timed, configurable MCQ practice covering the whole syllabus, with per-topic
                 scoring and a full review mode.
