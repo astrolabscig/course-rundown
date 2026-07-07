@@ -1,32 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { EXAM_TOPICS, examBank, type ExamTopic } from "@/lib/examBank";
+import type { ExamQuestion } from "@/lib/shuffle";
 import type { ExamConfig, ExamAttemptRecord } from "@/lib/examProgress";
 import { computeTopicAccuracy, computeXp, computeLevel } from "@/lib/examProgress";
 
-const ALL_TOPIC_IDS = EXAM_TOPICS.map((t) => t.id);
-
 export default function ExamConfigurator({
   history,
+  bank,
+  topics: topicMeta,
   onStart,
 }: {
   history: ExamAttemptRecord[];
+  bank: ExamQuestion[];
+  topics: { id: string; label: string }[];
   onStart: (config: ExamConfig) => void;
 }) {
-  const [topics, setTopics] = useState<Set<ExamTopic>>(new Set(ALL_TOPIC_IDS));
+  const allTopicIds = topicMeta.map((t) => t.id);
+  const [topics, setTopics] = useState<Set<string>>(new Set(allTopicIds));
   const [questionCount, setQuestionCount] = useState(20);
   const [timed, setTimed] = useState(true);
   const [minutes, setMinutes] = useState(15);
   const [negativeMarking, setNegativeMarking] = useState(false);
 
-  const availableCount = examBank.filter((q) => topics.has(q.topic)).length;
+  const availableCount = bank.filter((q) => topics.has(q.topic)).length;
   const xp = computeXp(history);
   const level = computeLevel(xp);
   const accuracy = computeTopicAccuracy(history);
   const weakTopics = accuracy.filter((a) => a.weak);
 
-  function toggleTopic(topic: ExamTopic) {
+  function toggleTopic(topic: string) {
     setTopics((prev) => {
       const next = new Set(prev);
       if (next.has(topic)) next.delete(topic);
@@ -36,7 +39,7 @@ export default function ExamConfigurator({
   }
 
   function toggleAll() {
-    setTopics((prev) => (prev.size === ALL_TOPIC_IDS.length ? new Set() : new Set(ALL_TOPIC_IDS)));
+    setTopics((prev) => (prev.size === allTopicIds.length ? new Set() : new Set(allTopicIds)));
   }
 
   function handleStart() {
@@ -63,7 +66,7 @@ export default function ExamConfigurator({
           {weakTopics.length > 0 && (
             <p className="mt-3 text-sm text-body">
               Weakest so far:{" "}
-              {weakTopics.map((w) => EXAM_TOPICS.find((t) => t.id === w.topic)?.label).join(", ")}
+              {weakTopics.map((w) => topicMeta.find((t) => t.id === w.topic)?.label).join(", ")}
               {" "}— consider selecting just those topics below for focused practice.
             </p>
           )}
@@ -79,12 +82,12 @@ export default function ExamConfigurator({
               onClick={toggleAll}
               className="text-xs font-medium text-accent hover:underline"
             >
-              {topics.size === ALL_TOPIC_IDS.length ? "Clear all" : "Select all"}
+              {topics.size === allTopicIds.length ? "Clear all" : "Select all"}
             </button>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
-            {EXAM_TOPICS.map((t) => {
-              const count = examBank.filter((q) => q.topic === t.id).length;
+            {topicMeta.map((t) => {
+              const count = bank.filter((q) => q.topic === t.id).length;
               const stat = accuracy.find((a) => a.topic === t.id);
               return (
                 <label

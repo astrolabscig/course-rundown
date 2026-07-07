@@ -2,7 +2,7 @@ import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import ExamRoom from "@/components/exam/ExamRoom";
-import { examBank } from "@/lib/examBank";
+import { examBank, EXAM_TOPICS } from "@/lib/examBank";
 
 export default function CppExamPage() {
   return (
@@ -21,7 +21,13 @@ export default function CppExamPage() {
             came from.
           </p>
         </div>
-        <ExamRoom />
+        <ExamRoom
+          bank={examBank}
+          topics={EXAM_TOPICS}
+          storageKey="cpp_exam_history"
+          backHref="/cpp"
+          roomPath="/cpp"
+        />
       </main>
       <Footer />
     </div>

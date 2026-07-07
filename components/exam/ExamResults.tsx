@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { EXAM_TOPICS } from "@/lib/examBank";
 import type { ExamAttemptRecord } from "@/lib/examProgress";
 import { computeXp, computeLevel } from "@/lib/examProgress";
 
@@ -10,11 +9,15 @@ const PASS_THRESHOLD_PCT = 60;
 export default function ExamResults({
   record,
   history,
+  topics,
+  backHref,
   onReview,
   onRetry,
 }: {
   record: ExamAttemptRecord;
   history: ExamAttemptRecord[];
+  topics: { id: string; label: string }[];
+  backHref: string;
   onReview: () => void;
   onRetry: () => void;
 }) {
@@ -47,7 +50,7 @@ export default function ExamResults({
         <div className="space-y-2.5">
           {topicRows.map(([topic, stats]) => {
             const topicPct = stats.total === 0 ? 0 : Math.round((stats.correct / stats.total) * 100);
-            const label = EXAM_TOPICS.find((t) => t.id === topic)?.label ?? topic;
+            const label = topics.find((t) => t.id === topic)?.label ?? topic;
             return (
               <div key={topic}>
                 <div className="flex items-center justify-between text-xs text-body mb-1">
@@ -84,7 +87,7 @@ export default function ExamResults({
           Configure another exam
         </button>
         <Link
-          href="/cpp"
+          href={backHref}
           className="px-5 py-2 rounded-full border border-card-border text-sm font-medium text-body hover:border-accent transition-colors"
         >
           Back to lessons

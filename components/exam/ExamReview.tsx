@@ -1,16 +1,19 @@
 "use client";
 
 import CodeBlock from "@/components/CodeBlock";
-import { EXAM_TOPICS } from "@/lib/examBank";
 import type { ShuffledQuestion } from "@/lib/shuffle";
 
 export default function ExamReview({
   questions,
   answers,
+  topics,
+  roomPath,
   onBack,
 }: {
   questions: ShuffledQuestion[];
   answers: (number | null)[];
+  topics: { id: string; label: string }[];
+  roomPath: string;
   onBack: () => void;
 }) {
   return (
@@ -26,7 +29,7 @@ export default function ExamReview({
       <div className="space-y-6">
         {questions.map((q, i) => {
           const selected = answers[i];
-          const topicLabel = EXAM_TOPICS.find((t) => t.id === q.topic)?.label ?? q.topic;
+          const topicLabel = topics.find((t) => t.id === q.topic)?.label ?? q.topic;
           const wasCorrect = selected === q.correctIndex;
           return (
             <div key={q.id} className="rounded-2xl border border-card-border bg-card p-5 sm:p-6 space-y-4">
@@ -70,7 +73,7 @@ export default function ExamReview({
                   </p>
                 )}
                 <a
-                  href={`/cpp#${q.relatedPartId}`}
+                  href={`${roomPath}#${q.relatedPartId}`}
                   className="inline-block text-xs font-medium text-accent hover:underline"
                 >
                   Review this lesson →

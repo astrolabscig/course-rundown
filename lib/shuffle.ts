@@ -1,4 +1,22 @@
-import type { ExamQuestion } from "@/lib/examBank";
+// Generic exam-question contract shared by every subject's exam room
+// (lib/examBank.ts, lib/econs/examBank.ts, ...). Each bank's own topic union
+// type (e.g. ExamTopic) is a string, so it structurally satisfies this.
+export type QuestionType = "concept" | "code-analysis" | "debugging" | "best-practice";
+
+export interface ExamQuestion {
+  id: string;
+  topic: string;
+  subtopic: string;
+  difficulty: 1 | 2 | 3 | 4 | 5;
+  type: QuestionType;
+  code?: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+  misconception?: string;
+  relatedPartId: string;
+}
 
 export interface ShuffledQuestion extends ExamQuestion {
   originalCorrectIndex: number;

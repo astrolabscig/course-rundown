@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { examBank, type ExamTopic } from "@/lib/examBank";
+import type { ExamQuestion } from "@/lib/shuffle";
 import { shuffleArray, shuffleOptions, type ShuffledQuestion } from "@/lib/shuffle";
 import {
   getHistory,
@@ -17,7 +17,19 @@ import ExamReview from "@/components/exam/ExamReview";
 
 type Stage = "configure" | "running" | "results" | "review";
 
-export default function ExamRoom() {
+export default function ExamRoom({
+  bank,
+  topics,
+  storageKey,
+  backHref,
+  roomPath,
+}: {
+  bank: ExamQuestion[];
+  topics: { id: string; label: string }[];
+  storageKey: string;
+  backHref: string;
+  roomPath: string;
+}) {
   const [stage, setStage] = useState<Stage>("configure");
   const [history, setHistory] = useState<ExamAttemptRecord[]>([]);
   const [config, setConfig] = useState<ExamConfig | null>(null);
@@ -26,11 +38,12 @@ export default function ExamRoom() {
   const [lastRecord, setLastRecord] = useState<ExamAttemptRecord | null>(null);
 
   useEffect(() => {
-    setHistory(getHistory());
+    setHistory(getHistory(storageKey));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleStart(newConfig: ExamConfig) {
-    const pool = examBank.filter((q) => newConfig.topics.includes(q.topic));
+    const pool = bank.filter((q) => newConfig.topics.includes(q.topic));
     const selected = shuffleArray(pool).slice(0, newConfig.questionCount);
     const shuffled = selected.map(shuffleOptions);
     setQuestions(shuffled);
@@ -43,7 +56,7 @@ export default function ExamRoom() {
     if (!config) return;
     let correctCount = 0;
     let rawScore = 0;
-    const topicBreakdown: Partial<Record<ExamTopic, { correct: number; total: number }>> = {};
+    const topicBreakdown: Partial<Record<string, { correct: number; total: number }>> = {};
 
     questions.forEach((q, i) => {
       const bucket = topicBreakdown[q.topic] ?? { correct: 0, total: 0 };
@@ -68,15 +81,15 @@ export default function ExamRoom() {
       config,
     };
 
-    recordAttempt(record);
-    setHistory(getHistory());
+    recordAttempt(storageKey, record);
+    setHistory(getHistory(storageKey));
     setAnswers(finalAnswers);
     setLastRecord(record);
     setStage("results");
   }
 
   if (stage === "running" && config) {
-    return <ExamRunner questions={questions} config={config} onFinish={handleFinish} />;
+    return <ExamRunner questions={questions} config={config} topics={topics} onFinish={handleFinish} />;
   }
 
   if (stage === "results" && lastRecord) {
@@ -84,6 +97,8 @@ export default function ExamRoom() {
       <ExamResults
         record={lastRecord}
         history={history}
+        topics={topics}
+        backHref={backHref}
         onReview={() => setStage("review")}
         onRetry={() => setStage("configure")}
       />
@@ -92,9 +107,15 @@ export default function ExamRoom() {
 
   if (stage === "review") {
     return (
-      <ExamReview questions={questions} answers={answers} onBack={() => setStage("results")} />
+      <ExamReview
+        questions={questions}
+        answers={answers}
+        topics={topics}
+        roomPath={roomPath}
+        onBack={() => setStage("results")}
+      />
     );
   }
 
-  return <ExamConfigurator history={history} onStart={handleStart} />;
+  return <ExamConfigurator history={history} bank={bank} topics={topics} onStart={handleStart} />;
 }

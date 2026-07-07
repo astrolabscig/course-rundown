@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
-import { EXAM_TOPICS } from "@/lib/examBank";
 import type { ShuffledQuestion } from "@/lib/shuffle";
 import type { ExamConfig } from "@/lib/examProgress";
 
@@ -15,10 +14,12 @@ function formatTime(totalSeconds: number): string {
 export default function ExamRunner({
   questions,
   config,
+  topics,
   onFinish,
 }: {
   questions: ShuffledQuestion[];
   config: ExamConfig;
+  topics: { id: string; label: string }[];
   onFinish: (answers: (number | null)[]) => void;
 }) {
   const [index, setIndex] = useState(0);
@@ -28,7 +29,7 @@ export default function ExamRunner({
 
   const total = questions.length;
   const question = questions[index];
-  const topicLabel = EXAM_TOPICS.find((t) => t.id === question.topic)?.label ?? question.topic;
+  const topicLabel = topics.find((t) => t.id === question.topic)?.label ?? question.topic;
 
   function finish(finalAnswers: (number | null)[]) {
     if (finishedRef.current) return;
