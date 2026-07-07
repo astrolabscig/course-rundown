@@ -54,26 +54,6 @@ export function computeTopicAccuracy(
   });
 }
 
-export function computeStreak(history: ExamAttemptRecord[]): number {
-  if (history.length === 0) return 0;
-  const days = new Set(
-    history.map((a) => {
-      const d = new Date(a.timestamp);
-      return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-    })
-  );
-  let streak = 0;
-  const cursor = new Date();
-  cursor.setHours(0, 0, 0, 0);
-  while (true) {
-    const key = `${cursor.getFullYear()}-${cursor.getMonth()}-${cursor.getDate()}`;
-    if (!days.has(key)) break;
-    streak++;
-    cursor.setDate(cursor.getDate() - 1);
-  }
-  return streak;
-}
-
 export function computeXp(history: ExamAttemptRecord[]): number {
   return history.reduce((sum, a) => sum + a.correctCount, 0);
 }

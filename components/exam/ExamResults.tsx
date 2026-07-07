@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { EXAM_TOPICS } from "@/lib/examBank";
 import type { ExamAttemptRecord } from "@/lib/examProgress";
-import { computeXp, computeLevel, computeStreak } from "@/lib/examProgress";
+import { computeXp, computeLevel } from "@/lib/examProgress";
 
 const PASS_THRESHOLD_PCT = 60;
 
@@ -22,7 +22,6 @@ export default function ExamResults({
   const passed = pct >= PASS_THRESHOLD_PCT;
   const xp = computeXp(history);
   const level = computeLevel(xp);
-  const streak = computeStreak(history);
 
   const topicRows = Object.entries(record.topicBreakdown) as [string, { correct: number; total: number }][];
 
@@ -40,11 +39,6 @@ export default function ExamResults({
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <span className="rounded-full bg-accent text-white text-xs font-semibold px-3 py-1">Level {level}</span>
           <span className="text-sm text-secondary">{xp} total XP</span>
-          {streak > 0 && (
-            <span className="rounded-full bg-accent-warm-bg text-accent-warm text-xs font-semibold px-3 py-1">
-              🔥 {streak} day streak
-            </span>
-          )}
         </div>
       </div>
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { EXAM_TOPICS, examBank, type ExamTopic } from "@/lib/examBank";
 import type { ExamConfig, ExamAttemptRecord } from "@/lib/examProgress";
-import { computeTopicAccuracy, computeStreak, computeXp, computeLevel } from "@/lib/examProgress";
+import { computeTopicAccuracy, computeXp, computeLevel } from "@/lib/examProgress";
 
 const ALL_TOPIC_IDS = EXAM_TOPICS.map((t) => t.id);
 
@@ -23,7 +23,6 @@ export default function ExamConfigurator({
   const availableCount = examBank.filter((q) => topics.has(q.topic)).length;
   const xp = computeXp(history);
   const level = computeLevel(xp);
-  const streak = computeStreak(history);
   const accuracy = computeTopicAccuracy(history);
   const weakTopics = accuracy.filter((a) => a.weak);
 
@@ -60,11 +59,6 @@ export default function ExamConfigurator({
               Level {level}
             </span>
             <span className="text-sm text-secondary">{xp} XP earned across all attempts</span>
-            {streak > 0 && (
-              <span className="rounded-full bg-accent-warm-bg text-accent-warm text-xs font-semibold px-3 py-1">
-                🔥 {streak} day streak
-              </span>
-            )}
           </div>
           {weakTopics.length > 0 && (
             <p className="mt-3 text-sm text-body">
