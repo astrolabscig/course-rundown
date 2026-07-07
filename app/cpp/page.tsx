@@ -63,6 +63,22 @@ export default function CppRoom() {
             </p>
           </section>
 
+          <a
+            href="/cpp/exam"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">114-question exam room →</p>
+              <p className="text-sm text-body mt-0.5">
+                Timed, configurable MCQ practice covering the whole syllabus, with per-topic
+                scoring and a full review mode.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Start exam
+            </span>
+          </a>
+
           <section id="part-0" className="space-y-6 scroll-mt-24">
             <PartHeading number="0" title="C++ Basics Cheatsheet" />
             <p className="text-sm text-secondary">
