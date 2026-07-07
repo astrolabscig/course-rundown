@@ -12,9 +12,9 @@ export default function TopBar({ showCredit = false }: { showCredit?: boolean })
           <span className="text-lg font-semibold text-heading">Course Rundown</span>
         </Link>
         {showCredit && (
-          <span className="ml-auto shrink-0 rounded-full border border-card-border bg-muted px-3 py-1 text-sm sm:text-base font-mono font-semibold text-accent">
-            @astrolab
-          </span>
+          <p className="ml-auto shrink-0 text-lg text-secondary">
+            Built by <span className="font-mono font-medium text-heading">@astrolab</span>
+          </p>
         )}
       </div>
     </header>
