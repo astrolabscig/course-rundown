@@ -126,8 +126,8 @@ export default function SwitchingSimulator() {
         ▶ Play switching &amp; MAC learning
       </button>
 
-      <div className="rounded-2xl border border-card-border bg-muted p-6">
-        <div className="flex items-center justify-center gap-10">
+      <div className="rounded-2xl border border-card-border bg-muted p-3 sm:p-6">
+        <div className="flex items-center justify-center gap-3 sm:gap-10">
           {ports.map((p) => (
             <div
               key={p.n}
