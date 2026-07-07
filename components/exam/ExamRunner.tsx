@@ -48,6 +48,7 @@ export default function ExamRunner({
   }, [config.timed, secondsLeft]);
 
   function select(optionIndex: number) {
+    if (answers[index] !== null) return;
     setAnswers((prev) => {
       const next = [...prev];
       next[index] = optionIndex;
@@ -103,23 +104,50 @@ export default function ExamRunner({
 
         <div className="space-y-2">
           {question.options.map((option, i) => {
-            const isChosen = i === answers[index];
+            const chosen = answers[index];
+            const answered = chosen !== null;
+            const isChosen = i === chosen;
+            const isCorrect = i === question.correctIndex;
+            let style = "bg-white text-body border-card-border hover:border-accent";
+            if (answered) {
+              if (isCorrect) style = "bg-success text-white border-success";
+              else if (isChosen) style = "bg-error text-white border-error";
+              else style = "bg-white text-body border-card-border opacity-60";
+            }
             return (
               <button
                 key={i}
                 type="button"
                 onClick={() => select(i)}
-                className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm font-medium transition-colors break-words ${
-                  isChosen
-                    ? "bg-accent text-white border-accent"
-                    : "bg-white text-body border-card-border hover:border-accent"
-                }`}
+                disabled={answered}
+                className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm font-medium transition-colors break-words disabled:cursor-default ${style}`}
               >
                 {option}
               </button>
             );
           })}
         </div>
+
+        {answers[index] !== null && (
+          <div className="rounded-xl bg-muted p-4 space-y-2">
+            <p className="text-sm text-body">
+              <span
+                className={
+                  answers[index] === question.correctIndex ? "text-success font-semibold" : "text-error font-semibold"
+                }
+              >
+                {answers[index] === question.correctIndex ? "Correct. " : "Not quite. "}
+              </span>
+              {question.explanation}
+            </p>
+            {question.misconception && (
+              <p className="text-xs text-secondary">
+                <span className="font-semibold">Common mistake: </span>
+                {question.misconception}
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
