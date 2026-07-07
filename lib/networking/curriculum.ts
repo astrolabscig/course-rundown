@@ -12,5 +12,6 @@ export const networkingCurriculum: CurriculumPart[] = [
   { id: "n-part-8", number: "8", title: "Speed Tables" },
   { id: "n-part-9", number: "9", title: "Subnetting Drill" },
   { id: "n-part-10", number: "10", title: "MCQ Drill Bank" },
+  { id: "n-part-11", number: "11", title: "CSM 152 Midsem Quiz" },
   { id: "feedback", number: "", title: "Feedback" },
 ];

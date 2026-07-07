@@ -27,6 +27,7 @@ import { networkingCurriculum } from "@/lib/networking/curriculum";
 import { networkingFundamentalsGroups } from "@/lib/networking/fundamentals";
 import { networkingComparisonTables } from "@/lib/networking/comparisonTables";
 import { networkingMcqBank } from "@/lib/networking/mcqBank";
+import { midsemBank } from "@/lib/networking/midsemBank";
 
 const specialAddresses: [string, string][] = [
   ["0.0.0.0", "\"This network/host\" — a placeholder, not a real assignable address."],
@@ -330,6 +331,18 @@ export default function NetworkingRoom() {
             <PartHeading number="10" title="MCQ Drill Bank" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={networkingMcqBank} />
+            </div>
+          </section>
+
+          <section id="n-part-11" className="space-y-6 scroll-mt-24">
+            <PartHeading number="11" title="CSM 152 Midsem Quiz" />
+            <p className="text-sm text-secondary">
+              All {midsemBank.length} questions from a real KNUST CSM 152 mid-semester exam paper,
+              including the full practical subnetting scenario at the end — answer, see it marked
+              instantly, then read the explanation.
+            </p>
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
+              <MCQDrill questions={midsemBank} />
             </div>
           </section>
 
