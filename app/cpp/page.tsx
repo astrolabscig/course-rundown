@@ -34,6 +34,8 @@ import { curriculum } from "@/lib/curriculum";
 import { mcqBank } from "@/lib/mcqBank";
 import { basicsGroups } from "@/lib/basics";
 import { examBank } from "@/lib/examBank";
+import { passcoBank } from "@/lib/passcoBank";
+import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -318,6 +320,16 @@ export default function CppRoom() {
               course reference material is added.
             </p>
             <OutputPredictionDrill />
+          </section>
+
+          <section id="part-10" className="space-y-6 scroll-mt-24">
+            <PartHeading number="10" title="Passco Cheatsheet" />
+            <p className="text-sm text-secondary">
+              {passcoBank.length} real past-exam-style questions with correct answers and short
+              explanations, straight from a C++ past-questions booklet — filter by type, click a
+              question to reveal the answer.
+            </p>
+            <PasscoCheatsheet questions={passcoBank} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">

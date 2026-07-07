@@ -15,5 +15,6 @@ export const curriculum: CurriculumPart[] = [
   { id: "part-7", number: "7", title: "Speed Tables" },
   { id: "part-8", number: "8", title: "MCQ Drill Bank" },
   { id: "part-9", number: "9", title: "Output-Prediction Drill" },
+  { id: "part-10", number: "10", title: "Passco Cheatsheet" },
   { id: "feedback", number: "", title: "Feedback" },
 ];
