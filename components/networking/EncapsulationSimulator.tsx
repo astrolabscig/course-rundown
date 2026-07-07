@@ -106,12 +106,12 @@ function LayerStack({
   activeLayer: number | null;
 }) {
   return (
-    <div className="flex flex-col gap-1.5 w-full">
+    <div className="flex flex-col gap-1.5 w-full min-w-0">
       <p className="text-xs font-semibold uppercase tracking-wide text-secondary text-center">{title}</p>
       {layers.map((layer, i) => (
         <div
           key={layer}
-          className={`rounded-lg border-2 px-3 py-2 text-center text-sm font-mono transition-colors ${
+          className={`rounded-lg border-2 px-1 sm:px-3 py-1.5 sm:py-2 text-center text-[11px] sm:text-sm font-mono transition-colors truncate ${
             active && activeLayer === i ? "border-accent bg-white text-heading font-semibold" : "border-card-border bg-white text-secondary"
           }`}
         >
@@ -183,7 +183,7 @@ export default function EncapsulationSimulator() {
       </ExplainerBox>
 
       <div className="rounded-2xl border border-card-border bg-muted p-4 space-y-4">
-        <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-start">
+        <div className="grid grid-cols-[1fr_auto_1fr] gap-1.5 sm:gap-4 items-start">
           <LayerStack
             title="Sender"
             active={stage.side === "sender"}
@@ -191,7 +191,7 @@ export default function EncapsulationSimulator() {
           />
 
           <div className="flex flex-col items-center justify-end h-full pb-2">
-            <div className="relative w-16 sm:w-24 h-1 bg-card-border rounded-full mt-auto mb-[1.65rem]">
+            <div className="relative w-6 sm:w-24 h-1 bg-card-border rounded-full mt-auto mb-[1.65rem]">
               {stage.side === "wire" && (
                 <div
                   className="absolute top-1/2 h-4 w-4 -translate-y-1/2 -translate-x-1/2 rounded-full bg-accent transition-all duration-[1100ms]"

@@ -127,11 +127,11 @@ export default function SwitchingSimulator() {
       </button>
 
       <div className="rounded-2xl border border-card-border bg-muted p-3 sm:p-6">
-        <div className="flex items-center justify-center gap-3 sm:gap-10">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-10">
           {ports.map((p) => (
             <div
               key={p.n}
-              className={`rounded-xl border-2 px-3 py-2 text-xs font-mono text-center transition-colors ${
+              className={`rounded-xl border-2 px-2 sm:px-3 py-2 text-xs font-mono text-center transition-colors ${
                 stage.activePorts.includes(p.n) ? "border-accent bg-accent text-white" : "border-card-border bg-white text-heading"
               }`}
             >
