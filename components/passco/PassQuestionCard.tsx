@@ -25,7 +25,14 @@ export default function PassQuestionCard({
   index: number;
   onReveal: () => void;
 }) {
+  const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
+
+  function selectOption(i: number) {
+    if (selected !== null) return;
+    setSelected(i);
+    onReveal();
+  }
 
   function reveal() {
     if (!revealed) {
@@ -33,6 +40,10 @@ export default function PassQuestionCard({
       onReveal();
     }
   }
+
+  const answered = item.options ? selected !== null : revealed;
+  const correctOptionIndex = item.options ? item.options.findIndex((o) => o === item.answer) : -1;
+  const wasCorrect = selected !== null && selected === correctOptionIndex;
 
   return (
     <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
@@ -42,25 +53,54 @@ export default function PassQuestionCard({
       {item.code && <CodeBlock code={item.code} />}
 
       {item.options && (
-        <ul className="space-y-1">
-          {item.options.map((option, i) => (
-            <li key={i} className="text-sm text-body flex gap-2">
-              <span className="text-secondary shrink-0">{String.fromCharCode(65 + i)}.</span>
-              <span className="whitespace-pre-wrap">{option}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-2">
+          {item.options.map((option, i) => {
+            const isCorrect = i === correctOptionIndex;
+            const isChosen = i === selected;
+            let style = "bg-white text-body border-card-border hover:border-accent";
+            if (answered) {
+              if (isCorrect) style = "bg-success text-white border-success";
+              else if (isChosen) style = "bg-error text-white border-error";
+              else style = "bg-white text-body border-card-border opacity-60";
+            }
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => selectOption(i)}
+                disabled={answered}
+                className={`w-full text-left px-4 py-2.5 rounded-xl border text-sm font-medium transition-colors break-words disabled:cursor-default ${style}`}
+              >
+                <span className="text-secondary mr-1">{String.fromCharCode(65 + i)}.</span>
+                <span className="whitespace-pre-wrap">{option}</span>
+              </button>
+            );
+          })}
+        </div>
       )}
 
-      {revealed ? (
+      {answered ? (
         <div className="rounded-xl bg-muted p-4 space-y-2">
-          <p className="text-sm text-body whitespace-pre-wrap">
-            <span className="text-success font-semibold">Answer: </span>
-            {item.answer}
-          </p>
+          {item.options ? (
+            <p className="text-sm text-body">
+              <span className={wasCorrect ? "text-success font-semibold" : "text-error font-semibold"}>
+                {correctOptionIndex === -1
+                  ? "Answer: "
+                  : wasCorrect
+                    ? "Correct. "
+                    : "Not quite. "}
+              </span>
+              {correctOptionIndex === -1 && item.answer}
+            </p>
+          ) : (
+            <p className="text-sm text-body whitespace-pre-wrap">
+              <span className="text-success font-semibold">Answer: </span>
+              {item.answer}
+            </p>
+          )}
           <p className="text-sm text-body">{item.explanation}</p>
         </div>
-      ) : (
+      ) : !item.options ? (
         <button
           type="button"
           onClick={reveal}
@@ -68,7 +108,7 @@ export default function PassQuestionCard({
         >
           Show answer
         </button>
-      )}
+      ) : null}
     </div>
   );
 }
