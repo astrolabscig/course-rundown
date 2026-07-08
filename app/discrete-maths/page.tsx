@@ -36,6 +36,7 @@ import MCQDrill from "@/components/drills/MCQDrill";
 import { discreteMathsCurriculum } from "@/lib/discreteMaths/curriculum";
 import { discreteMathsFundamentalsGroups } from "@/lib/discreteMaths/fundamentals";
 import { discreteMathsMcqBank } from "@/lib/discreteMaths/mcqBank";
+import { discreteMathsQuizBank } from "@/lib/discreteMaths/quizBank";
 import {
   part1WorkedProblems,
   part2WorkedProblems,
@@ -80,6 +81,22 @@ export default function DiscreteMathsRoom() {
               Mathematics and Its Applications.
             </p>
           </section>
+
+          <a
+            href="/discrete-maths/quiz"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{discreteMathsQuizBank.length}-question Concept Quiz →</p>
+              <p className="text-sm text-body mt-0.5">
+                Filter by concept, hardest questions first, mixing multiple-choice with fill-in-
+                the-blank — full step-by-step solutions and explanations every time.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open quiz
+            </span>
+          </a>
 
           <section id="dm-part-0" className="space-y-6 scroll-mt-24">
             <PartHeading number="0" title="Discrete Math Orientation" />
