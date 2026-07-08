@@ -90,6 +90,22 @@ export default function EconsRoom() {
             </span>
           </a>
 
+          <a
+            href="/econs/lab"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">Simulation Lab →</p>
+              <p className="text-sm text-body mt-0.5">
+                One concept, one graph at a time — play with the business cycle, reshape long-run
+                growth, and watch the output gap open and close.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open lab
+            </span>
+          </a>
+
           <section id="e-part-0" className="space-y-6 scroll-mt-24">
             <PartHeading number="0" title="Macroeconomics Cheatsheet" />
             <p className="text-sm text-secondary">
