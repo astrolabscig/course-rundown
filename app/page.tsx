@@ -25,6 +25,13 @@ const rooms = [
     description:
       "The circular flow, national income, unemployment, inflation, the Phillips curve, balance of payments, and exchange rates — with real calculators and simulations for every concept.",
   },
+  {
+    href: "/discrete-maths",
+    tag: "Logic → Trees & Graphs",
+    title: "Discrete Mathematics",
+    description:
+      "Logic, proofs, sets, algorithms, induction, counting, relations, graphs, and trees — real textbook problems solved step by step, with simulations for every algorithm and data structure.",
+  },
 ];
 
 export default function Home() {
@@ -36,9 +43,9 @@ export default function Home() {
         <section className="space-y-2 mb-10">
           <h1 className="text-3xl font-semibold text-heading">Pick a room</h1>
           <p className="text-body max-w-2xl">
-            Two courses, same approach: the correct thing, a broken version with the real error,
-            and a plain-language explanation of why — plus real interactive simulations, not just
-            static notes.
+            Same approach across every course: the correct thing, a broken version with the real
+            error, and a plain-language explanation of why — plus real interactive simulations,
+            not just static notes.
           </p>
         </section>
 
