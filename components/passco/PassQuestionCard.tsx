@@ -27,39 +27,49 @@ export interface PassQuestion {
   chartId?: string;
   options?: string[];
   answer: string;
+  acceptableAnswers?: string[];
   explanation: string;
   steps?: PassStep[];
   analogy?: string;
 }
 
+function normalizeAnswer(s: string): string {
+  return s.trim().toLowerCase().replace(/,/g, "").replace(/\s+/g, " ");
+}
+
 export default function PassQuestionCard({
   item,
   index,
-  onReveal,
+  onAnswered,
 }: {
   item: PassQuestion;
   index: number;
-  onReveal: () => void;
+  onAnswered: (correct: boolean) => void;
 }) {
   const [selected, setSelected] = useState<number | null>(null);
-  const [revealed, setRevealed] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [fillInCorrect, setFillInCorrect] = useState(false);
 
   function selectOption(i: number) {
     if (selected !== null) return;
     setSelected(i);
-    onReveal();
+    const correctIndex = item.options!.findIndex((o) => o === item.answer);
+    onAnswered(i === correctIndex);
   }
 
-  function reveal() {
-    if (!revealed) {
-      setRevealed(true);
-      onReveal();
-    }
+  function submitFillIn() {
+    if (submitted || inputValue.trim() === "") return;
+    const accepted = (item.acceptableAnswers ?? [item.answer]).map(normalizeAnswer);
+    const correct = accepted.includes(normalizeAnswer(inputValue));
+    setFillInCorrect(correct);
+    setSubmitted(true);
+    onAnswered(correct);
   }
 
-  const answered = item.options ? selected !== null : revealed;
+  const answered = item.options ? selected !== null : submitted;
   const correctOptionIndex = item.options ? item.options.findIndex((o) => o === item.answer) : -1;
-  const wasCorrect = selected !== null && selected === correctOptionIndex;
+  const wasCorrect = item.options ? selected !== null && selected === correctOptionIndex : fillInCorrect;
 
   return (
     <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
@@ -99,6 +109,32 @@ export default function PassQuestionCard({
       )}
 
       {item.chartId && <PassChart id={item.chartId} />}
+
+      {!item.options && (
+        <div className="flex flex-wrap gap-2">
+          <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") submitFillIn();
+            }}
+            disabled={submitted}
+            placeholder="Type your answer"
+            className={`flex-1 min-w-[180px] rounded-full border-2 px-4 py-2 text-sm font-mono ${
+              submitted ? (fillInCorrect ? "border-success bg-success/10" : "border-error bg-error/10") : "border-card-border"
+            }`}
+          />
+          {!submitted && (
+            <button
+              type="button"
+              onClick={submitFillIn}
+              className="px-4 py-2 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
+            >
+              Submit
+            </button>
+          )}
+        </div>
+      )}
 
       {item.options && (
         <div className="space-y-2">
@@ -142,6 +178,9 @@ export default function PassQuestionCard({
             </p>
           ) : (
             <p className="text-sm text-body whitespace-pre-wrap">
+              <span className={fillInCorrect ? "text-success font-semibold" : "text-error font-semibold"}>
+                {fillInCorrect ? "Correct. " : "Not quite. "}
+              </span>
               <span className="text-success font-semibold">Answer: </span>
               {item.answer}
             </p>
@@ -170,14 +209,6 @@ export default function PassQuestionCard({
             </div>
           )}
         </div>
-      ) : !item.options ? (
-        <button
-          type="button"
-          onClick={reveal}
-          className="px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
-        >
-          Show answer
-        </button>
       ) : null}
     </div>
   );

@@ -1198,6 +1198,7 @@ export const discreteMathsPasscoBank: PassQuestion[] = [
     section: "counting-worksheets",
     question: "In a class there are 27 boys and 14 girls. The teacher wants to select 1 boy OR 1 girl to represent a competition. In how many ways can the teacher make this selection?",
     answer: "41 ways",
+    acceptableAnswers: ["41", "41 ways"],
     steps: [
       { statement: "We only need to do ONE of the two jobs (pick a boy, or pick a girl) — not both.", reason: "The word 'or' signals the sum/addition rule, not the product rule" },
       { statement: "Number of ways to pick a boy = 27. Number of ways to pick a girl = 14.", reason: "Count each option separately" },
@@ -1293,6 +1294,7 @@ export const discreteMathsPasscoBank: PassQuestion[] = [
     section: "counting-worksheets",
     question: "How many different 8-note melodies can be made using a 44-key keyboard (repetition of notes allowed)?",
     answer: "44⁸ = 14,048,223,625,220",
+    acceptableAnswers: ["14048223625220", "44^8", "44⁸"],
     explanation: "Each of the 8 notes independently has 44 possible key choices, giving 44⁸.",
     analogy: "'Sequences where repetition is allowed' are always (number of choices)^(number of positions) — no need for factorials or combinations at all.",
   },
