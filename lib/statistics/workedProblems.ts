@@ -110,6 +110,36 @@ export const part3WorkedProblems: WorkedProblem[] = [
     ],
     conclusion: "The weighted mean score is approximately 76.07 — higher than the simple average of 76.0 would suggest only slightly here, but the gap grows fast when weights vary more.",
   },
+  {
+    id: "stats-p3-tut2-q1",
+    label: "Every measure of central tendency on one quiz-score dataset",
+    given: "Scores obtained by 10 students in a class quiz: 12, 15, 12, 18, 20, 22, 15, 12, 25, 30.",
+    goal: "Find the arithmetic mean, 10% trimmed mean, geometric mean, mode, and median.",
+    steps: [
+      { statement: "Sum = 12+15+12+18+20+22+15+12+25+30 = 181, so the arithmetic mean = 181/10 = 18.1.", reason: "Plain average of all 10 values" },
+      { statement: "Sort the data: 12, 12, 12, 15, 15, 18, 20, 22, 25, 30. 10% of 10 = 1, so drop the 1 smallest (12) and 1 largest (30).", reason: "10% trimmed mean removes the most extreme value from each end before averaging" },
+      { statement: "Remaining 8 values: 12, 12, 15, 15, 18, 20, 22, 25, summing to 139. Trimmed mean = 139/8 = 17.375.", reason: "Average only the values that survived trimming" },
+      { statement: "Geometric mean = ¹⁰√(12×15×12×18×20×22×15×12×25×30) = ¹⁰√(2,309,472,000,000) ≈ 17.23.", reason: "Multiply all 10 values, then take the 10th root — always ≤ the arithmetic mean" },
+      { statement: "12 appears 3 times — more than any other value — so the mode = 12.", reason: "Most frequently occurring value" },
+      { statement: "With n=10 (even), the median is the average of the 5th and 6th sorted values: (15+18)/2 = 16.5.", reason: "Even-sized datasets average the two middle values" },
+    ],
+    conclusion: "Mean = 18.1, 10% trimmed mean = 17.375, geometric mean ≈ 17.23, mode = 12, median = 16.5 — try this exact dataset in the Central Tendency Calculator above (it's the default input) to see every step computed live.",
+  },
+  {
+    id: "stats-p3-tut2-q3",
+    label: "Modal class, mode, and median from a grouped Statistics test",
+    given:
+      "Marks of 40 students, grouped: 1-5:3, 6-10:6, 11-15:10, 16-20:12, 21-25:7, 26-30:2 (cumulative frequencies 3, 9, 19, 31, 38, 40).",
+    goal: "Determine the modal class, the mode, and the median.",
+    steps: [
+      { statement: "The class 16-20 has the highest frequency (12), so it is the modal class.", reason: "The modal class is simply the class with the largest frequency" },
+      { statement: "Mode = L + [Δ1/(Δ1+Δ2)] × c, where L=15.5 (lower boundary of 16-20), Δ1=12−10=2 (vs. the preceding class 11-15), Δ2=12−7=5 (vs. the succeeding class 21-25), c=5.", reason: "Set up the grouped-data mode formula's four ingredients" },
+      { statement: "Mode = 15.5 + [2/(2+5)] × 5 = 15.5 + 1.4286 ≈ 16.93.", reason: "Substitute and compute" },
+      { statement: "For the median, locate the n/2 = 20th position: cumulative frequency first reaches 20 in the class 16-20 (cum. freq. 31), with the previous cumulative frequency 19 (from 11-15).", reason: "Find which class contains the middle observation" },
+      { statement: "Median = L + (c/f)(n/2 − F) = 15.5 + (5/12)(20−19) = 15.5 + 0.4167 ≈ 15.92.", reason: "Same interpolation formula used for percentiles, just targeting the 50% position" },
+    ],
+    conclusion: "Modal class = 16-20, mode ≈ 16.93, median ≈ 15.92 — this is the same L + (c/f)(target − F) pattern used for percentiles, just applied to find the middle of the data instead of an arbitrary percentile.",
+  },
 ];
 
 export const part4WorkedProblems: WorkedProblem[] = [

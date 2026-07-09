@@ -18,6 +18,7 @@ import MCQDrill from "@/components/drills/MCQDrill";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
 import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
+import { statisticsExamBank } from "@/lib/statistics/examBank";
 import {
   part1WorkedProblems,
   part2WorkedProblems,
@@ -58,6 +59,22 @@ export default function StatisticsRoom() {
               course material.
             </p>
           </section>
+
+          <a
+            href="/statistics/exam"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent\30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{statisticsExamBank.length}-question exam room →</p>
+              <p className="text-sm text-body mt-0.5">
+                Timed, configurable MCQ practice covering the whole syllabus, with per-topic
+                scoring and a full review mode.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Start exam
+            </span>
+          </a>
 
           <section id="stats-part-0" className="space-y-6 scroll-mt-24">
             <PartHeading number="0" title="Statistics Orientation" />

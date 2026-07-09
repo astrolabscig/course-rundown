@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Course Helper",
   description:
-    "Learn C++/OOP and IT networking fundamentals with real interactive simulations, real errors, and plain-language explanations.",
+    "Learn C++/OOP, IT networking, Economics II, Discrete Mathematics, and Statistics with real interactive simulations, real errors, and plain-language explanations.",
 };
 
 export default function RootLayout({
