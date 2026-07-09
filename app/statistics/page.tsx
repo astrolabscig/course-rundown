@@ -13,6 +13,7 @@ import DispersionCalculator from "@/components/statistics/DispersionCalculator";
 import QuartilePercentileFinder from "@/components/statistics/QuartilePercentileFinder";
 import SkewnessCalculator from "@/components/statistics/SkewnessCalculator";
 import BoxplotBuilder from "@/components/statistics/BoxplotBuilder";
+import ShapeGraphs from "@/components/statistics/ShapeGraphs";
 import EmpiricalRuleExplorer from "@/components/statistics/EmpiricalRuleExplorer";
 import MCQDrill from "@/components/drills/MCQDrill";
 import FormulaCheatsheet from "@/components/statistics/FormulaCheatsheet";
@@ -143,6 +144,7 @@ export default function StatisticsRoom() {
               Skewness, kurtosis, the five-number summary, and boxplots — see the shape of a
               distribution, don't just calculate it.
             </p>
+            <ShapeGraphs />
             <SkewnessCalculator />
             <BoxplotBuilder />
             <WorkedProblemsList problems={part6WorkedProblems} />

@@ -79,21 +79,6 @@ export default function SkewnessCalculator() {
           This distribution is <strong>{classification}</strong>.
         </p>
       </div>
-
-      <div className="grid gap-3 sm:grid-cols-3 text-sm">
-        <div className="rounded-xl border border-card-border p-3">
-          <p className="font-semibold text-heading">Mesokurtic</p>
-          <p className="text-xs text-secondary">Tails similar to a normal distribution — neither too peaked nor too flat.</p>
-        </div>
-        <div className="rounded-xl border border-card-border p-3">
-          <p className="font-semibold text-heading">Leptokurtic</p>
-          <p className="text-xs text-secondary">Fatter tails, sharper peak — more extreme values than normal.</p>
-        </div>
-        <div className="rounded-xl border border-card-border p-3">
-          <p className="font-semibold text-heading">Platykurtic</p>
-          <p className="text-xs text-secondary">Thinner tails, flatter peak — fewer extreme values than normal.</p>
-        </div>
-      </div>
     </div>
   );
 }
