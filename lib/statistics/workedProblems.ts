@@ -68,3 +68,73 @@ export const part2WorkedProblems: WorkedProblem[] = [
     conclusion: "All four rules exist to guarantee that every single data point ends up counted exactly once, in a class that fairly represents it — break any one rule and the resulting table (and any chart built from it) can mislead.",
   },
 ];
+
+export const part3WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p3-trimmed",
+    label: "20% trimmed mean",
+    given: "Dataset: 22, 25, 29, 11, 14, 18, 13, 13, 17, 11, 8, 8, 7, 12, 15, 6, 8, 7, 9, 12 (n = 20).",
+    goal: "Calculate the 20% trimmed mean.",
+    steps: [
+      { statement: "Sort the data: 6, 7, 7, 8, 8, 8, 9, 11, 11, 12, 12, 13, 13, 14, 15, 17, 18, 22, 25, 29", reason: "The trim has to remove the smallest AND largest values, so the data must be ordered first" },
+      { statement: "20% of 20 = 4, so remove the 4 smallest and 4 largest values.", reason: "Trim percentage tells you how many values to drop from EACH end" },
+      { statement: "Remaining 12 values: 8, 8, 9, 11, 11, 12, 12, 13, 13, 14, 15, 17", reason: "After trimming 4 from the bottom (6,7,7,8) and 4 from the top (18,22,25,29)" },
+      { statement: "Sum = 8+8+9+11+11+12+12+13+13+14+15+17 = 143", reason: "Add the 12 remaining values" },
+      { statement: "Trimmed mean = 143 / 12 = 11.9167", reason: "Divide by the count of remaining values, not the original n" },
+    ],
+    conclusion: "The 20% trimmed mean is 11.9167 — notice it's pulled down from what the full mean would be, since the dataset's largest values (22, 25, 29) got trimmed away.",
+  },
+  {
+    id: "stats-p3-geomean",
+    label: "Geometric mean of percentage figures",
+    given: "Profits earned by a construction company on four projects: 9%, 12%, 41%, 6%.",
+    goal: "Find the geometric mean project profit.",
+    steps: [
+      { statement: "Geometric mean is used specifically because these are percentages/rates, not raw amounts.", reason: "Averaging percentage changes with an arithmetic mean can be misleading; geometric mean is the standard tool for rates" },
+      { statement: "GM = ⁿ√(X₁ × X₂ × X₃ × ... × Xₙ), here n = 4", reason: "Definition of the geometric mean" },
+      { statement: "GM = ⁴√(9 × 12 × 41 × 6) = ⁴√26,568", reason: "Multiply all four values together first" },
+      { statement: "GM ≈ 12.767", reason: "Take the 4th root of the product" },
+    ],
+    conclusion: "The geometric mean profit is approximately 12.767% — note this is always ≤ the arithmetic mean, and it requires every value to be positive.",
+  },
+  {
+    id: "stats-p3-weighted",
+    label: "Weighted mean across courses with different credit units",
+    given: "Scores: A=70, B=65, C=80, D=75, E=90. Credit units (weights): A=3, B=2, C=4, D=3, E=2.",
+    goal: "Calculate the weighted mean of the student's scores.",
+    steps: [
+      { statement: "A plain average would treat every course equally — but a 4-credit course should count more than a 2-credit one.", reason: "Why a weighted mean is needed instead of a simple arithmetic mean" },
+      { statement: "Weighted sum = (70×3) + (65×2) + (80×4) + (75×3) + (90×2) = 210+130+320+225+180 = 1065", reason: "Multiply each score by its own weight, then add" },
+      { statement: "Total weight = 3+2+4+3+2 = 14", reason: "Add up all the weights (credit units)" },
+      { statement: "Weighted mean = 1065 / 14 ≈ 76.07", reason: "Divide the weighted sum by the total weight, not by the number of courses (5)" },
+    ],
+    conclusion: "The weighted mean score is approximately 76.07 — higher than the simple average of 76.0 would suggest only slightly here, but the gap grows fast when weights vary more.",
+  },
+];
+
+export const part4WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p4-groups",
+    label: "Range, mean deviation, and variance on the same dataset",
+    given: "Group 1 quiz scores: 38, 91, 45, 65, 39, 48, 78, 34, 65, 59 (n = 10, mean = 56.2).",
+    goal: "Find the range, mean deviation, population variance/SD, and sample variance/SD.",
+    steps: [
+      { statement: "Range = highest − lowest = 91 − 34 = 57", reason: "The crudest possible spread measure — just the two extremes" },
+      { statement: "Mean deviation = Σ|x − mean| / n = 154 / 10 = 15.4", reason: "Average distance from the mean, using absolute value so positive and negative deviations don't cancel out" },
+      { statement: "Population variance = Σ(x − mean)² / n = 3161.6 / 10 = 316.16, so population SD = √316.16 ≈ 17.78", reason: "Squaring the deviations (instead of taking absolute value) penalizes large deviations more heavily, and makes the algebra of later statistics much cleaner" },
+      { statement: "Sample variance = Σ(x − mean)² / (n−1) = 3161.6 / 9 ≈ 351.29, so sample SD ≈ 18.74", reason: "Dividing by n−1 instead of n corrects for the fact that a sample's own mean is always a slightly-too-good fit to the sample's own data" },
+    ],
+    conclusion: "Range 57, mean deviation 15.4, population SD ≈ 17.78, sample SD ≈ 18.74 — the sample versions are always slightly larger than the population versions on the same numbers, because dividing by a smaller number (n−1 instead of n) gives a bigger result.",
+  },
+  {
+    id: "stats-p4-cv",
+    label: "Why compare spread using the coefficient of variation",
+    goal: "Explain why the coefficient of variation (CV = SD/mean × 100%) is sometimes better than comparing standard deviations directly.",
+    steps: [
+      { statement: "Standard deviation is measured in the SAME units as the data (dollars, cm, scores, etc.).", reason: "This makes it meaningless to directly compare an SD of 5kg to an SD of 5cm — different units entirely" },
+      { statement: "Even in the same units, an SD of 10 means something very different for a dataset with mean 20 than for one with mean 2,000.", reason: "10 is huge relative to 20, but tiny relative to 2,000" },
+      { statement: "CV expresses SD as a PERCENTAGE of the mean, which cancels out the units and accounts for scale.", reason: "Dividing SD by the mean makes it a pure, unit-free ratio" },
+    ],
+    conclusion: "The coefficient of variation is the right tool whenever you need to compare variability across datasets with different units or wildly different means — raw standard deviation alone can't do that fairly.",
+  },
+];

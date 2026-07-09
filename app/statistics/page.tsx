@@ -8,9 +8,16 @@ import VariableClassifierGame from "@/components/statistics/VariableClassifierGa
 import FrequencyDistributionBuilder from "@/components/statistics/FrequencyDistributionBuilder";
 import ChartTypeExplorer from "@/components/statistics/ChartTypeExplorer";
 import WorkedProblemsList from "@/components/statistics/WorkedProblemsList";
+import CentralTendencyCalculator from "@/components/statistics/CentralTendencyCalculator";
+import DispersionCalculator from "@/components/statistics/DispersionCalculator";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
-import { part1WorkedProblems, part2WorkedProblems } from "@/lib/statistics/workedProblems";
+import {
+  part1WorkedProblems,
+  part2WorkedProblems,
+  part3WorkedProblems,
+  part4WorkedProblems,
+} from "@/lib/statistics/workedProblems";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -70,6 +77,26 @@ export default function StatisticsRoom() {
             <FrequencyDistributionBuilder />
             <ChartTypeExplorer />
             <WorkedProblemsList problems={part2WorkedProblems} />
+          </section>
+
+          <section id="stats-part-3" className="space-y-6 scroll-mt-24">
+            <PartHeading number="3" title="Measures of Central Tendency" />
+            <p className="text-sm text-secondary">
+              Mean, trimmed mean, geometric mean, median, and mode — all computed live from the
+              same dataset so you can see exactly how they differ.
+            </p>
+            <CentralTendencyCalculator />
+            <WorkedProblemsList problems={part3WorkedProblems} />
+          </section>
+
+          <section id="stats-part-4" className="space-y-6 scroll-mt-24">
+            <PartHeading number="4" title="Measures of Dispersion" />
+            <p className="text-sm text-secondary">
+              Range, mean deviation, variance, standard deviation, and coefficient of variation —
+              try the same three quiz-score groups the course itself uses.
+            </p>
+            <DispersionCalculator />
+            <WorkedProblemsList problems={part4WorkedProblems} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">
