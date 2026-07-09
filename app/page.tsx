@@ -32,6 +32,13 @@ const rooms = [
     description:
       "Logic, proofs, sets, algorithms, induction, counting, relations, graphs, and trees — real textbook problems solved step by step, with simulations for every algorithm and data structure.",
   },
+  {
+    href: "/statistics",
+    tag: "Descriptive Statistics",
+    title: "Statistics",
+    description:
+      "Frequency distributions, measures of central tendency, dispersion, position, and shape — real calculators for every formula, not just definitions to memorise.",
+  },
 ];
 
 export default function Home() {

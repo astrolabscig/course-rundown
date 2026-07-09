@@ -14,8 +14,10 @@ import QuartilePercentileFinder from "@/components/statistics/QuartilePercentile
 import SkewnessCalculator from "@/components/statistics/SkewnessCalculator";
 import BoxplotBuilder from "@/components/statistics/BoxplotBuilder";
 import EmpiricalRuleExplorer from "@/components/statistics/EmpiricalRuleExplorer";
+import MCQDrill from "@/components/drills/MCQDrill";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
+import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
 import {
   part1WorkedProblems,
   part2WorkedProblems,
@@ -135,6 +137,14 @@ export default function StatisticsRoom() {
             </p>
             <EmpiricalRuleExplorer />
             <WorkedProblemsList problems={part7WorkedProblems} />
+          </section>
+
+          <section id="stats-part-8" className="space-y-6 scroll-mt-24">
+            <PartHeading number="8" title="MCQ Drill Bank" />
+            <p className="text-sm text-secondary">
+              A quick spot-check spanning every part of this room.
+            </p>
+            <MCQDrill questions={statisticsMcqBank} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">
