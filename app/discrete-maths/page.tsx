@@ -36,6 +36,7 @@ import MCQDrill from "@/components/drills/MCQDrill";
 import { discreteMathsCurriculum } from "@/lib/discreteMaths/curriculum";
 import { discreteMathsFundamentalsGroups } from "@/lib/discreteMaths/fundamentals";
 import { discreteMathsMcqBank } from "@/lib/discreteMaths/mcqBank";
+import { discreteMathsPasscoBank } from "@/lib/discreteMaths/passcoBank";
 import { discreteMathsQuizBank } from "@/lib/discreteMaths/quizBank";
 import {
   part1WorkedProblems,
@@ -95,6 +96,23 @@ export default function DiscreteMathsRoom() {
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
               Open quiz
+            </span>
+          </a>
+
+          <a
+            href="/discrete-maths/passco"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{discreteMathsPasscoBank.length}-question Passco Room →</p>
+              <p className="text-sm text-body mt-0.5">
+                Real past-questions and revision problems from worksheets and an actual exam,
+                grouped by topic, with a full step-by-step solution and pattern-spotting tip for
+                every question.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open Passco
             </span>
           </a>
 

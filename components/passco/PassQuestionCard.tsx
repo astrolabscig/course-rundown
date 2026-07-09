@@ -13,6 +13,11 @@ export interface PassTable {
   rows: (string | number)[][];
 }
 
+export interface PassStep {
+  statement: string;
+  reason: string;
+}
+
 export interface PassQuestion {
   id: string;
   section: string;
@@ -23,6 +28,8 @@ export interface PassQuestion {
   options?: string[];
   answer: string;
   explanation: string;
+  steps?: PassStep[];
+  analogy?: string;
 }
 
 export default function PassQuestionCard({
@@ -139,7 +146,29 @@ export default function PassQuestionCard({
               {item.answer}
             </p>
           )}
+          {item.steps && item.steps.length > 0 && (
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wide text-secondary">Step-by-step solution</p>
+              {item.steps.map((step, i) => (
+                <div key={i} className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3 rounded-xl border border-card-border bg-card p-3">
+                  <span className="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-white text-xs font-bold">
+                    {i + 1}
+                  </span>
+                  <span className="flex-1 text-sm text-body font-mono whitespace-pre-wrap">{step.statement}</span>
+                  <span className="shrink-0 text-xs text-secondary sm:text-right sm:w-48">{step.reason}</span>
+                </div>
+              ))}
+            </div>
+          )}
           <p className="text-sm text-body">{item.explanation}</p>
+          {item.analogy && (
+            <div className="rounded-xl border border-accent/30 bg-[#EAF2FF] p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-1">
+                Spotting this pattern next time
+              </p>
+              <p className="text-sm text-body">{item.analogy}</p>
+            </div>
+          )}
         </div>
       ) : !item.options ? (
         <button
