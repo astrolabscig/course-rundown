@@ -1,4 +1,36 @@
-import type { FormulaSection } from "@/lib/statistics/formulaSheet";
+import type { FormulaPart, FormulaSection } from "@/lib/statistics/formulaSheet";
+
+function FormulaPartView({ part }: { part: FormulaPart }) {
+  if (part.type === "text") {
+    return <span>{part.value}</span>;
+  }
+  if (part.type === "frac") {
+    return (
+      <span className="inline-flex flex-col items-center align-middle mx-0.5 text-[0.85em] leading-tight">
+        <span className="px-1.5 pb-0.5 border-b-2 border-current">{part.num}</span>
+        <span className="px-1.5 pt-0.5">{part.den}</span>
+      </span>
+    );
+  }
+  // sqrt
+  return (
+    <span className="inline-flex items-start mx-0.5">
+      {part.index && <sup className="text-[0.55em] leading-none mt-0.5">{part.index}</sup>}
+      <span className="text-[1.1em] leading-none">√</span>
+      <span className="border-t-2 border-current px-0.5 pt-0.5">{part.value}</span>
+    </span>
+  );
+}
+
+function FormulaDisplay({ parts }: { parts: FormulaPart[] }) {
+  return (
+    <div className="font-mono text-sm text-accent bg-code-bg rounded-lg px-3 py-3 mb-2 flex flex-wrap items-center gap-y-2">
+      {parts.map((part, i) => (
+        <FormulaPartView key={i} part={part} />
+      ))}
+    </div>
+  );
+}
 
 export default function FormulaCheatsheet({ sections }: { sections: FormulaSection[] }) {
   return (
@@ -14,9 +46,7 @@ export default function FormulaCheatsheet({ sections }: { sections: FormulaSecti
             {section.formulas.map((f) => (
               <div key={f.id} className="rounded-xl border border-card-border bg-muted p-4">
                 <p className="text-sm font-semibold text-heading mb-2">{f.name}</p>
-                <p className="font-mono text-sm text-accent bg-code-bg rounded-lg px-3 py-2 mb-2 overflow-x-auto whitespace-pre">
-                  {f.formula}
-                </p>
+                <FormulaDisplay parts={f.formula} />
                 {f.where && f.where.length > 0 && (
                   <ul className="space-y-1 mb-2">
                     {f.where.map((w, i) => (

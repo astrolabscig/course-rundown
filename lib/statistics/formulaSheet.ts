@@ -1,7 +1,12 @@
+export type FormulaPart =
+  | { type: "text"; value: string }
+  | { type: "frac"; num: string; den: string }
+  | { type: "sqrt"; value: string; index?: string };
+
 export interface Formula {
   id: string;
   name: string;
-  formula: string;
+  formula: FormulaPart[];
   where?: string[];
   note?: string;
 }
@@ -12,6 +17,10 @@ export interface FormulaSection {
   formulas: Formula[];
 }
 
+const t = (value: string): FormulaPart => ({ type: "text", value });
+const frac = (num: string, den: string): FormulaPart => ({ type: "frac", num, den });
+const sqrt = (value: string, index?: string): FormulaPart => ({ type: "sqrt", value, index });
+
 export const statisticsFormulaSheet: FormulaSection[] = [
   {
     id: "formulas-frequency",
@@ -20,43 +29,43 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-classes",
         name: "Number of classes (k)",
-        formula: "smallest k such that 2^k ≥ n",
+        formula: [t("smallest k such that 2ᵏ ≥ n")],
         where: ["n = number of observations"],
-        note: "Try k = 1, 2, 3, ... until 2^k first meets or exceeds n.",
+        note: "Try k = 1, 2, 3, ... until 2ᵏ first meets or exceeds n.",
       },
       {
         id: "f-width",
         name: "Class width (c)",
-        formula: "c = (Max − Min) / k, rounded UP",
+        formula: [t("c = "), frac("Max − Min", "k"), t(", rounded UP")],
         where: ["Max, Min = highest and lowest observed values", "k = number of classes"],
         note: "Always round up, never down — rounding down can leave the largest values with no class.",
       },
       {
         id: "f-boundary",
         name: "Class boundary",
-        formula: "boundary = (upper limit + next lower limit) / 2",
+        formula: [t("boundary = "), frac("upper limit + next lower limit", "2")],
         note: "Closes the gap between consecutive classes; used for histograms, not the frequency table itself.",
       },
       {
         id: "f-midpoint",
         name: "Class midpoint",
-        formula: "midpoint = (lower limit + upper limit) / 2",
+        formula: [t("midpoint = "), frac("lower limit + upper limit", "2")],
       },
       {
         id: "f-relfreq",
         name: "Relative frequency",
-        formula: "relative frequency = f / n",
+        formula: [t("relative frequency = "), frac("f", "n")],
         where: ["f = frequency of the class", "n = total number of observations"],
       },
       {
         id: "f-cumfreq",
         name: "Cumulative frequency",
-        formula: "CF = running total of f, class by class",
+        formula: [t("CF = running total of f, class by class")],
       },
       {
         id: "f-pieangle",
         name: "Pie chart sector angle",
-        formula: "angle = (f / n) × 360°",
+        formula: [t("angle = "), frac("f", "n"), t(" × 360°")],
       },
     ],
   },
@@ -67,52 +76,52 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-mean-ungrouped",
         name: "Arithmetic mean (ungrouped)",
-        formula: "x̄ = Σx / n",
+        formula: [t("x̄ = "), frac("Σx", "n")],
       },
       {
         id: "f-mean-grouped",
         name: "Arithmetic mean (grouped)",
-        formula: "x̄ = Σfx / Σf",
+        formula: [t("x̄ = "), frac("Σfx", "Σf")],
         where: ["x = class midpoint", "f = class frequency"],
       },
       {
         id: "f-mean-assumed",
         name: "Assumed mean method",
-        formula: "x̄ = A + (Σfd / Σf),  d = x − A",
+        formula: [t("x̄ = A + "), frac("Σfd", "Σf"), t(",  d = x − A")],
         where: ["A = assumed mean (any reasonable class midpoint)", "d = deviation of each midpoint from A"],
       },
       {
         id: "f-mean-coding",
         name: "Coding method",
-        formula: "x̄ = A + (Σfu / Σf) × c,  u = (x − A) / c",
+        formula: [t("x̄ = A + "), frac("Σfu", "Σf"), t(" × c,  u = "), frac("x − A", "c")],
         where: ["c = class width", "u = coded deviation, rescaled by class width"],
       },
       {
         id: "f-mean-trimmed",
         name: "Trimmed mean (k%)",
-        formula: "sort data, drop k% of n from EACH end, average what's left",
+        formula: [t("sort data, drop k% of n from EACH end, average what's left")],
       },
       {
         id: "f-mean-geometric",
         name: "Geometric mean",
-        formula: "GM = ⁿ√(x₁ × x₂ × x₃ × ... × xₙ)",
+        formula: [t("GM = "), sqrt("x₁ × x₂ × x₃ × ... × xₙ", "n")],
         note: "Only for positive values — used for growth rates, ratios, percentages.",
       },
       {
         id: "f-mean-weighted",
         name: "Weighted mean",
-        formula: "x̄w = Σ(w·x) / Σw",
+        formula: [t("x̄w = "), frac("Σ(w·x)", "Σw")],
         where: ["w = weight assigned to each value x"],
       },
       {
         id: "f-median-even",
         name: "Median (ungrouped, even n)",
-        formula: "median = average of the two middle sorted values",
+        formula: [t("median = average of the two middle sorted values")],
       },
       {
         id: "f-median-grouped",
         name: "Median (grouped)",
-        formula: "median = L + (c/f)(n/2 − F)",
+        formula: [t("median = L + "), frac("c", "f"), t("("), frac("n", "2"), t(" − F)")],
         where: [
           "L = lower boundary of the median class",
           "c = class width, f = frequency of the median class",
@@ -122,7 +131,7 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-mode-grouped",
         name: "Mode (grouped)",
-        formula: "mode = L + [Δ1 / (Δ1 + Δ2)] × c",
+        formula: [t("mode = L + "), frac("Δ1", "Δ1 + Δ2"), t(" × c")],
         where: [
           "L = lower boundary of the modal class (highest frequency)",
           "Δ1 = modal frequency − preceding class frequency",
@@ -138,39 +147,39 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-range",
         name: "Range",
-        formula: "range = Max − Min",
+        formula: [t("range = Max − Min")],
       },
       {
         id: "f-meandev",
         name: "Mean deviation",
-        formula: "MD = Σ|x − x̄| / n",
+        formula: [t("MD = "), frac("Σ|x − x̄|", "n")],
       },
       {
         id: "f-popvar",
         name: "Population variance",
-        formula: "σ² = Σ(x − μ)² / N",
+        formula: [t("σ² = "), frac("Σ(x − μ)²", "N")],
         where: ["μ = population mean", "N = population size"],
       },
       {
         id: "f-popsd",
         name: "Population standard deviation",
-        formula: "σ = √σ²",
+        formula: [t("σ = "), sqrt("σ²")],
       },
       {
         id: "f-samplevar",
         name: "Sample variance",
-        formula: "s² = Σ(x − x̄)² / (n − 1)",
+        formula: [t("s² = "), frac("Σ(x − x̄)²", "n − 1")],
         note: "Divides by n−1 (Bessel's correction), not n — this is what makes it a sample formula.",
       },
       {
         id: "f-samplesd",
         name: "Sample standard deviation",
-        formula: "s = √s²",
+        formula: [t("s = "), sqrt("s²")],
       },
       {
         id: "f-cv",
         name: "Coefficient of variation",
-        formula: "CV = (SD / mean) × 100%",
+        formula: [t("CV = "), frac("SD", "mean"), t(" × 100%")],
         note: "Unit-free — the right tool for comparing spread across different scales.",
       },
     ],
@@ -182,23 +191,23 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-quartile-pos",
         name: "Quartile position (ungrouped)",
-        formula: "position of Qk = k(n + 1) / 4,  k = 1, 2, 3",
+        formula: [t("position of Qk = "), frac("k(n + 1)", "4"), t(",  k = 1, 2, 3")],
         note: "If the position isn't a whole number, interpolate between the two nearest ranked values.",
       },
       {
         id: "f-decile-pos",
         name: "Decile position (ungrouped)",
-        formula: "position of Dk = k(n + 1) / 10,  k = 1 ... 9",
+        formula: [t("position of Dk = "), frac("k(n + 1)", "10"), t(",  k = 1 ... 9")],
       },
       {
         id: "f-percentile-pos",
         name: "Percentile position (ungrouped)",
-        formula: "position of Pk = k(n + 1) / 100,  k = 1 ... 99",
+        formula: [t("position of Pk = "), frac("k(n + 1)", "100"), t(",  k = 1 ... 99")],
       },
       {
         id: "f-percentile-grouped",
         name: "Percentile (grouped)",
-        formula: "Pk = l + (c/f)(nk − F)",
+        formula: [t("Pk = l + "), frac("c", "f"), t("(nk − F)")],
         where: [
           "l = lower boundary of the class containing Pk",
           "nk = target cumulative position (n × k, k as a decimal, e.g. 0.90 for P90)",
@@ -209,7 +218,7 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-iqr",
         name: "Interquartile range (IQR)",
-        formula: "IQR = Q3 − Q1",
+        formula: [t("IQR = Q3 − Q1")],
       },
     ],
   },
@@ -220,13 +229,13 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-skew",
         name: "Pearson's coefficient of skewness",
-        formula: "Sk = 3(mean − median) / SD",
+        formula: [t("Sk = "), frac("3(mean − median)", "SD")],
         note: "Sk > 0: positive (right) skew. Sk < 0: negative (left) skew. Sk ≈ 0: roughly symmetric.",
       },
       {
         id: "f-five-number",
         name: "Five-number summary",
-        formula: "Min, Q1, Median, Q3, Max",
+        formula: [t("Min, Q1, Median, Q3, Max")],
         note: "Exactly what a boxplot displays — the box spans Q1 to Q3, the line inside is the median.",
       },
     ],
@@ -238,13 +247,13 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       {
         id: "f-empirical",
         name: "68-95-99.7 rule",
-        formula: "≈68% within ±1σ,  ≈95% within ±2σ,  ≈99.7% within ±3σ",
+        formula: [t("≈68% within ±1σ,  ≈95% within ±2σ,  ≈99.7% within ±3σ")],
         note: "Only applies to roughly bell-shaped (approximately normal) distributions.",
       },
       {
         id: "f-zdistance",
         name: "Distance from the mean, in SDs",
-        formula: "z = (x − mean) / SD",
+        formula: [t("z = "), frac("x − mean", "SD")],
       },
     ],
   },
