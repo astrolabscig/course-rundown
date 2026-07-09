@@ -15,10 +15,12 @@ import SkewnessCalculator from "@/components/statistics/SkewnessCalculator";
 import BoxplotBuilder from "@/components/statistics/BoxplotBuilder";
 import EmpiricalRuleExplorer from "@/components/statistics/EmpiricalRuleExplorer";
 import MCQDrill from "@/components/drills/MCQDrill";
+import FormulaCheatsheet from "@/components/statistics/FormulaCheatsheet";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
 import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
 import { statisticsExamBank } from "@/lib/statistics/examBank";
+import { statisticsFormulaSheet } from "@/lib/statistics/formulaSheet";
 import {
   part1WorkedProblems,
   part2WorkedProblems,
@@ -162,6 +164,15 @@ export default function StatisticsRoom() {
               A quick spot-check spanning every part of this room.
             </p>
             <MCQDrill questions={statisticsMcqBank} />
+          </section>
+
+          <section id="stats-part-9" className="space-y-6 scroll-mt-24">
+            <PartHeading number="9" title="Formula Cheatsheet" />
+            <p className="text-sm text-secondary">
+              Every formula used in this room, in one place — grouped by topic for quick lookup
+              before an exam.
+            </p>
+            <FormulaCheatsheet sections={statisticsFormulaSheet} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">
