@@ -138,3 +138,77 @@ export const part4WorkedProblems: WorkedProblem[] = [
     conclusion: "The coefficient of variation is the right tool whenever you need to compare variability across datasets with different units or wildly different means — raw standard deviation alone can't do that fairly.",
   },
 ];
+
+export const part5WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p5-percentiles",
+    label: "Percentiles from a grouped frequency table",
+    given:
+      "Length (mm) frequency table: 118-126:3, 127-135:5, 136-144:9, 145-153:12, 154-162:5, 163-171:4, 172-180:2 (n = 40, cumulative frequencies 3,8,17,29,34,38,40).",
+    goal: "Find the 10th, 45th, and 90th percentiles.",
+    steps: [
+      { statement: "P10: n×k = 40×0.10 = 4. The class where cumulative frequency first reaches 4 is 127-135 (cum. freq. 8, previous cum. freq. 3).", reason: "Find which class contains the target rank" },
+      { statement: "P10 = 126.5 + (9/5)(4−3) = 126.5 + 1.8 = 128.3", reason: "l=126.5 (boundary), c=9 (width), f=5 (class frequency), F=3 (previous cumulative frequency)" },
+      { statement: "P45: n×k = 40×0.45 = 18. Falls in class 145-153 (cum. freq. 29, previous cum. freq. 17).", reason: "Find the class for the 45th percentile" },
+      { statement: "P45 = 144.5 + (9/12)(18−17) = 144.5 + 0.75 = 145.25", reason: "Apply the same interpolation formula" },
+      { statement: "P90: n×k = 40×0.90 = 36. Falls in class 163-171 (cum. freq. 38, previous cum. freq. 34).", reason: "Find the class for the 90th percentile" },
+      { statement: "P90 = 162.5 + (9/4)(36−34) = 162.5 + 4.5 = 167", reason: "Apply the same interpolation formula" },
+    ],
+    conclusion: "P10 = 128.3, P45 = 145.25, P90 = 167 — try these exact percentiles in the calculator above (grouped mode) to see the same values.",
+  },
+];
+
+export const part6WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p6-skewness",
+    label: "Skewness of hospital cancer-ward stay lengths",
+    given: "Mean length of stay = 28 days, median = 25 days, mode = 23 days, standard deviation = 4.2 days.",
+    goal: "Compute the coefficient of skewness and interpret it.",
+    steps: [
+      { statement: "Sk = 3(mean − median) / SD", reason: "Pearson's coefficient of skewness formula" },
+      { statement: "Sk = 3(28 − 25) / 4.2 = 3(3) / 4.2 = 9 / 4.2", reason: "Substitute the given values" },
+      { statement: "Sk ≈ 2.14", reason: "Divide" },
+      { statement: "Since mean (28) > median (25) > mode (23), and Sk is positive, the tail stretches to the right.", reason: "Cross-check the sign against the mean/median/mode ordering" },
+    ],
+    conclusion: "Sk ≈ 2.14 — a positively skewed distribution. Most patients had shorter stays, but a few very long stays pulled the mean up above the median.",
+  },
+  {
+    id: "stats-p6-boxplot",
+    label: "Reading a boxplot",
+    goal: "Explain what a boxplot's median position and whisker lengths reveal about skew.",
+    steps: [
+      { statement: "If the median sits near the center of the box, and both whiskers are similar lengths, the distribution is roughly symmetric.", reason: "Symmetric data has roughly equal spread above and below its center" },
+      { statement: "If the median falls left of the box's center, OR the right whisker is longer than the left, the distribution is positively skewed.", reason: "A right-stretching tail pulls both the box's upper edge and the right whisker further out" },
+      { statement: "If the median falls right of the box's center, OR the left whisker is longer than the right, the distribution is negatively skewed.", reason: "Mirror image of the positive-skew case" },
+    ],
+    conclusion: "A boxplot lets you diagnose skew visually in seconds, without computing any coefficient — exactly what Exploratory Data Analysis is for.",
+  },
+];
+
+export const part7WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p7-food",
+    label: "The Empirical Rule applied to food expenditure",
+    given: "Monthly food expenditure for seniors living alone is symmetric and bell-shaped, with mean $150 and standard deviation $20.",
+    goal: "Find the range covering about 68%, about 95%, and almost all of the monthly expenditure.",
+    steps: [
+      { statement: "68% falls within ±1 SD: $150 − $20 = $130 to $150 + $20 = $170.", reason: "The Empirical Rule's first band" },
+      { statement: "95% falls within ±2 SD: $150 − $40 = $110 to $150 + $40 = $190.", reason: "The Empirical Rule's second band" },
+      { statement: "99.7% (almost all) falls within ±3 SD: $150 − $60 = $90 to $150 + $60 = $210.", reason: "The Empirical Rule's third band" },
+    ],
+    conclusion: "About 68% spend between $130-$170, about 95% between $110-$190, and virtually everyone between $90-$210 — try these exact numbers in the Empirical Rule Explorer above.",
+  },
+  {
+    id: "stats-p7-heights",
+    label: "Verifying the Empirical Rule on 100 real adult male heights",
+    given: "100 randomly selected adult men, mean height 69.92 inches, standard deviation 1.70 inches.",
+    goal: "Explain what the Empirical Rule predicts, and why counting the actual data confirms it.",
+    steps: [
+      { statement: "±1 SD range: 69.92 − 1.70 = 68.22 to 69.92 + 1.70 = 71.62 inches. The rule predicts ~68 of the 100 men should fall in this range.", reason: "Apply the 68% band to this specific dataset" },
+      { statement: "Counting the actual 100 heights that fall between 68.22 and 71.62 gives exactly 69 — almost exactly the predicted 68.", reason: "The Empirical Rule is a close approximation for real bell-shaped data, not just an abstract theoretical claim" },
+      { statement: "±2 SD range: 66.52 to 73.32 inches. The rule predicts ~95; the actual count is 95 — an exact match.", reason: "Apply the 95% band" },
+      { statement: "±3 SD range: 64.82 to 75.02 inches. All 100 measurements fall inside this range, matching the 'almost all' (99.7%) prediction.", reason: "Apply the 99.7% band" },
+    ],
+    conclusion: "This is exactly why the rule is trusted in practice — real, roughly-bell-shaped data reliably lands close to the theoretical 68/95/99.7% predictions.",
+  },
+];

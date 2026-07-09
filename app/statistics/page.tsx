@@ -10,6 +10,10 @@ import ChartTypeExplorer from "@/components/statistics/ChartTypeExplorer";
 import WorkedProblemsList from "@/components/statistics/WorkedProblemsList";
 import CentralTendencyCalculator from "@/components/statistics/CentralTendencyCalculator";
 import DispersionCalculator from "@/components/statistics/DispersionCalculator";
+import QuartilePercentileFinder from "@/components/statistics/QuartilePercentileFinder";
+import SkewnessCalculator from "@/components/statistics/SkewnessCalculator";
+import BoxplotBuilder from "@/components/statistics/BoxplotBuilder";
+import EmpiricalRuleExplorer from "@/components/statistics/EmpiricalRuleExplorer";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
 import {
@@ -17,6 +21,9 @@ import {
   part2WorkedProblems,
   part3WorkedProblems,
   part4WorkedProblems,
+  part5WorkedProblems,
+  part6WorkedProblems,
+  part7WorkedProblems,
 } from "@/lib/statistics/workedProblems";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
@@ -97,6 +104,37 @@ export default function StatisticsRoom() {
             </p>
             <DispersionCalculator />
             <WorkedProblemsList problems={part4WorkedProblems} />
+          </section>
+
+          <section id="stats-part-5" className="space-y-6 scroll-mt-24">
+            <PartHeading number="5" title="Measures of Position" />
+            <p className="text-sm text-secondary">
+              Quartiles, percentiles, and deciles — for both raw data and grouped frequency
+              tables.
+            </p>
+            <QuartilePercentileFinder />
+            <WorkedProblemsList problems={part5WorkedProblems} />
+          </section>
+
+          <section id="stats-part-6" className="space-y-6 scroll-mt-24">
+            <PartHeading number="6" title="Measures of Shape & EDA" />
+            <p className="text-sm text-secondary">
+              Skewness, kurtosis, the five-number summary, and boxplots — see the shape of a
+              distribution, don't just calculate it.
+            </p>
+            <SkewnessCalculator />
+            <BoxplotBuilder />
+            <WorkedProblemsList problems={part6WorkedProblems} />
+          </section>
+
+          <section id="stats-part-7" className="space-y-6 scroll-mt-24">
+            <PartHeading number="7" title="The Empirical Rule" />
+            <p className="text-sm text-secondary">
+              For a bell-shaped distribution, roughly 68/95/99.7% of the data falls within
+              1/2/3 standard deviations of the mean.
+            </p>
+            <EmpiricalRuleExplorer />
+            <WorkedProblemsList problems={part7WorkedProblems} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">
