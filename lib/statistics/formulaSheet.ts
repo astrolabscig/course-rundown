@@ -257,4 +257,61 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       },
     ],
   },
+  {
+    id: "formulas-probability",
+    title: "Probability",
+    formulas: [
+      {
+        id: "f-classical-prob",
+        name: "Classical probability",
+        formula: [t("P(E) = "), frac("n(E)", "n(S)")],
+        where: ["n(E) = number of outcomes in event E", "n(S) = number of outcomes in the sample space"],
+        note: "Only valid when every outcome in S is equally likely.",
+      },
+      {
+        id: "f-addition-rule",
+        name: "Addition rule (general)",
+        formula: [t("P(A ∪ B) = P(A) + P(B) − P(A ∩ B)")],
+      },
+      {
+        id: "f-addition-mutex",
+        name: "Addition rule (mutually exclusive)",
+        formula: [t("P(A ∪ B) = P(A) + P(B),   since P(A ∩ B) = 0")],
+      },
+      {
+        id: "f-independence",
+        name: "Independence rule",
+        formula: [t("P(A ∩ B) = P(A) × P(B)")],
+        note: "Only true when A and B are independent — check it, don't assume it.",
+      },
+      {
+        id: "f-complement",
+        name: "Complement rule",
+        formula: [t("P(A′) = 1 − P(A)")],
+      },
+      {
+        id: "f-demorgan",
+        name: "De Morgan's Law",
+        formula: [t("(A ∪ B)′ = A′ ∩ B′,   (A ∩ B)′ = A′ ∪ B′")],
+      },
+      {
+        id: "f-conditional-prob",
+        name: "Conditional probability",
+        formula: [t("P(B | A) = "), frac("P(A ∩ B)", "P(A)")],
+        note: "Requires P(A) > 0.",
+      },
+      {
+        id: "f-total-probability",
+        name: "Total Probability Rule",
+        formula: [t("P(B) = Σ P(B | Aᵢ) × P(Aᵢ)")],
+        where: ["A₁, A₂, ..., Aₙ must partition the sample space (mutually exclusive, cover all of S)"],
+      },
+      {
+        id: "f-bayes",
+        name: "Bayes' Theorem",
+        formula: [t("P(Aⱼ | B) = "), frac("P(B | Aⱼ) × P(Aⱼ)", "P(B)")],
+        note: "The denominator P(B) is computed with the Total Probability Rule above.",
+      },
+    ],
+  },
 ];

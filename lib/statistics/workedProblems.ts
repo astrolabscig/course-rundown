@@ -242,3 +242,72 @@ export const part7WorkedProblems: WorkedProblem[] = [
     conclusion: "This is exactly why the rule is trusted in practice — real, roughly-bell-shaped data reliably lands close to the theoretical 68/95/99.7% predictions.",
   },
 ];
+
+export const part9WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p9-discrete-dist",
+    label: "Reading probabilities straight off a distribution table",
+    given: "A discrete variable E has P(E=1)=0.05, P(E=2)=0.25, P(E=3)=0.3, P(E=4)=0.15, P(E=5)=0.25.",
+    goal: "Find P(E ≥ 2), P(1 ≤ E < 5), and P(E ≥ 3).",
+    steps: [
+      { statement: "P(E ≥ 2) = P(E=2) + P(E=3) + P(E=4) + P(E=5) = 0.25 + 0.3 + 0.15 + 0.25 = 0.95", reason: "Sum every outcome that satisfies the condition — the axioms guarantee mutually exclusive outcomes just add" },
+      { statement: "P(1 ≤ E < 5) = P(E=1) + P(E=2) + P(E=3) + P(E=4) = 0.05 + 0.25 + 0.3 + 0.15 = 0.75", reason: "E < 5 excludes E = 5, so only four of the five outcomes qualify" },
+      { statement: "P(E ≥ 3) = P(E=3) + P(E=4) + P(E=5) = 0.3 + 0.15 + 0.25 = 0.7", reason: "Same technique, different qualifying set" },
+    ],
+    conclusion: "P(E≥2) = 0.95, P(1≤E<5) = 0.75, P(E≥3) = 0.7 — whenever outcomes are mutually exclusive, 'probability of a condition' is just 'add up every row that satisfies it.'",
+  },
+  {
+    id: "stats-p9-set-ops",
+    label: "Union, intersection, and complements from two overlapping events",
+    given: "Events A and B with P(A) = 0.4, P(B) = 0.5, and P(A ∩ B) = 0.2.",
+    goal: "Find P(A ∪ B), P(A ∩ B′), P(A′ ∩ B), and P(A′ ∩ B′).",
+    steps: [
+      { statement: "P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 0.4 + 0.5 − 0.2 = 0.7", reason: "The overlap is counted in both P(A) and P(B), so it must be subtracted once to avoid double-counting" },
+      { statement: "P(A ∩ B′) = P(A) − P(A ∩ B) = 0.4 − 0.2 = 0.2", reason: "'In A but not B' is everything in A minus the part that's also in B" },
+      { statement: "P(A′ ∩ B) = P(B) − P(A ∩ B) = 0.5 − 0.2 = 0.3", reason: "Mirror image: 'in B but not A'" },
+      { statement: "P(A′ ∩ B′) = 1 − P(A ∪ B) = 1 − 0.7 = 0.3", reason: "By De Morgan's Law, 'neither A nor B' is the complement of 'A or B'" },
+    ],
+    conclusion: "P(A∪B) = 0.7, P(A∩B′) = 0.2, P(A′∩B) = 0.3, P(A′∩B′) = 0.3 — try these exact numbers in the Probability Rules Calculator above (it's the default input).",
+  },
+  {
+    id: "stats-p9-conditional",
+    label: "Conditional probability by shrinking the sample space",
+    given:
+      "A number is picked from S = {2,3,4,5,6,7,8,9}. A: the number is odd. B: the number is a multiple of 3.",
+    goal: "Find P(B), P(A and B), and P(B | A).",
+    steps: [
+      { statement: "B = {3, 6, 9}, so P(B) = 3/8 = 0.375.", reason: "3 of the 8 equally likely outcomes are multiples of 3" },
+      { statement: "A = {3, 5, 7, 9}. A ∩ B = {3, 5, 7, 9} ∩ {3, 6, 9} = {3, 9}, so P(A and B) = 2/8 = 0.25.", reason: "Only 3 and 9 are odd AND a multiple of 3" },
+      { statement: "P(B | A) = P(A and B) / P(A) = 0.25 / 0.5 = 0.5", reason: "P(A) = 4/8 = 0.5, since 4 of the 8 outcomes are odd" },
+    ],
+    conclusion: "P(B) = 0.375, P(A and B) = 0.25, P(B|A) = 0.5 — notice P(B|A) = 0.5 is bigger than P(B) = 0.375: knowing the number is odd genuinely raises the chance it's also a multiple of 3, because half of the odd numbers here (3 and 9) happen to be multiples of 3.",
+  },
+  {
+    id: "stats-p9-total-probability",
+    label: "Total Probability Rule: overall defect rate across three machines",
+    given:
+      "Machines A, B, C make 30%, 45%, 25% of a plant's products. 2% of A's output, 3% of B's, and 2% of C's are defective.",
+    goal: "Find the overall probability that a randomly selected finished product is defective.",
+    steps: [
+      { statement: "Let A1, A2, A3 = 'made by machine A/B/C' and D = 'defective.' P(A1)=0.3, P(A2)=0.45, P(A3)=0.25, P(D|A1)=0.02, P(D|A2)=0.03, P(D|A3)=0.02.", reason: "Name every piece before combining them — A1, A2, A3 partition the whole output" },
+      { statement: "P(D) = P(D|A1)P(A1) + P(D|A2)P(A2) + P(D|A3)P(A3)", reason: "Total Probability Rule: weight each machine's own defect rate by how much of the total output it makes" },
+      { statement: "P(D) = (0.02)(0.3) + (0.03)(0.45) + (0.02)(0.25) = 0.006 + 0.0135 + 0.005 = 0.0245", reason: "Substitute and add" },
+    ],
+    conclusion: "P(D) = 0.0245 — about 2.45% of all finished products are defective, even though no single machine's own defect rate is anywhere near that shape; it's a weighted blend of all three.",
+  },
+  {
+    id: "stats-p9-bayes",
+    label: "Bayes' Theorem: which agency did the bad-tyre car come from?",
+    given:
+      "A firm rents 30% of cars from agency A, 20% from B, 50% from C. 15% of A's cars, 10% of B's, and 6% of C's have bad tyres. A rented car is found to have bad tyres.",
+    goal: "Find P(came from C), P(came from A), P(came from B), and the overall P(bad tyres).",
+    steps: [
+      { statement: "Let A1, A2, A3 = 'from agency A/B/C' and T = 'has bad tyres.' P(A1)=0.3, P(A2)=0.2, P(A3)=0.5, P(T|A1)=0.15, P(T|A2)=0.1, P(T|A3)=0.06.", reason: "Same setup as Total Probability, but now the question runs BACKWARD from an observed effect (T) to its cause" },
+      { statement: "P(T) = (0.15)(0.3) + (0.1)(0.2) + (0.06)(0.5) = 0.045 + 0.02 + 0.03 = 0.095", reason: "First compute the overall rate — this becomes Bayes' denominator" },
+      { statement: "P(A3 | T) = P(T|A3)P(A3) / P(T) = (0.06 × 0.5) / 0.095 = 0.03 / 0.095 ≈ 0.3158", reason: "Bayes' Theorem: this specific slice of T, divided by all of T" },
+      { statement: "P(A1 | T) = (0.15 × 0.3) / 0.095 = 0.045 / 0.095 ≈ 0.4737", reason: "Same formula, agency A's slice" },
+      { statement: "P(A2 | T) = (0.1 × 0.2) / 0.095 = 0.02 / 0.095 ≈ 0.2105", reason: "Same formula, agency B's slice" },
+    ],
+    conclusion: "P(T) = 0.095. Given the bad tyres, P(A1|T) ≈ 0.4737, P(A2|T) ≈ 0.2105, P(A3|T) ≈ 0.3158 — notice these three posteriors sum to exactly 1, and agency A (the highest defect RATE at 15%) is now the most likely source, even though agency C rents out the most cars overall. Try this exact example in the Bayes' Theorem Calculator above.",
+  },
+];

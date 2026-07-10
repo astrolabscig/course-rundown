@@ -17,8 +17,11 @@ import ShapeGraphs from "@/components/statistics/ShapeGraphs";
 import EmpiricalRuleExplorer from "@/components/statistics/EmpiricalRuleExplorer";
 import MCQDrill from "@/components/drills/MCQDrill";
 import FormulaCheatsheet from "@/components/statistics/FormulaCheatsheet";
+import ProbabilityRulesCalculator from "@/components/statistics/ProbabilityRulesCalculator";
+import BayesTheoremCalculator from "@/components/statistics/BayesTheoremCalculator";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
+import { probabilityFundamentalsGroups } from "@/lib/statistics/probabilityFundamentals";
 import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
 import { statisticsExamBank } from "@/lib/statistics/examBank";
 import { statisticsFormulaSheet } from "@/lib/statistics/formulaSheet";
@@ -30,6 +33,7 @@ import {
   part5WorkedProblems,
   part6WorkedProblems,
   part7WorkedProblems,
+  part9WorkedProblems,
 } from "@/lib/statistics/workedProblems";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
@@ -169,7 +173,20 @@ export default function StatisticsRoom() {
           </section>
 
           <section id="stats-part-9" className="space-y-6 scroll-mt-24">
-            <PartHeading number="9" title="Formula Cheatsheet" />
+            <PartHeading number="9" title="Probability" />
+            <p className="text-sm text-secondary">
+              Experiments, sample spaces, and events; the set-operation rules that combine them;
+              conditional probability; and the Total Probability Rule and Bayes&apos; Theorem for
+              reasoning backward from an observed effect to its likely cause.
+            </p>
+            <BasicsCheatsheet groups={probabilityFundamentalsGroups} />
+            <ProbabilityRulesCalculator />
+            <BayesTheoremCalculator />
+            <WorkedProblemsList problems={part9WorkedProblems} />
+          </section>
+
+          <section id="stats-part-10" className="space-y-6 scroll-mt-24">
+            <PartHeading number="10" title="Formula Cheatsheet" />
             <p className="text-sm text-secondary">
               Every formula used in this room, in one place — grouped by topic for quick lookup
               before an exam.
