@@ -127,7 +127,7 @@ export default function CPICalculator() {
                     className={`px-2 py-1 rounded-full text-xs font-medium border transition-colors ${
                       baseIndex === i
                         ? "bg-accent text-white border-accent"
-                        : "bg-white text-body border-card-border hover:border-accent"
+                        : "bg-card text-body border-card-border hover:border-accent"
                     }`}
                   >
                     {baseIndex === i ? "Base ✓" : "Set as base"}

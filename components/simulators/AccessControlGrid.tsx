@@ -84,8 +84,8 @@ export default function AccessControlGrid() {
                               ? "bg-success text-white border-success"
                               : "bg-error text-white border-error"
                             : cell.allowed
-                            ? "bg-white text-success border-success/40 hover:border-success"
-                            : "bg-white text-error border-error/40 hover:border-error"
+                            ? "bg-card text-success border-success/40 hover:border-success"
+                            : "bg-card text-error border-error/40 hover:border-error"
                         }`}
                       >
                         {cell.allowed ? "Allowed" : "Denied"}

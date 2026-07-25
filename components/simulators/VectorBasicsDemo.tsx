@@ -106,7 +106,7 @@ export default function VectorBasicsDemo() {
           {nums.length === 0 && <p className="text-sm text-secondary">Empty vector.</p>}
           {nums.map((v, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-accent bg-white font-mono text-sm font-semibold text-heading">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-accent bg-card font-mono text-sm font-semibold text-heading">
                 {v}
               </div>
               <span className="text-xs text-secondary font-mono">{i}</span>

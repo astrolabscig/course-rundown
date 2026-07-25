@@ -107,9 +107,9 @@ function frameClasses(status: FrameStatus): string {
     case "propagating":
       return "border-accent-warm bg-accent-warm-bg text-heading";
     case "caught":
-      return "border-success bg-white text-success";
+      return "border-success bg-card text-success";
     default:
-      return "border-accent bg-white text-heading";
+      return "border-accent bg-card text-heading";
   }
 }
 

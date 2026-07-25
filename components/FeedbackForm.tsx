@@ -53,7 +53,7 @@ export default function FeedbackForm() {
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                 useful === "yes"
                   ? "bg-accent text-white border-accent"
-                  : "bg-white text-body border-card-border hover:border-accent"
+                  : "bg-card text-body border-card-border hover:border-accent"
               }`}
             >
               Yes
@@ -65,7 +65,7 @@ export default function FeedbackForm() {
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                 useful === "no"
                   ? "bg-accent text-white border-accent"
-                  : "bg-white text-body border-card-border hover:border-accent"
+                  : "bg-card text-body border-card-border hover:border-accent"
               }`}
             >
               No

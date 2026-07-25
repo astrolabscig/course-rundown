@@ -17,7 +17,7 @@ function NavLinks({ parts, visited }: { parts: CurriculumPart[]; visited: Set<st
               className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
                 visited.has(part.id)
                   ? "bg-accent text-white"
-                  : "border border-card-border bg-white text-secondary"
+                  : "border border-card-border bg-card text-secondary"
               }`}
             >
               {visited.has(part.id) ? "✓" : part.number}

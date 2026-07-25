@@ -116,7 +116,7 @@ export default function IPClassifier() {
                         className={`rounded-md px-2 py-1 font-mono text-sm ${
                           defaultPrefix !== null && i * 8 < defaultPrefix
                             ? "bg-accent text-white"
-                            : "bg-white border border-card-border text-body"
+                            : "bg-card border border-card-border text-body"
                         }`}
                       >
                         {oct}

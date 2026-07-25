@@ -108,7 +108,7 @@ export default function StaticFriendThisDemo() {
           <div className="text-xs font-semibold uppercase tracking-wide text-secondary mb-1">
             Student::count — one shared box for every object
           </div>
-          <div className="inline-block rounded-lg border-2 border-accent-warm bg-white px-4 py-2 font-mono text-sm font-semibold text-heading">
+          <div className="inline-block rounded-lg border-2 border-accent-warm bg-card px-4 py-2 font-mono text-sm font-semibold text-heading">
             count = {students.length}
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function StaticFriendThisDemo() {
                     markInteracted();
                   }}
                   className={`rounded-lg border-2 px-3 py-2 text-sm font-mono transition-colors ${
-                    greeted === s.id ? "border-success bg-white text-success" : "border-accent bg-white text-heading hover:bg-muted"
+                    greeted === s.id ? "border-success bg-card text-success" : "border-accent bg-card text-heading hover:bg-muted"
                   }`}
                 >
                   name = &quot;{s.name}&quot;

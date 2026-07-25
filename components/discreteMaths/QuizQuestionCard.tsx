@@ -10,7 +10,7 @@ function normalize(s: string): string {
 
 const difficultyStyle: Record<string, string> = {
   hard: "bg-error/10 text-error border-error",
-  medium: "bg-[#FFF6E5] text-[#B8860B] border-[#E0A930]",
+  medium: "bg-accent-warm/10 text-accent-warm border-accent-warm",
   easy: "bg-success/10 text-success border-success",
 };
 

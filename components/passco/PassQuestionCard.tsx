@@ -141,11 +141,11 @@ export default function PassQuestionCard({
           {item.options.map((option, i) => {
             const isCorrect = i === correctOptionIndex;
             const isChosen = i === selected;
-            let style = "bg-white text-body border-card-border hover:border-accent";
+            let style = "bg-card text-body border-card-border hover:border-accent";
             if (answered) {
               if (isCorrect) style = "bg-success text-white border-success";
               else if (isChosen) style = "bg-error text-white border-error";
-              else style = "bg-white text-body border-card-border opacity-60";
+              else style = "bg-card text-body border-card-border opacity-60";
             }
             return (
               <button
@@ -201,7 +201,7 @@ export default function PassQuestionCard({
           )}
           <p className="text-sm text-body">{item.explanation}</p>
           {item.analogy && (
-            <div className="rounded-xl border border-accent/30 bg-[#EAF2FF] p-3">
+            <div className="rounded-xl border border-accent/30 bg-accent/10 p-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-1">
                 Spotting this pattern next time
               </p>

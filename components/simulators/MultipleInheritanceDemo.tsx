@@ -142,7 +142,7 @@ export default function MultipleInheritanceDemo() {
         <div className="relative flex items-start justify-center gap-16">
           <div
             ref={flyerRef}
-            className={`rounded-xl border-2 px-4 py-2 text-sm font-mono bg-white transition-colors ${
+            className={`rounded-xl border-2 px-4 py-2 text-sm font-mono bg-card transition-colors ${
               fromFlyer ? "border-accent" : "border-card-border opacity-60"
             }`}
           >
@@ -151,7 +151,7 @@ export default function MultipleInheritanceDemo() {
           </div>
           <div
             ref={swimmerRef}
-            className={`rounded-xl border-2 px-4 py-2 text-sm font-mono bg-white transition-colors ${
+            className={`rounded-xl border-2 px-4 py-2 text-sm font-mono bg-card transition-colors ${
               fromSwimmer ? "border-accent" : "border-card-border opacity-60"
             }`}
           >
@@ -163,7 +163,7 @@ export default function MultipleInheritanceDemo() {
         <div className="relative flex justify-center mt-10">
           <div
             ref={duckRef}
-            className="rounded-xl border-2 border-accent px-4 py-2 text-sm font-mono bg-white"
+            className="rounded-xl border-2 border-accent px-4 py-2 text-sm font-mono bg-card"
           >
             <div className="font-semibold text-heading">Duck</div>
             <div className="text-body text-xs">{duckMembers.join(", ")}</div>

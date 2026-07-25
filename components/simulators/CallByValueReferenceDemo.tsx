@@ -38,7 +38,7 @@ export default function CallByValueReferenceDemo() {
 
       {ran && (
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-card-border bg-white p-4">
+          <div className="rounded-xl border border-card-border bg-card p-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-secondary mb-2">
               byValue(a) — copy
             </div>
@@ -57,7 +57,7 @@ export default function CallByValueReferenceDemo() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-card-border bg-white p-4">
+          <div className="rounded-xl border border-card-border bg-card p-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-secondary mb-2">
               byReference(b) — alias
             </div>

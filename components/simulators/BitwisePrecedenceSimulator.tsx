@@ -31,7 +31,7 @@ function BitsRow({
             disabled={!editable}
             onClick={() => onToggle && onToggle(i)}
             className={`h-8 w-8 rounded font-mono text-sm font-bold transition-colors ${
-              b ? "bg-accent text-white" : "bg-white border border-card-border text-secondary"
+              b ? "bg-accent text-white" : "bg-card border border-card-border text-secondary"
             } ${editable ? "cursor-pointer hover:opacity-80" : ""}`}
           >
             {b}

@@ -83,7 +83,7 @@ function DispatchDiagram({ isVirtual }: { isVirtual: boolean }) {
           if (el) boxRefs.current.set(id, el);
           else boxRefs.current.delete(id);
         }}
-        className={`rounded-lg border-2 px-3 py-2 text-sm font-mono bg-white text-center ${
+        className={`rounded-lg border-2 px-3 py-2 text-sm font-mono bg-card text-center ${
           highlight ? "border-accent" : "border-card-border"
         }`}
       >
@@ -185,7 +185,7 @@ export default function VTableSimulator() {
           className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
             isVirtual
               ? "bg-accent text-white border-accent"
-              : "bg-white text-body border-card-border hover:border-accent"
+              : "bg-card text-body border-card-border hover:border-accent"
           }`}
         >
           virtual: {isVirtual ? "on" : "off"}

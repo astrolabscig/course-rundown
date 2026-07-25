@@ -55,19 +55,19 @@ export default function NATSimulator() {
                 key={c}
                 type="button"
                 onClick={() => sendRequest(c)}
-                className="rounded-xl border-2 border-accent bg-white px-3 py-2 text-sm font-mono text-heading hover:bg-accent hover:text-white transition-colors"
+                className="rounded-xl border-2 border-accent bg-card px-3 py-2 text-sm font-mono text-heading hover:bg-accent hover:text-white transition-colors"
               >
                 {c} — send request
               </button>
             ))}
           </div>
           <div className="text-2xl text-secondary">→</div>
-          <div className="rounded-xl border-2 border-accent-warm bg-white px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
+          <div className="rounded-xl border-2 border-accent-warm bg-card px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
             Router (NAT)
             <div className="text-xs text-secondary mt-1 font-normal">public IP: {publicIp}</div>
           </div>
           <div className="text-2xl text-secondary">→</div>
-          <div className="rounded-xl border-2 border-card-border bg-white px-4 py-3 text-sm font-mono text-heading">
+          <div className="rounded-xl border-2 border-card-border bg-card px-4 py-3 text-sm font-mono text-heading">
             Internet
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function OutputPredictionDrill() {
       {outputSnippets.map((snippet, i) => {
         const isRevealed = revealed[snippet.id] ?? false;
         return (
-          <div key={snippet.id} className="rounded-xl border border-card-border bg-white p-4 space-y-3">
+          <div key={snippet.id} className="rounded-xl border border-card-border bg-card p-4 space-y-3">
             <p className="text-sm font-semibold text-heading">Snippet {i + 1}</p>
             <CodeBlock code={snippet.code} />
 

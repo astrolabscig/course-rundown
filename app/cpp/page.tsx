@@ -67,7 +67,7 @@ export default function CppRoom() {
 
           <a
             href="/cpp/exam"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{examBank.length}-question exam room →</p>
@@ -83,7 +83,7 @@ export default function CppRoom() {
 
           <a
             href="/cpp/passco"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{passcoBank.length}-question Passco Cheatsheet →</p>

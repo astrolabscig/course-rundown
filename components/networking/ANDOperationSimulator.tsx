@@ -33,7 +33,7 @@ function BitsRow({
               <span
                 key={bi}
                 className={`flex h-6 w-5 items-center justify-center rounded text-xs font-mono ${
-                  dim ? "bg-white border border-card-border text-secondary" : "bg-accent text-white"
+                  dim ? "bg-card border border-card-border text-secondary" : "bg-accent text-white"
                 }`}
               >
                 {bit}

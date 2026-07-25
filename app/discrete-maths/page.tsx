@@ -85,7 +85,7 @@ export default function DiscreteMathsRoom() {
 
           <a
             href="/discrete-maths/quiz"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{discreteMathsQuizBank.length}-question Concept Quiz →</p>
@@ -101,7 +101,7 @@ export default function DiscreteMathsRoom() {
 
           <a
             href="/discrete-maths/passco"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{discreteMathsPasscoBank.length}-question Passco Room →</p>

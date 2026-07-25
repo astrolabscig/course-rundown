@@ -132,7 +132,7 @@ export default function SwitchingSimulator() {
             <div
               key={p.n}
               className={`rounded-xl border-2 px-2 sm:px-3 py-2 text-xs font-mono text-center transition-colors ${
-                stage.activePorts.includes(p.n) ? "border-accent bg-accent text-white" : "border-card-border bg-white text-heading"
+                stage.activePorts.includes(p.n) ? "border-accent bg-accent text-white" : "border-card-border bg-card text-heading"
               }`}
             >
               <div className="font-semibold">Port {p.n}</div>

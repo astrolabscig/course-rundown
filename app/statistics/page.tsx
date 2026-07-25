@@ -69,7 +69,7 @@ export default function StatisticsRoom() {
 
           <a
             href="/statistics/exam"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent\30 bg-[#EAF2FF] px-5 py-4 hover:border-accent transition-colors"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{statisticsExamBank.length}-question exam room →</p>

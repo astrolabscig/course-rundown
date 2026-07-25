@@ -101,7 +101,7 @@ export default function ARPSimulator() {
 
       <div className="rounded-2xl border border-card-border bg-muted p-6">
         <div className="flex items-center justify-between">
-          <div className="rounded-xl border-2 border-accent bg-white px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
+          <div className="rounded-xl border-2 border-accent bg-card px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
             Host A
             <div className="text-xs text-secondary font-normal">192.168.1.10</div>
           </div>
@@ -109,7 +109,7 @@ export default function ARPSimulator() {
             {stage.arrow === "broadcast" && "— ARP Request (broadcast) →"}
             {stage.arrow === "reply" && "← ARP Reply (unicast)"}
           </div>
-          <div className="rounded-xl border-2 border-accent-warm bg-white px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
+          <div className="rounded-xl border-2 border-accent-warm bg-card px-4 py-3 text-sm font-mono font-semibold text-heading text-center">
             Host B
             <div className="text-xs text-secondary font-normal">192.168.1.20 / BB:BB:BB:BB:BB:BB</div>
           </div>

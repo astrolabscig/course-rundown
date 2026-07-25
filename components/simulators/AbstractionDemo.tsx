@@ -106,7 +106,7 @@ export default function AbstractionDemo() {
           className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
             showImpl
               ? "bg-heading text-white border-heading"
-              : "bg-white text-body border-card-border hover:border-accent"
+              : "bg-card text-body border-card-border hover:border-accent"
           }`}
         >
           {showImpl ? "Hide implementation" : "Show implementation"}

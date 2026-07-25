@@ -224,10 +224,10 @@ export default function MemorySimulator() {
 
   function boxClasses(box: Box, isLinkTarget: boolean) {
     if (box.leaked) return "border-error bg-error-bg";
-    if (box.dangling) return "border-secondary bg-white border-dashed opacity-70";
-    if (isLinkTarget) return "border-accent bg-white ring-2 ring-accent cursor-pointer";
-    if (box.kind === "pointer") return "border-accent bg-white cursor-pointer";
-    return "border-card-border bg-white";
+    if (box.dangling) return "border-secondary bg-card border-dashed opacity-70";
+    if (isLinkTarget) return "border-accent bg-card ring-2 ring-accent cursor-pointer";
+    if (box.kind === "pointer") return "border-accent bg-card cursor-pointer";
+    return "border-card-border bg-card";
   }
 
   return (

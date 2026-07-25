@@ -36,7 +36,7 @@ export default function FoundationCard({ data }: { data: FoundationCardData }) {
             className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
               i === activeIndex
                 ? "bg-accent text-white border-accent"
-                : "bg-white text-body border-card-border hover:border-accent"
+                : "bg-card text-body border-card-border hover:border-accent"
             }`}
           >
             {v.label}

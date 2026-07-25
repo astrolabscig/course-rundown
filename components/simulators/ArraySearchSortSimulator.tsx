@@ -165,7 +165,7 @@ export default function ArraySearchSortSimulator() {
             markInteracted();
           }}
           className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-            mode === "search" ? "bg-accent text-white border-accent" : "bg-white text-body border-card-border hover:border-accent"
+            mode === "search" ? "bg-accent text-white border-accent" : "bg-card text-body border-card-border hover:border-accent"
           }`}
         >
           Linear search
@@ -177,7 +177,7 @@ export default function ArraySearchSortSimulator() {
             markInteracted();
           }}
           className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-            mode === "sort" ? "bg-accent text-white border-accent" : "bg-white text-body border-card-border hover:border-accent"
+            mode === "sort" ? "bg-accent text-white border-accent" : "bg-card text-body border-card-border hover:border-accent"
           }`}
         >
           Bubble sort
@@ -217,8 +217,8 @@ export default function ArraySearchSortSimulator() {
                     searchStage.index === i
                       ? searchStage.found
                         ? "border-success bg-success text-white"
-                        : "border-accent bg-white text-heading"
-                      : "border-card-border bg-white text-body"
+                        : "border-accent bg-card text-heading"
+                      : "border-card-border bg-card text-body"
                   }`}
                 >
                   {val}
@@ -282,7 +282,7 @@ export default function ArraySearchSortSimulator() {
                       ? "border-success bg-success text-white"
                       : sortStage.compare && (sortStage.compare[0] === i || sortStage.compare[1] === i)
                       ? "border-accent-warm bg-accent-warm-bg text-heading"
-                      : "border-card-border bg-white text-body"
+                      : "border-card-border bg-card text-body"
                   }`}
                 >
                   {val}

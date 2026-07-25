@@ -66,11 +66,11 @@ export default function CircularFlowSimulator() {
 
       <div className="rounded-2xl border border-card-border bg-muted p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
-          <div className="rounded-xl border-2 border-accent bg-white px-5 py-4 text-center">
+          <div className="rounded-xl border-2 border-accent bg-card px-5 py-4 text-center">
             <p className="font-semibold text-heading">Households</p>
           </div>
           <div className="text-2xl text-secondary">⇄</div>
-          <div className="rounded-xl border-2 border-accent-warm bg-white px-5 py-4 text-center">
+          <div className="rounded-xl border-2 border-accent-warm bg-card px-5 py-4 text-center">
             <p className="font-semibold text-heading">Firms</p>
           </div>
         </div>

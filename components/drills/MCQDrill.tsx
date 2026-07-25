@@ -76,7 +76,7 @@ export default function MCQDrill({ questions }: { questions: MCQ[] }) {
         {question.options.map((option, i) => {
           const isCorrect = i === question.correctIndex;
           const isChosen = i === selected;
-          let style = "bg-white text-body border-card-border hover:border-accent";
+          let style = "bg-card text-body border-card-border hover:border-accent";
           if (selected !== null) {
             if (isCorrect) style = "bg-success text-white border-success";
             else if (isChosen) style = "bg-error text-white border-error";

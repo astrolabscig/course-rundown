@@ -57,7 +57,7 @@ export default function CodeWalkthrough({
       {step.state.length > 0 && (
         <div className="flex flex-wrap gap-3">
           {step.state.map((s, i) => (
-            <div key={i} className="rounded-lg border-2 border-accent px-3 py-2 text-sm font-mono bg-white">
+            <div key={i} className="rounded-lg border-2 border-accent px-3 py-2 text-sm font-mono bg-card">
               <div className="font-semibold text-heading">{s.label}</div>
               <div className="text-body text-xs">{s.value}</div>
             </div>

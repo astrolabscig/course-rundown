@@ -113,7 +113,7 @@ export default function SubnetCalculator() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
                 mode === "prefix"
                   ? "bg-accent text-white border-accent"
-                  : "bg-white text-body border-card-border hover:border-accent"
+                  : "bg-card text-body border-card-border hover:border-accent"
               }`}
             >
               Prefix (/n)
@@ -127,7 +127,7 @@ export default function SubnetCalculator() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
                 mode === "dotted"
                   ? "bg-accent text-white border-accent"
-                  : "bg-white text-body border-card-border hover:border-accent"
+                  : "bg-card text-body border-card-border hover:border-accent"
               }`}
             >
               Dotted mask

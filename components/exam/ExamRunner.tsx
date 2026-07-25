@@ -109,11 +109,11 @@ export default function ExamRunner({
             const answered = chosen !== null;
             const isChosen = i === chosen;
             const isCorrect = i === question.correctIndex;
-            let style = "bg-white text-body border-card-border hover:border-accent";
+            let style = "bg-card text-body border-card-border hover:border-accent";
             if (answered) {
               if (isCorrect) style = "bg-success text-white border-success";
               else if (isChosen) style = "bg-error text-white border-error";
-              else style = "bg-white text-body border-card-border opacity-60";
+              else style = "bg-card text-body border-card-border opacity-60";
             }
             return (
               <button

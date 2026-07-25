@@ -163,8 +163,8 @@ export default function RecursionSimulator() {
               key={i}
               className={`rounded-lg border-2 px-3 py-2 text-sm font-mono transition-colors ${
                 frame.status === "returned"
-                  ? "border-success bg-white text-heading"
-                  : "border-accent bg-white text-heading"
+                  ? "border-success bg-card text-heading"
+                  : "border-accent bg-card text-heading"
               }`}
             >
               {frame.label}

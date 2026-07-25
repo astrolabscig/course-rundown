@@ -50,7 +50,7 @@ export default function ExamReview({
                 {q.options.map((option, optIndex) => {
                   const isCorrect = optIndex === q.correctIndex;
                   const isChosen = optIndex === selected;
-                  let style = "bg-white text-body border-card-border";
+                  let style = "bg-card text-body border-card-border";
                   if (isCorrect) style = "bg-success text-white border-success";
                   else if (isChosen) style = "bg-error text-white border-error";
                   return (

@@ -50,7 +50,7 @@ export default function SubnettingDrill() {
         const hostBits = result ? result.hostBits : null;
 
         return (
-          <div key={scenario.id} className="rounded-xl border border-card-border bg-white p-4 space-y-3">
+          <div key={scenario.id} className="rounded-xl border border-card-border bg-card p-4 space-y-3">
             <p className="text-sm font-semibold text-heading">Scenario {i + 1}</p>
             <p className="text-sm text-body">{scenario.prompt}</p>
             <p className="text-xs font-mono text-secondary">

@@ -94,7 +94,7 @@ function DeviceForm({
   onChange: (v: DeviceConfig) => void;
 }) {
   return (
-    <div className="rounded-xl border border-card-border bg-white p-4 space-y-2">
+    <div className="rounded-xl border border-card-border bg-card p-4 space-y-2">
       <p className="text-sm font-semibold text-heading">{label}</p>
       {(["ip", "mask", "gateway", "dns"] as const).map((field) => (
         <div key={field} className="flex items-center gap-2">

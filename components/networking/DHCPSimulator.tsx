@@ -126,7 +126,7 @@ export default function DHCPSimulator() {
 
       <div className="relative rounded-2xl border border-card-border bg-muted p-6">
         <div className="flex items-center justify-between">
-          <div className="rounded-xl border-2 border-accent bg-white px-4 py-3 text-sm font-mono font-semibold text-heading">
+          <div className="rounded-xl border-2 border-accent bg-card px-4 py-3 text-sm font-mono font-semibold text-heading">
             Client
           </div>
           <div className="flex-1 text-center px-4">
@@ -136,7 +136,7 @@ export default function DHCPSimulator() {
               </div>
             )}
           </div>
-          <div className="rounded-xl border-2 border-accent-warm bg-white px-4 py-3 text-sm font-mono font-semibold text-heading">
+          <div className="rounded-xl border-2 border-accent-warm bg-card px-4 py-3 text-sm font-mono font-semibold text-heading">
             DHCP Server
           </div>
         </div>

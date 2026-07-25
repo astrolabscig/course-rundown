@@ -112,7 +112,7 @@ function LayerStack({
         <div
           key={layer}
           className={`rounded-lg border-2 px-1 sm:px-3 py-1.5 sm:py-2 text-center text-[11px] sm:text-sm font-mono transition-colors truncate ${
-            active && activeLayer === i ? "border-accent bg-white text-heading font-semibold" : "border-card-border bg-white text-secondary"
+            active && activeLayer === i ? "border-accent bg-card text-heading font-semibold" : "border-card-border bg-card text-secondary"
           }`}
         >
           {layer}
