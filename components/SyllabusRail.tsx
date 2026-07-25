@@ -1,31 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CurriculumPart } from "@/lib/curriculum";
 
-function NavLinks({ parts, visited }: { parts: CurriculumPart[]; visited: Set<string> }) {
+function NavLinks({
+  parts,
+  visited,
+  activeId,
+}: {
+  parts: CurriculumPart[];
+  visited: Set<string>;
+  activeId: string | null;
+}) {
   return (
     <nav aria-label="Course contents" className="space-y-1">
-      {parts.map((part) => (
-        <a
-          key={part.id}
-          href={`#${part.id}`}
-          className="flex items-center gap-2 rounded-full px-2 py-1.5 -mx-2 text-sm text-body hover:text-accent hover:bg-muted transition-colors"
-        >
-          {part.number && (
-            <span
-              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
-                visited.has(part.id)
-                  ? "bg-accent text-white"
-                  : "border border-card-border bg-card text-secondary"
-              }`}
-            >
-              {visited.has(part.id) ? "✓" : part.number}
-            </span>
-          )}
-          <span>{part.title}</span>
-        </a>
-      ))}
+      {parts.map((part) => {
+        const isActive = part.id === activeId;
+        return (
+          <a
+            key={part.id}
+            href={`#${part.id}`}
+            className={`flex items-center gap-2 rounded-xl px-2.5 py-1.5 -mx-2.5 text-sm transition-colors ${
+              isActive
+                ? "bg-accent/10 text-accent font-semibold"
+                : "text-body hover:text-accent hover:bg-muted"
+            }`}
+          >
+            {part.number && (
+              <span
+                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
+                  isActive
+                    ? "bg-accent text-white"
+                    : visited.has(part.id)
+                      ? "bg-accent/20 text-accent"
+                      : "border border-card-border bg-card text-secondary"
+                }`}
+              >
+                {visited.has(part.id) && !isActive ? "✓" : part.number}
+              </span>
+            )}
+            <span>{part.title}</span>
+          </a>
+        );
+      })}
     </nav>
   );
 }
@@ -38,6 +55,8 @@ export default function SyllabusRail({
   storageKey: string;
 }) {
   const [visited, setVisited] = useState<Set<string>>(new Set());
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const intersectingRef = useRef<Map<string, boolean>>(new Map());
 
   useEffect(() => {
     let stored: string[] = [];
@@ -50,15 +69,19 @@ export default function SyllabusRail({
 
     const observer = new IntersectionObserver(
       (entries) => {
+        for (const entry of entries) {
+          intersectingRef.current.set(entry.target.id, entry.isIntersecting);
+        }
+        const firstActive = parts.find((p) => intersectingRef.current.get(p.id));
+        setActiveId(firstActive ? firstActive.id : null);
+
         setVisited((prev) => {
           const next = new Set(prev);
           let changed = false;
           for (const entry of entries) {
-            if (entry.isIntersecting) {
-              if (!next.has(entry.target.id)) {
-                next.add(entry.target.id);
-                changed = true;
-              }
+            if (entry.isIntersecting && !next.has(entry.target.id)) {
+              next.add(entry.target.id);
+              changed = true;
             }
           }
           if (changed) {
@@ -86,13 +109,13 @@ export default function SyllabusRail({
           Course contents
         </summary>
         <div className="px-4 pb-4">
-          <NavLinks parts={parts} visited={visited} />
+          <NavLinks parts={parts} visited={visited} activeId={activeId} />
         </div>
       </details>
 
       <aside className="hidden md:block w-64 shrink-0 border-r border-card-border">
         <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto p-6">
-          <NavLinks parts={parts} visited={visited} />
+          <NavLinks parts={parts} visited={visited} activeId={activeId} />
         </div>
       </aside>
     </>

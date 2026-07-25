@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Poppins, JetBrains_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Course Helper",
@@ -19,14 +9,16 @@ export const metadata: Metadata = {
     "Learn C++/OOP, IT networking, Economics II, Discrete Mathematics, and Statistics with real interactive simulations, real errors, and plain-language explanations.",
 };
 
-// Runs before paint so the saved theme applies with no flash of the wrong palette.
+// Runs before paint so the resolved theme (saved choice, or system preference as
+// a fallback) is set as an explicit attribute with no flash of the wrong palette.
 const themeInitScript = `
 (function () {
   try {
     var stored = localStorage.getItem("theme");
-    if (stored === "dark" || stored === "light") {
-      document.documentElement.setAttribute("data-theme", stored);
-    }
+    var resolved = stored === "dark" || stored === "light"
+      ? stored
+      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", resolved);
   } catch (e) {}
 })();
 `;
@@ -39,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
+/* The theme-init script in layout.tsx always sets an explicit data-theme
+   attribute (from localStorage, or resolved from system preference), so a
+   plain attribute selector is enough — this also makes Tailwind's dark:
+   variant usable for one-off cases (e.g. fixed decorative hues) beyond the
+   --color-* tokens below. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
-  --page: #ffffff;
-  --muted: #f5f7fa;
+  --page: #f5f4fb;
+  --muted: #edebf8;
   --card: #ffffff;
-  --card-border: #e3e8ef;
-  --heading: #1f1f1f;
-  --body: #3d4249;
-  --secondary: #6b7280;
-  --accent: #0056d2;
-  --accent-hover: #00419e;
+  --card-border: #e3e0f2;
+  --heading: #1a1625;
+  --body: #4a4458;
+  --secondary: #857e99;
+  --accent: #6c5df0;
+  --accent-hover: #5847e0;
   --accent-warm: #f59e0b;
   --accent-warm-bg: #fef3e2;
-  --success: #137333;
+  --success: #15803d;
   --error: #d93025;
   --error-bg: #fce8e6;
   --code-bg: #f6f8fa;
@@ -20,35 +27,16 @@
 
 /* Dark palette — code-bg is intentionally NOT overridden here, so code blocks
    (tuned for a light syntax theme) stay a consistent light "island" in both modes. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --page: #0a0e16;
-    --muted: #10151f;
-    --card: #151b28;
-    --card-border: #262f40;
-    --heading: #f3f5f9;
-    --body: #c6ccd8;
-    --secondary: #8b93a5;
-    --accent: #5b93ff;
-    --accent-hover: #7ba5ff;
-    --accent-warm: #ffb454;
-    --accent-warm-bg: rgba(255, 180, 84, 0.14);
-    --success: #4ade80;
-    --error: #f87171;
-    --error-bg: rgba(248, 113, 113, 0.14);
-  }
-}
-
 :root[data-theme="dark"] {
-  --page: #0a0e16;
-  --muted: #10151f;
-  --card: #151b28;
-  --card-border: #262f40;
-  --heading: #f3f5f9;
-  --body: #c6ccd8;
-  --secondary: #8b93a5;
-  --accent: #5b93ff;
-  --accent-hover: #7ba5ff;
+  --page: #131120;
+  --muted: #1a1729;
+  --card: #1e1b2e;
+  --card-border: #322c47;
+  --heading: #f3f1fa;
+  --body: #cac4dd;
+  --secondary: #948da6;
+  --accent: #a495ff;
+  --accent-hover: #b6aaff;
   --accent-warm: #ffb454;
   --accent-warm-bg: rgba(255, 180, 84, 0.14);
   --success: #4ade80;
@@ -73,19 +61,12 @@
   --color-error-bg: var(--error-bg);
   --color-code-bg: var(--code-bg);
 
-  --font-sans: var(--font-poppins), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 body {
   background-color: var(--page);
-  background-image: repeating-linear-gradient(
-    135deg,
-    var(--card-border) 0px,
-    var(--card-border) 1px,
-    transparent 1px,
-    transparent 24px
-  );
   color: var(--body);
   font-family: var(--font-sans);
 }

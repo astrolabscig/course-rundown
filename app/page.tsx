@@ -7,6 +7,7 @@ const rooms = [
   {
     href: "/cpp",
     tag: "10 parts · Basics → OOP",
+    tagColor: "text-blue-600 bg-blue-500/10 dark:text-blue-300",
     title: "C++ & OOP",
     description:
       "Foundations through polymorphism — real interactive simulations for pointers, memory, inheritance, and vtables. Correct code, the real compiler error, and a plain-language why.",
@@ -16,6 +17,7 @@ const rooms = [
   {
     href: "/networking",
     tag: "IPv4 & Subnetting",
+    tagColor: "text-teal-600 bg-teal-500/10 dark:text-teal-300",
     title: "IT — Networking Fundamentals",
     description:
       "Network basics, IPv4 addressing, and subnetting calculations built for the exam — with live calculators, not just formulas to memorise.",
@@ -25,6 +27,7 @@ const rooms = [
   {
     href: "/econs",
     tag: "Macroeconomics",
+    tagColor: "text-accent-warm bg-accent-warm-bg",
     title: "Economics II",
     description:
       "The circular flow, national income, unemployment, inflation, the Phillips curve, balance of payments, and exchange rates — with real calculators and simulations for every concept.",
@@ -34,6 +37,7 @@ const rooms = [
   {
     href: "/discrete-maths",
     tag: "Logic → Trees & Graphs",
+    tagColor: "text-indigo-600 bg-indigo-500/10 dark:text-indigo-300",
     title: "Discrete Mathematics",
     description:
       "Logic, proofs, sets, algorithms, induction, counting, relations, graphs, and trees — real textbook problems solved step by step, with simulations for every algorithm and data structure.",
@@ -43,6 +47,7 @@ const rooms = [
   {
     href: "/statistics",
     tag: "Descriptive Statistics + Probability",
+    tagColor: "text-pink-600 bg-pink-500/10 dark:text-pink-300",
     title: "Statistics",
     description:
       "Frequency distributions, central tendency, dispersion, position, shape, and probability — real calculators for every formula, not just definitions to memorise.",
@@ -212,7 +217,6 @@ export default function Home() {
 
             {/* Decorative preview panel — mirrors the app's own quiz UI, not a stock photo */}
             <div className="relative">
-              <div className="absolute -inset-4 rounded-[2rem] bg-accent/10 blur-2xl -z-10" />
               <div className="rounded-3xl border border-card-border bg-card shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden">
                 <div className="flex items-center gap-1.5 px-4 py-3 border-b border-card-border bg-muted">
                   <span className="h-2.5 w-2.5 rounded-full bg-error/60" />
@@ -316,7 +320,7 @@ export default function Home() {
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <RoomIcon name={room.icon} />
                   </span>
-                  <span className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-semibold text-accent">
+                  <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${room.tagColor}`}>
                     {room.tag}
                   </span>
                 </div>
