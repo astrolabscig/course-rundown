@@ -87,10 +87,6 @@ const faqs = [
     a: "Every calculator's default output and every worked-problem answer is checked against the source lecture material or hand-verified before it ships. If something looks off, the feedback form in every room goes straight to me.",
   },
   {
-    q: "Can I get my course added?",
-    a: "This started as one student's exam-week project and grew room by room as coursemates asked for more. Use the feedback form in any room to ask for another course — that's genuinely how the last two rooms got built.",
-  },
-  {
     q: "Do I need to sign up?",
     a: "No. Open a room and go — your progress through each syllabus is saved locally in your own browser.",
   },

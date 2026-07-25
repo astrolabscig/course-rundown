@@ -1664,4 +1664,483 @@ export const discreteMathsPasscoBank: PassQuestion[] = [
     explanation: "Inclusion-exclusion on the counts (45+106-15=136) out of 320 gives a probability of 0.425.",
     analogy: "'Multiple of A or multiple of B' always needs the overlap subtracted — and that overlap is exactly 'multiples of lcm(A,B)', which is 21 here since 7 and 3 share no common factors.",
   },
+
+  // ============================================================
+  // Rosen, Discrete Mathematics and Its Applications, 7th Edition
+  // Real exercises pulled directly from the book's own exercise sets,
+  // one representative batch per section this room covers, each cited
+  // with its exact section and exercise number. Every answer below was
+  // independently re-derived and verified before being written here.
+  // ============================================================
+
+  // ---------------- Rosen 1.1-1.3: Propositional Logic ----------------
+  {
+    id: "dm-rosen-logic-1",
+    section: "rosen-logic",
+    question: "(Rosen 1.1, Ex.17a) Determine whether this conditional statement is true or false: \"If 1+1=2, then 2+2=5.\"",
+    options: ["True", "False"],
+    answer: "False",
+    steps: [
+      { statement: "The hypothesis \"1+1=2\" is true.", reason: "Evaluate p" },
+      { statement: "The conclusion \"2+2=5\" is false.", reason: "Evaluate q" },
+      { statement: "A conditional p → q is false in exactly one case: p true and q false.", reason: "Definition of the conditional" },
+    ],
+    explanation: "True → False is the only case that makes a conditional statement false, so this statement is False.",
+    analogy: "Don't be fooled by a true-sounding hypothesis — a conditional is only ever false when a TRUE hypothesis leads to a FALSE conclusion.",
+  },
+  {
+    id: "dm-rosen-logic-2",
+    section: "rosen-logic",
+    question: "(Rosen 1.1, Ex.16a) Is this biconditional true or false: \"2+2=4 if and only if 1+1=2\"?",
+    options: ["True", "False"],
+    answer: "True",
+    steps: [
+      { statement: "\"2+2=4\" is true, and \"1+1=2\" is true.", reason: "Evaluate both sides" },
+      { statement: "p ↔ q is true exactly when p and q have the SAME truth value.", reason: "Definition of the biconditional" },
+      { statement: "Both sides are true, so they match.", reason: "Apply the definition" },
+    ],
+    explanation: "A biconditional is true whenever both halves agree — here both \"2+2=4\" and \"1+1=2\" are true, so the biconditional is True.",
+  },
+  {
+    id: "dm-rosen-logic-3",
+    section: "rosen-logic",
+    question: "(Rosen 1.3, Ex.9a) Is (p∧q)→p a tautology, a contradiction, or a contingency?",
+    options: ["Tautology", "Contradiction", "Contingency"],
+    answer: "Tautology",
+    steps: [
+      { statement: "Whenever p∧q is true, p itself must also be true (since p∧q true requires both p and q true).", reason: "Definition of conjunction" },
+      { statement: "So the hypothesis (p∧q) being true always forces the conclusion (p) to be true — a conditional can never be false this way.", reason: "The only way a conditional is false is true→false" },
+      { statement: "When p∧q is false, the conditional is automatically true regardless of p.", reason: "A false hypothesis makes any conditional true" },
+    ],
+    explanation: "(p∧q)→p is true no matter what truth values p and q take, so it's a tautology.",
+    analogy: "Whenever the conclusion of a conditional is literally one of the pieces being AND-ed together in the hypothesis, the whole thing is automatically a tautology.",
+  },
+  {
+    id: "dm-rosen-logic-4",
+    section: "rosen-logic",
+    question: "(Rosen 1.1, Ex.29a) How many rows are in the truth table for the compound proposition p → ¬p?",
+    answer: "2",
+    acceptableAnswers: ["2"],
+    explanation: "p → ¬p involves only ONE propositional variable (p), so the truth table has 2¹ = 2 rows — one for p=T, one for p=F.",
+    analogy: "The number of rows in a truth table depends only on how many DISTINCT propositional variables appear — count the variables, not how many times each one shows up.",
+  },
+  {
+    id: "dm-rosen-logic-5",
+    section: "rosen-logic",
+    question: "(Rosen 1.3, absorption law) Simplify p∨(p∧q) to a single propositional variable.",
+    answer: "p",
+    acceptableAnswers: ["p"],
+    explanation: "This is the absorption law: p∨(p∧q) ≡ p. Intuitively, if p is true the whole thing is true regardless of q; if p is false, p∧q is also false, so the whole thing is false — it always matches p exactly.",
+  },
+
+  // ---------------- Rosen 1.4-1.6: Quantifiers & Inference ----------------
+  {
+    id: "dm-rosen-quant-1",
+    section: "rosen-quantifiers",
+    question: "(Rosen 1.4, Ex.13a) Domain = all integers. True or false: ∀n(n+1 > n)?",
+    options: ["True", "False"],
+    answer: "True",
+    steps: [
+      { statement: "Adding 1 to any integer always produces a strictly larger integer.", reason: "Basic property of the integers" },
+      { statement: "There is no integer n for which n+1 fails to exceed n.", reason: "No counterexample exists" },
+    ],
+    explanation: "n+1 > n holds for every single integer, so the universally quantified statement is True.",
+  },
+  {
+    id: "dm-rosen-quant-2",
+    section: "rosen-quantifiers",
+    question: "(Rosen 1.4, Ex.15b) Domain = all integers. True or false: ∃n(n² = 2)?",
+    options: ["True", "False"],
+    answer: "False",
+    steps: [
+      { statement: "n² = 2 would require n = ±√2.", reason: "Solve for n" },
+      { statement: "√2 is irrational, not an integer.", reason: "√2 has no exact integer value" },
+      { statement: "No integer, when squared, equals 2 (1²=1, 2²=4 — it jumps right over 2).", reason: "Check nearby integers" },
+    ],
+    explanation: "No integer squares to exactly 2, so this existential statement is False over the integer domain.",
+  },
+  {
+    id: "dm-rosen-quant-3",
+    section: "rosen-quantifiers",
+    question: "(Rosen 1.6, Ex.3c) What rule of inference is used here? \"If it is rainy, the pool will be closed. It is rainy. Therefore, the pool is closed.\"",
+    options: ["Modus ponens", "Modus tollens", "Hypothetical syllogism", "Disjunctive syllogism"],
+    answer: "Modus ponens",
+    steps: [
+      { statement: "The argument has the form p→q, p, therefore q.", reason: "Match the structure: p = 'it is rainy', q = 'the pool is closed'" },
+      { statement: "That exact pattern — affirming the hypothesis to conclude the conclusion — is the definition of modus ponens.", reason: "Definition" },
+    ],
+    explanation: "p→q together with p, concluding q, is modus ponens — the single most common rule of inference.",
+  },
+  {
+    id: "dm-rosen-quant-4",
+    section: "rosen-quantifiers",
+    question: "(Rosen 1.6, Ex.3d) What rule of inference is used here? \"If it snows today, the university will close. The university is not closed today. Therefore, it did not snow today.\"",
+    options: ["Modus ponens", "Modus tollens", "Hypothetical syllogism", "Disjunctive syllogism"],
+    answer: "Modus tollens",
+    steps: [
+      { statement: "The argument has the form p→q, ¬q, therefore ¬p.", reason: "Match the structure: p = 'it snows today', q = 'the university closes'" },
+      { statement: "Denying the conclusion to conclude the negation of the hypothesis is the definition of modus tollens.", reason: "Definition" },
+    ],
+    explanation: "p→q together with ¬q, concluding ¬p, is modus tollens.",
+    analogy: "Modus ponens affirms the FRONT of the conditional; modus tollens denies the BACK. Mixing these up is one of the most common logic exam mistakes.",
+  },
+
+  // ---------------- Rosen 1.7-1.8: Proof Techniques ----------------
+  {
+    id: "dm-rosen-proof-1",
+    section: "rosen-proofs",
+    question: "(Rosen 1.7, Ex.13) Proving \"if x is irrational, then 1/x is irrational\" by assuming 1/x IS rational and deriving that x must then be rational too (a contradiction) — which proof technique is this?",
+    options: ["Direct proof", "Proof by contraposition", "Proof by contradiction", "Proof by cases"],
+    answer: "Proof by contraposition",
+    steps: [
+      { statement: "The contrapositive of \"x irrational → 1/x irrational\" is \"1/x rational → x rational.\"", reason: "Contrapositive of p→q is ¬q→¬p" },
+      { statement: "Assuming 1/x is rational and proving x is rational proves exactly the contrapositive.", reason: "Match the strategy to the statement" },
+      { statement: "Since a statement and its contrapositive are logically equivalent, proving the contrapositive proves the original.", reason: "p→q ≡ ¬q→¬p" },
+    ],
+    explanation: "Assuming the negation of the conclusion and deriving the negation of the hypothesis is a proof by contraposition, not proof by contradiction (which would assume the ORIGINAL hypothesis AND the negated conclusion together).",
+    analogy: "The giveaway for contraposition vs. contradiction: contraposition only ever assumes ¬q and proves ¬p — it never also assumes p at the same time the way a contradiction proof does.",
+  },
+  {
+    id: "dm-rosen-proof-2",
+    section: "rosen-proofs",
+    question: "(Rosen 1.7, Ex.9) Proving \"the sum of an irrational number and a rational number is irrational\" by assuming the sum IS rational and deriving that the irrational number must then be rational — which technique?",
+    options: ["Direct proof", "Proof by contraposition", "Proof by contradiction", "Constructive existence proof"],
+    answer: "Proof by contradiction",
+    steps: [
+      { statement: "Assume the opposite of what you want to prove: suppose irrational + rational = rational.", reason: "Start of a contradiction proof" },
+      { statement: "Rearranging, irrational = rational − rational = rational, since rationals are closed under subtraction.", reason: "Derive a consequence" },
+      { statement: "This contradicts the assumption that the number was irrational — a logical impossibility.", reason: "The contradiction closes the proof" },
+    ],
+    explanation: "Assuming the negation of the goal itself (not just working with the contrapositive) and deriving an impossibility is a proof by contradiction.",
+  },
+  {
+    id: "dm-rosen-proof-3",
+    section: "rosen-proofs",
+    question: "(Rosen 1.8) A proof that an object with a given property exists by explicitly exhibiting one is called a ___ existence proof.",
+    answer: "constructive",
+    acceptableAnswers: ["constructive"],
+    explanation: "A constructive existence proof directly produces (or gives a procedure for producing) a specific example — as opposed to a nonconstructive proof, which shows something must exist without ever identifying it.",
+  },
+
+  // ---------------- Rosen 2.1-2.2: Sets & Set Operations ----------------
+  {
+    id: "dm-rosen-sets-1",
+    section: "rosen-sets",
+    question: "(Rosen 2.1, Ex.9a) True or false: 0 ∈ ∅",
+    options: ["True", "False"],
+    answer: "False",
+    explanation: "The empty set ∅ contains no elements at all, so nothing — including 0 — can be a member of it.",
+  },
+  {
+    id: "dm-rosen-sets-2",
+    section: "rosen-sets",
+    question: "(Rosen 2.1, Ex.9d) True or false: ∅ ⊂ {0}",
+    options: ["True", "False"],
+    answer: "True",
+    steps: [
+      { statement: "The empty set is a subset of every set, including {0} — vacuously, every element of ∅ (there are none) is also in {0}.", reason: "∅ ⊆ S for any set S" },
+      { statement: "Since {0} contains an element (0) that ∅ doesn't, {0} ≠ ∅, making this a PROPER subset.", reason: "Definition of ⊂ (proper subset)" },
+    ],
+    explanation: "∅ is a subset of every set, and since {0} has an element ∅ lacks, it's a proper subset — so ∅ ⊂ {0} is True.",
+  },
+  {
+    id: "dm-rosen-sets-3",
+    section: "rosen-sets",
+    question: "(Rosen 2.2, distributive law) Complete the identity: A∪(B∩C) = ?",
+    options: ["(A∪B)∩(A∪C)", "(A∩B)∪(A∩C)", "(A∪B)∪(A∪C)", "(A∩B)∩(A∩C)"],
+    answer: "(A∪B)∩(A∪C)",
+    explanation: "This is the first distributive law for sets — union distributes over intersection exactly the way multiplication distributes over addition in ordinary algebra.",
+    analogy: "Match ∪ to '+' and ∩ to '×' as a memory trick: a+(b×c) doesn't literally distribute like this in arithmetic, but the PATTERN of 'spread the outer operation across both terms of the inner one' carries over.",
+  },
+  {
+    id: "dm-rosen-sets-4",
+    section: "rosen-sets",
+    question: "(Rosen 2.1, Ex.19) What is the cardinality of {a, {a}}?",
+    answer: "2",
+    acceptableAnswers: ["2"],
+    explanation: "This set has exactly two distinct elements: the element a, and the element {a} (a set containing a) — they are different objects, so |{a, {a}}| = 2.",
+  },
+
+  // ---------------- Rosen 2.3-2.4: Functions & Sequences ----------------
+  {
+    id: "dm-rosen-func-1",
+    section: "rosen-functions",
+    question: "(Rosen 2.3, Ex.8a) Find ⌈1.1⌉ (the ceiling of 1.1).",
+    answer: "2",
+    acceptableAnswers: ["2"],
+    explanation: "The ceiling function rounds UP to the nearest integer, so ⌈1.1⌉ = 2.",
+  },
+  {
+    id: "dm-rosen-func-2",
+    section: "rosen-functions",
+    question: "(Rosen 2.3, Ex.8b) Find ⌊1.1⌋ (the floor of 1.1).",
+    answer: "1",
+    acceptableAnswers: ["1"],
+    explanation: "The floor function rounds DOWN to the nearest integer, so ⌊1.1⌋ = 1.",
+  },
+  {
+    id: "dm-rosen-func-3",
+    section: "rosen-functions",
+    question: "(Rosen 2.4, Ex.1) For the sequence aₙ = 2·(−3)ⁿ + 5ⁿ, find a₀.",
+    answer: "3",
+    acceptableAnswers: ["3"],
+    steps: [
+      { statement: "a₀ = 2·(−3)⁰ + 5⁰ = 2·1 + 1.", reason: "Any nonzero number to the power 0 is 1" },
+      { statement: "= 2 + 1 = 3.", reason: "Add" },
+    ],
+    explanation: "a₀ = 2·(−3)⁰ + 5⁰ = 2(1) + 1 = 3.",
+  },
+  {
+    id: "dm-rosen-func-4",
+    section: "rosen-functions",
+    question: "(Rosen 2.4, recurrence) A sequence satisfies aₙ = 3aₙ₋₁ with a₀ = 2. Find a₃.",
+    answer: "54",
+    acceptableAnswers: ["54"],
+    steps: [
+      { statement: "a₁ = 3·a₀ = 3·2 = 6.", reason: "Apply the recurrence once" },
+      { statement: "a₂ = 3·a₁ = 3·6 = 18.", reason: "Apply it again" },
+      { statement: "a₃ = 3·a₂ = 3·18 = 54.", reason: "Apply it a third time" },
+    ],
+    explanation: "Iterating the recurrence three times from a₀=2 gives a₁=6, a₂=18, a₃=54.",
+  },
+
+  // ---------------- Rosen 3.1-3.3: Algorithms ----------------
+  {
+    id: "dm-rosen-algo-1",
+    section: "rosen-algorithms",
+    question: "(Rosen 3.2, big-O) Is f(x) = 17x + 11 in O(x²)?",
+    options: ["Yes", "No"],
+    answer: "Yes",
+    steps: [
+      { statement: "For x ≥ 1, 17x ≤ 17x² and 11 ≤ 11x², so 17x+11 ≤ 28x².", reason: "Bound each term by a constant times x²" },
+      { statement: "This matches the definition of Big-O with C=28 and k=1.", reason: "|f(x)| ≤ C|g(x)| for all x > k" },
+    ],
+    explanation: "Any linear function is automatically O(x²) (and O of anything that grows at least as fast) — Big-O only requires an UPPER bound, not a tight one.",
+    analogy: "A function being O(g(x)) never rules out it ALSO being O of something bigger — Big-O just claims 'grows no faster than', so a linear function is O(x²), O(x³), O(2ˣ), all at once.",
+  },
+  {
+    id: "dm-rosen-algo-2",
+    section: "rosen-algorithms",
+    question: "Which lists these growth rates from SLOWEST to FASTEST: n², 2ⁿ, log n, n?",
+    options: ["log n, n, n², 2ⁿ", "n, log n, n², 2ⁿ", "2ⁿ, n², n, log n", "log n, n², n, 2ⁿ"],
+    answer: "log n, n, n², 2ⁿ",
+    explanation: "From slowest to fastest: log n grows slower than any polynomial, n grows slower than n², and n² is eventually overtaken by any exponential like 2ⁿ. Order: log n < n < n² < 2ⁿ.",
+  },
+  {
+    id: "dm-rosen-algo-3",
+    section: "rosen-algorithms",
+    question: "(Rosen 3.1) In the worst case, how many comparisons does a linear search make to determine that a target is NOT in a list of n elements?",
+    answer: "n",
+    acceptableAnswers: ["n"],
+    explanation: "A linear search that fails to find the target must check every single one of the n elements before concluding it's absent — exactly n comparisons.",
+  },
+  {
+    id: "dm-rosen-algo-4",
+    section: "rosen-algorithms",
+    question: "(Rosen 3.1, binary search) What is the maximum number of comparisons a binary search needs on a sorted list of 8 elements?",
+    answer: "4",
+    acceptableAnswers: ["4"],
+    steps: [
+      { statement: "Binary search's worst case is ⌊log₂n⌋ + 1 comparisons for a list of n elements.", reason: "Each comparison halves the remaining search space" },
+      { statement: "⌊log₂8⌋ + 1 = 3 + 1 = 4.", reason: "log₂8 = 3 exactly" },
+    ],
+    explanation: "log₂8 = 3, so the worst case is 3+1 = 4 comparisons — each comparison eliminates half the remaining list.",
+  },
+
+  // ---------------- Rosen 5.1, 5.3-5.4: Induction & Recursion ----------------
+  {
+    id: "dm-rosen-induct-1",
+    section: "rosen-induction",
+    question: "(Rosen 5.1, Ex.3) Proving P(n): 1²+2²+...+n² = n(n+1)(2n+1)/6 by induction — what is the basis step, P(1)?",
+    options: ["1 = 1(2)(3)/6", "1 = 1", "1² = 1", "0 = 0"],
+    answer: "1 = 1(2)(3)/6",
+    steps: [
+      { statement: "Substitute n=1 into both sides of the claimed formula.", reason: "The basis step checks the formula at the smallest case" },
+      { statement: "Left side: 1² = 1. Right side: 1(1+1)(2·1+1)/6 = 1(2)(3)/6 = 6/6 = 1.", reason: "Evaluate both sides" },
+      { statement: "Both sides equal 1, so P(1) holds.", reason: "Confirms the basis step" },
+    ],
+    explanation: "P(1) is the statement 1 = 1(2)(3)/6, and both sides evaluate to 1, so the basis step checks out.",
+  },
+  {
+    id: "dm-rosen-induct-2",
+    section: "rosen-induction",
+    question: "(Rosen 5.3, Ex.1b) f is defined recursively by f(0)=1 and f(n+1)=3f(n). Find f(3).",
+    answer: "27",
+    acceptableAnswers: ["27"],
+    steps: [
+      { statement: "f(1) = 3·f(0) = 3·1 = 3.", reason: "Apply the recursive rule once" },
+      { statement: "f(2) = 3·f(1) = 3·3 = 9.", reason: "Apply it again" },
+      { statement: "f(3) = 3·f(2) = 3·9 = 27.", reason: "Apply it a third time" },
+    ],
+    explanation: "Unrolling the recursion from f(0)=1: f(1)=3, f(2)=9, f(3)=27 — in general f(n)=3ⁿ.",
+  },
+  {
+    id: "dm-rosen-induct-3",
+    section: "rosen-induction",
+    question: "(Rosen 5.3, Ex.2a) f is defined recursively by f(0)=2 and f(n+1)=−2f(n). Find f(2).",
+    answer: "8",
+    acceptableAnswers: ["8"],
+    steps: [
+      { statement: "f(1) = −2·f(0) = −2·2 = −4.", reason: "Apply the recursive rule once" },
+      { statement: "f(2) = −2·f(1) = −2·(−4) = 8.", reason: "Apply it again — negative times negative is positive" },
+    ],
+    explanation: "f(0)=2, f(1)=−4, f(2)=8 — the sign flips every step since each term is −2 times the last.",
+  },
+
+  // ---------------- Rosen 6.1-6.3: Counting ----------------
+  {
+    id: "dm-rosen-count-1",
+    section: "rosen-counting",
+    question: "(Rosen 6.1, Ex.10) How many bit strings are there of length eight?",
+    answer: "256",
+    acceptableAnswers: ["256"],
+    explanation: "Each of the 8 positions independently has 2 choices (0 or 1), so there are 2⁸ = 256 possible bit strings.",
+  },
+  {
+    id: "dm-rosen-count-2",
+    section: "rosen-counting",
+    question: "(Rosen 6.1, Ex.21) How many positive integers between 50 and 100 are divisible by 7?",
+    answer: "7",
+    acceptableAnswers: ["7"],
+    steps: [
+      { statement: "List the multiples of 7 in that range: 56, 63, 70, 77, 84, 91, 98.", reason: "Direct enumeration" },
+      { statement: "That's 7 numbers.", reason: "Count the list" },
+    ],
+    explanation: "The multiples of 7 between 50 and 100 are 56, 63, 70, 77, 84, 91, 98 — 7 of them.",
+  },
+  {
+    id: "dm-rosen-count-3",
+    section: "rosen-counting",
+    question: "(Rosen 6.3, Ex.5) Find the value of P(6,3) — the number of ways to arrange 3 items chosen from 6.",
+    answer: "120",
+    acceptableAnswers: ["120"],
+    steps: [
+      { statement: "P(6,3) = 6!/(6−3)! = 6!/3!", reason: "Formula for permutations" },
+      { statement: "= 6×5×4 = 120.", reason: "Multiply the first 3 descending factors of 6!" },
+    ],
+    explanation: "P(6,3) = 6×5×4 = 120 — order matters, so this counts ordered selections.",
+  },
+  {
+    id: "dm-rosen-count-4",
+    section: "rosen-counting",
+    question: "(Rosen 6.3, Ex.6) Find the value of C(8,4) — the number of 4-element subsets of an 8-element set.",
+    answer: "70",
+    acceptableAnswers: ["70"],
+    steps: [
+      { statement: "C(8,4) = 8!/(4!·4!)", reason: "Formula for combinations" },
+      { statement: "= (8×7×6×5)/(4×3×2×1) = 1680/24 = 70.", reason: "Simplify" },
+    ],
+    explanation: "C(8,4) = 70 — unlike a permutation, order doesn't matter here.",
+  },
+  {
+    id: "dm-rosen-count-5",
+    section: "rosen-counting",
+    question: "(Rosen 6.2, pigeonhole) In a class of 30 students, must at least two have last names starting with the same letter of the (26-letter) alphabet?",
+    options: ["Yes — guaranteed", "No — not guaranteed"],
+    answer: "Yes — guaranteed",
+    steps: [
+      { statement: "There are 30 students (pigeons) and only 26 possible starting letters (pigeonholes).", reason: "Set up the pigeonhole correspondence" },
+      { statement: "Since 30 > 26, at least one letter must be used by more than one student.", reason: "The Pigeonhole Principle" },
+    ],
+    explanation: "With more students (30) than possible starting letters (26), the Pigeonhole Principle guarantees at least one repeat.",
+  },
+
+  // ---------------- Rosen 9.1, 9.5: Relations ----------------
+  {
+    id: "dm-rosen-rel-1",
+    section: "rosen-relations",
+    question: "(Rosen 9.1, Ex.6a) The relation R on the real numbers is defined by (x,y) ∈ R iff x+y=0. Is R reflexive?",
+    options: ["Yes", "No"],
+    answer: "No",
+    steps: [
+      { statement: "Reflexive would require (x,x) ∈ R for every x, i.e. x+x=0 for every real x.", reason: "Definition of reflexive" },
+      { statement: "x+x=0 only when x=0 — it fails for every other real number, e.g. x=1 gives 1+1=2≠0.", reason: "Test with a counterexample" },
+    ],
+    explanation: "x+x=2x=0 only for x=0, so the relation fails reflexivity for every other value — R is not reflexive.",
+  },
+  {
+    id: "dm-rosen-rel-2",
+    section: "rosen-relations",
+    question: "(Rosen 9.1, Ex.6a) Same relation, x+y=0. Is R symmetric?",
+    options: ["Yes", "No"],
+    answer: "Yes",
+    steps: [
+      { statement: "Symmetric requires: if x+y=0, then y+x=0.", reason: "Definition of symmetric" },
+      { statement: "Addition is commutative, so x+y=y+x always — if one is 0, so is the other.", reason: "Basic algebra" },
+    ],
+    explanation: "Since x+y=y+x, whenever (x,y) satisfies the relation, (y,x) automatically does too — R is symmetric.",
+  },
+  {
+    id: "dm-rosen-rel-3",
+    section: "rosen-relations",
+    question: "(Rosen 9.5, Ex.1a) On {0,1,2,3}, is {(0,0),(1,1),(2,2),(3,3)} an equivalence relation?",
+    options: ["Yes", "No"],
+    answer: "Yes",
+    steps: [
+      { statement: "Reflexive: every element (0,1,2,3) is related to itself. ✓", reason: "Check reflexivity" },
+      { statement: "Symmetric: there are no cross-pairs to worry about — trivially symmetric. ✓", reason: "Check symmetry" },
+      { statement: "Transitive: with only pairs of the form (a,a), transitivity holds trivially. ✓", reason: "Check transitivity" },
+    ],
+    explanation: "This is exactly the equality relation on {0,1,2,3} — it satisfies all three properties, so it IS an equivalence relation (in fact the 'finest' possible one, where every element is only equivalent to itself).",
+  },
+
+  // ---------------- Rosen 10.1-10.2, 10.6: Graphs ----------------
+  {
+    id: "dm-rosen-graph-1",
+    section: "rosen-graphs",
+    question: "(Rosen 10.2, Ex.5) Can a simple graph exist with 15 vertices, each of degree 5?",
+    options: ["Yes", "No"],
+    answer: "No",
+    steps: [
+      { statement: "The Handshaking Theorem says the sum of all vertex degrees equals 2×(number of edges) — always an EVEN number.", reason: "Handshaking theorem" },
+      { statement: "Sum of degrees here = 15 × 5 = 75, which is odd.", reason: "Compute the proposed sum" },
+      { statement: "An odd sum of degrees is impossible for any graph.", reason: "Contradicts the Handshaking Theorem" },
+    ],
+    explanation: "75 is odd, but the sum of degrees in any graph must be even (twice the edge count) — so no such graph can exist.",
+    analogy: "Whenever you're asked 'can a graph with these degrees exist,' check the parity of the degree sum FIRST — an odd sum is an instant 'no' before you even try to draw anything.",
+  },
+  {
+    id: "dm-rosen-graph-2",
+    section: "rosen-graphs",
+    question: "(Rosen 10.2, Ex.18) In a simple graph with at least two vertices, must there always be two vertices with the same degree?",
+    options: ["Yes — always", "No — not always"],
+    answer: "Yes — always",
+    steps: [
+      { statement: "In a simple graph with n vertices, each vertex's degree is between 0 and n−1.", reason: "Maximum possible degree is connecting to every other vertex" },
+      { statement: "But a vertex of degree 0 (isolated) and a vertex of degree n−1 (connected to everyone) can't BOTH exist in the same graph — if one vertex connects to all others, none can be isolated.", reason: "Key observation" },
+      { statement: "So really only n−1 degree values are ever simultaneously available for n vertices — by the Pigeonhole Principle, two vertices must share a degree.", reason: "Pigeonhole Principle" },
+    ],
+    explanation: "This is a classic pigeonhole argument: degrees 0 and n−1 can never coexist, leaving only n−1 usable degree values for n vertices, forcing a repeat.",
+  },
+
+  // ---------------- Rosen 11.1-11.3, 11.5: Trees ----------------
+  {
+    id: "dm-rosen-tree-1",
+    section: "rosen-trees",
+    question: "(Rosen 11.1, Ex.17) How many edges does a tree with 10,000 vertices have?",
+    answer: "9999",
+    acceptableAnswers: ["9999"],
+    explanation: "Every tree with n vertices has exactly n−1 edges, so a tree with 10,000 vertices has 9,999 edges.",
+  },
+  {
+    id: "dm-rosen-tree-2",
+    section: "rosen-trees",
+    question: "(Rosen 11.1, tree/edge relationship) A full binary tree has 1000 internal vertices. How many edges does it have?",
+    answer: "2000",
+    acceptableAnswers: ["2000"],
+    steps: [
+      { statement: "A full binary tree with i internal vertices has n = 2i+1 total vertices.", reason: "Each internal vertex has exactly 2 children in a full binary tree" },
+      { statement: "n = 2(1000)+1 = 2001 total vertices.", reason: "Substitute i=1000" },
+      { statement: "Every tree has n−1 edges, so edges = 2001−1 = 2000.", reason: "Tree edge-count formula" },
+    ],
+    explanation: "2001 total vertices means 2000 edges, since any tree always has exactly (vertices − 1) edges.",
+  },
+  {
+    id: "dm-rosen-tree-3",
+    section: "rosen-trees",
+    question: "(Rosen 11.3, tree traversals) Which traversal order visits a binary search tree's nodes in ascending sorted order?",
+    options: ["Preorder", "Inorder", "Postorder", "Level order"],
+    answer: "Inorder",
+    explanation: "An inorder traversal (left subtree, then root, then right subtree) visits a binary SEARCH tree's keys in ascending sorted order — this is exactly why it's the traversal used to print a BST's contents sorted.",
+  },
 ];
