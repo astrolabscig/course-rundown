@@ -311,3 +311,142 @@ export const part9WorkedProblems: WorkedProblem[] = [
     conclusion: "P(T) = 0.095. Given the bad tyres, P(A1|T) ≈ 0.4737, P(A2|T) ≈ 0.2105, P(A3|T) ≈ 0.3158 — notice these three posteriors sum to exactly 1, and agency A (the highest defect RATE at 15%) is now the most likely source, even though agency C rents out the most cars overall. Try this exact example in the Bayes' Theorem Calculator above.",
   },
 ];
+
+export const part10WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p10-permutation",
+    label: "Electing a President, Vice President, and Treasurer",
+    given: "50 students in a school, no student may hold more than one position.",
+    goal: "Find the number of ways to elect a President, Vice President, and Treasurer.",
+    steps: [
+      { statement: "Order matters here — being elected President is a different outcome than being elected Treasurer, even for the same three people.", reason: "This is exactly what makes it a permutation, not a combination" },
+      { statement: "Number of ways = 50P3 = 50! / (50−3)! = 50! / 47!", reason: "Apply the permutation formula with n=50, r=3" },
+      { statement: "= 50 × 49 × 48 (the 47! cancels, leaving only the top 3 descending factors)", reason: "Simplify the factorial ratio" },
+      { statement: "= 117,600", reason: "Multiply" },
+    ],
+    conclusion: "117,600 different ways to fill the three distinct positions — try n=50, r=3 in the calculator above to confirm.",
+  },
+  {
+    id: "stats-p10-repetition",
+    label: "Distinct arrangements of the letters in MAMMAL",
+    given: "The word MAMMAL: M appears 3 times, A appears 2 times, L appears 1 time (6 letters total).",
+    goal: "Find the number of distinct letter arrangements.",
+    steps: [
+      { statement: "If all 6 letters were distinct, there would be 6! = 720 arrangements.", reason: "Baseline permutation count ignoring repetition" },
+      { statement: "But swapping the 3 M's among themselves (3! = 6 ways) produces an arrangement that LOOKS identical, and likewise for the 2 A's (2! = 2 ways).", reason: "Identify the over-counting caused by repeated letters" },
+      { statement: "Distinct arrangements = 6! / (3!×2!×1!) = 720 / (6×2×1) = 720/12", reason: "Divide out the repeated-letter over-counting" },
+      { statement: "= 60", reason: "Simplify" },
+    ],
+    conclusion: "60 distinct arrangements — far fewer than 720, because the repeated M's and A's collapse many 'different' orderings into the same visible word.",
+  },
+  {
+    id: "stats-p10-committee",
+    label: "Forming a mixed committee of women and men",
+    given: "A group of 5 women and 7 men.",
+    goal: "Find the number of different committees consisting of 2 women and 3 men.",
+    steps: [
+      { statement: "This is two independent selections combined: choose 2 of the 5 women, AND choose 3 of the 7 men.", reason: "Break the compound selection into its two parts" },
+      { statement: "Ways to choose the women: 5C2 = 5!/(2!3!) = 10.", reason: "Combination — order of selection doesn't matter" },
+      { statement: "Ways to choose the men: 7C3 = 7!/(3!4!) = 35.", reason: "Same reasoning for the men" },
+      { statement: "By the multiplication principle, total committees = 10 × 35 = 350.", reason: "AND means multiply the two independent choice counts" },
+    ],
+    conclusion: "350 different possible committees — whenever a problem selects from two SEPARATE groups, multiply the individual combination counts together.",
+  },
+];
+
+export const part11WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p11-pmf",
+    label: "Finding an unknown constant in a PMF, then using it",
+    given: "A discrete random variable X has P(X=1)=k, P(X=2)=2k, P(X=3)=k.",
+    goal: "Find k, then find P(X≤2), E(X), and Var(X).",
+    steps: [
+      { statement: "Every valid PMF must sum to 1: k + 2k + k = 1, so 4k = 1, giving k = 1/4 = 0.25.", reason: "The defining requirement of a PMF" },
+      { statement: "So P(X=1)=0.25, P(X=2)=0.5, P(X=3)=0.25.", reason: "Substitute k back into each probability" },
+      { statement: "P(X≤2) = P(X=1)+P(X=2) = 0.25+0.5 = 0.75.", reason: "Sum every x-value satisfying the condition" },
+      { statement: "E(X) = 1(0.25)+2(0.5)+3(0.25) = 0.25+1+0.75 = 2.", reason: "Weighted average formula" },
+      { statement: "E(X²) = 1²(0.25)+2²(0.5)+3²(0.25) = 0.25+2+2.25 = 4.5, so Var(X) = 4.5 − 2² = 0.5.", reason: "Shortcut variance formula" },
+    ],
+    conclusion: "k=0.25, P(X≤2)=0.75, E(X)=2, Var(X)=0.5 — try this exact PMF (already the calculator's default) in the Discrete Random Variable Calculator above.",
+  },
+  {
+    id: "stats-p11-pdf-area",
+    label: "Verifying a PDF and computing probabilities as areas",
+    given: "f(x) = x²/9 for 0 < x < 3, and 0 elsewhere.",
+    goal: "Confirm this is a valid PDF, then find P(X≤2), P(X>1), and P(2≤X≤3).",
+    steps: [
+      { statement: "f(x) = x²/9 ≥ 0 for every x in (0,3), so the non-negativity requirement holds.", reason: "First PDF requirement" },
+      { statement: "Total area = ∫₀³ x²/9 dx = [x³/27]₀³ = 27/27 = 1.", reason: "Second PDF requirement — confirms it's valid" },
+      { statement: "P(X≤2) = ∫₀² x²/9 dx = [x³/27]₀² = 8/27 ≈ 0.2963.", reason: "Integrate from the left edge of the domain up to 2" },
+      { statement: "P(X>1) = ∫₁³ x²/9 dx = 1 − ∫₀¹ x²/9 dx = 1 − 1/27 ≈ 0.9630.", reason: "Use the complement to avoid a second full integration" },
+      { statement: "P(2≤X≤3) = ∫₂³ x²/9 dx = 1 − 8/27 = 19/27 ≈ 0.7037.", reason: "The area to the right of 2 is 1 minus the area to the left of 2" },
+    ],
+    conclusion: "P(X≤2)≈0.2963, P(X>1)≈0.9630, P(2≤X≤3)≈0.7037 — this is the default preset in the Continuous RV Explorer above; try dragging the bounds to match each of these three questions.",
+  },
+  {
+    id: "stats-p11-call-duration",
+    label: "Long-distance call duration: an exponential PDF",
+    given: "X = length in minutes of a long-distance call, with PDF f(x) = (1/10)e^(−x/10) for x > 0.",
+    goal: "Find the probability a call lasts at most 7 minutes, and at least 7 minutes.",
+    steps: [
+      { statement: "F(x) = P(X≤x) = ∫₀ˣ (1/10)e^(−t/10) dt = 1 − e^(−x/10) (the exponential distribution's CDF).", reason: "Integrate the PDF to get the CDF" },
+      { statement: "P(X≤7) = F(7) = 1 − e^(−0.7) ≈ 1 − 0.4966 ≈ 0.5034.", reason: "Substitute x=7" },
+      { statement: "P(X≥7) = 1 − P(X<7) = 1 − 0.5034 ≈ 0.4966 (using P(X<7)=P(X≤7) since P(X=7)=0 for a continuous variable).", reason: "Complement rule, plus the fact that single points carry zero probability" },
+    ],
+    conclusion: "P(X≤7)≈0.5034, P(X≥7)≈0.4966 — try the exponential preset in the Continuous RV Explorer above with bounds 0 to 7.",
+  },
+];
+
+export const part12WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p12-binomial-coins",
+    label: "Binomial: exactly two heads in four coin flips",
+    given: "Four fair coins are flipped independently.",
+    goal: "Find P(exactly 2 heads), and the mean and variance of the number of heads.",
+    steps: [
+      { statement: "Let X = number of heads. X ~ Binomial(n=4, p=0.5), since each flip is an independent trial with the same success probability.", reason: "Identify the distribution and its parameters" },
+      { statement: "P(X=2) = 4C2 × (0.5)² × (0.5)² = 6 × 0.25 × 0.25 = 0.375 = 3/8.", reason: "Apply the binomial PMF formula" },
+      { statement: "E(X) = np = 4(0.5) = 2.", reason: "Binomial mean formula" },
+      { statement: "Var(X) = np(1−p) = 4(0.5)(0.5) = 1.", reason: "Binomial variance formula" },
+    ],
+    conclusion: "P(X=2)=3/8=0.375, E(X)=2, Var(X)=1 — try n=4, p=0.5 in the Distribution Explorer above, then click the x=2 bar.",
+  },
+  {
+    id: "stats-p12-poisson-surges",
+    label: "Poisson: power surges over a 24-hour period",
+    given: "Power surges occur at an average rate of 1 every 12 hours.",
+    goal: "Find P(at most 1 surge) and P(more than 3 surges) in a 24-hour period.",
+    steps: [
+      { statement: "Rescale the rate to match the interval: 1 surge per 12 hours means μ = 2 surges per 24 hours.", reason: "μ must always match the SAME interval the question asks about" },
+      { statement: "P(X≤1) = P(X=0)+P(X=1) = (2⁰e⁻²)/0! + (2¹e⁻²)/1! = e⁻² + 2e⁻² = 3e⁻² ≈ 0.4060.", reason: "Sum the Poisson PMF at x=0 and x=1" },
+      { statement: "P(X≤3) = e⁻²+2e⁻²+2e⁻²+(4/3)e⁻² ≈ 0.1353+0.2707+0.2707+0.1804 ≈ 0.8571.", reason: "Sum the PMF at x=0,1,2,3" },
+      { statement: "P(X>3) = 1 − P(X≤3) ≈ 1 − 0.8571 ≈ 0.1429.", reason: "Complement rule" },
+    ],
+    conclusion: "P(X≤1)≈0.4060, P(X>3)≈0.1429. Note: the source slide's arithmetic for P(X≤3) is correct (≈0.857), but it mislabels that intermediate value as the final answer for P(X>3) — the actual P(X>3) is 1 minus that, ≈0.143. Try μ=2 in the Distribution Explorer above to see the full bar chart.",
+  },
+  {
+    id: "stats-p12-geometric-defective",
+    label: "Geometric: drawing until a defective item is found",
+    given: "A consignment contains 10% defective items; items are drawn one at a time until a defective one is found.",
+    goal: "Find the probability that fewer than 4 draws are required.",
+    steps: [
+      { statement: "Let X = number of draws until the first defective item. X ~ Geometric(p=0.1), counting TRIALS until success.", reason: "Identify which geometric version applies — here it's trials until success, x=1,2,3,..." },
+      { statement: "P(X<4) = P(X=1)+P(X=2)+P(X=3) = 0.1(0.9)⁰ + 0.1(0.9)¹ + 0.1(0.9)²", reason: "Apply the geometric PMF p(1−p)ˣ⁻¹ for x=1,2,3" },
+      { statement: "= 0.1 + 0.09 + 0.081 = 0.271.", reason: "Add the three terms" },
+    ],
+    conclusion: "P(X<4) = 0.271 — try p=0.1 with 'trials until success' selected in the Distribution Explorer above.",
+  },
+  {
+    id: "stats-p12-uniform-transform",
+    label: "Discrete Uniform: transforming X into Y=5X",
+    given: "X has a discrete uniform distribution on the integers 0 through 9.",
+    goal: "Find the mean, variance, and standard deviation of Y = 5X.",
+    steps: [
+      { statement: "E(X) = (a+b)/2 = (0+9)/2 = 4.5.", reason: "Discrete uniform mean formula" },
+      { statement: "Var(X) = [(b−a+1)²−1]/12 = [(10)²−1]/12 = 99/12 = 8.25.", reason: "Discrete uniform variance formula" },
+      { statement: "E(Y) = E(5X) = 5E(X) = 5(4.5) = 22.5.", reason: "Linearity of expectation: E(aX)=aE(X)" },
+      { statement: "Var(Y) = Var(5X) = 5²Var(X) = 25(8.25) = 206.25, so SD(Y) = √206.25 ≈ 14.3614.", reason: "Variance scales by the SQUARE of the constant" },
+    ],
+    conclusion: "E(Y)=22.5, Var(Y)=206.25, SD(Y)≈14.3614 — a reminder that scaling a random variable by 5 scales its mean by 5, but its variance by 5²=25.",
+  },
+];

@@ -11,6 +11,9 @@ export const statisticsCurriculum: CurriculumPart[] = [
   { id: "stats-part-7", number: "7", title: "The Empirical Rule" },
   { id: "stats-part-8", number: "8", title: "MCQ Drill Bank" },
   { id: "stats-part-9", number: "9", title: "Probability" },
-  { id: "stats-part-10", number: "10", title: "Formula Cheatsheet" },
+  { id: "stats-part-10", number: "10", title: "Counting Techniques" },
+  { id: "stats-part-11", number: "11", title: "Random Variables" },
+  { id: "stats-part-12", number: "12", title: "Special Discrete Distributions" },
+  { id: "stats-part-13", number: "13", title: "Formula Cheatsheet" },
   { id: "feedback", number: "", title: "Feedback" },
 ];

@@ -16,8 +16,9 @@ export default function StatisticsExamPage() {
           <h1 className="text-3xl font-semibold text-heading">Statistics Exam Room</h1>
           <p className="text-body max-w-2xl">
             {statisticsExamBank.length} original questions spanning variables and data collection,
-            frequency distributions, central tendency, dispersion, position, shape, and the
-            empirical rule. Configure a topic-focused or comprehensive exam, work through it under
+            frequency distributions, central tendency, dispersion, position, shape, the empirical
+            rule, probability, counting techniques, random variables, and the special discrete
+            distributions. Configure a topic-focused or comprehensive exam, work through it under
             a real timer, then review every answer with a full explanation and a link back to the
             lesson it came from.
           </p>

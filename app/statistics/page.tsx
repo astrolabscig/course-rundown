@@ -19,9 +19,16 @@ import MCQDrill from "@/components/drills/MCQDrill";
 import FormulaCheatsheet from "@/components/statistics/FormulaCheatsheet";
 import ProbabilityRulesCalculator from "@/components/statistics/ProbabilityRulesCalculator";
 import BayesTheoremCalculator from "@/components/statistics/BayesTheoremCalculator";
+import PermutationCombinationCalculator from "@/components/statistics/PermutationCombinationCalculator";
+import DiscreteRandomVariableCalculator from "@/components/statistics/DiscreteRandomVariableCalculator";
+import ContinuousRVExplorer from "@/components/statistics/ContinuousRVExplorer";
+import DistributionExplorer from "@/components/statistics/DistributionExplorer";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
 import { probabilityFundamentalsGroups } from "@/lib/statistics/probabilityFundamentals";
+import { countingFundamentalsGroups } from "@/lib/statistics/countingFundamentals";
+import { randomVariablesFundamentalsGroups } from "@/lib/statistics/randomVariablesFundamentals";
+import { distributionsFundamentalsGroups } from "@/lib/statistics/distributionsFundamentals";
 import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
 import { statisticsExamBank } from "@/lib/statistics/examBank";
 import { statisticsFormulaSheet } from "@/lib/statistics/formulaSheet";
@@ -34,6 +41,9 @@ import {
   part6WorkedProblems,
   part7WorkedProblems,
   part9WorkedProblems,
+  part10WorkedProblems,
+  part11WorkedProblems,
+  part12WorkedProblems,
 } from "@/lib/statistics/workedProblems";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
@@ -60,10 +70,11 @@ export default function StatisticsRoom() {
               Statistics: turn a wall of numbers into real understanding
             </h1>
             <p className="text-body max-w-2xl">
-              From what statistics even is, through organizing raw data, to measuring its center,
-              spread, position, and shape — every concept gets a plain-language why, a real
-              calculator you can try on your own numbers, and worked problems straight from the
-              course material.
+              From what statistics even is, through organizing raw data, measuring its center,
+              spread, position, and shape, to probability, counting techniques, random variables,
+              and the named probability distributions that tie it all together — every concept
+              gets a plain-language why, a real calculator you can try on your own numbers, and
+              worked problems straight from the course material.
             </p>
           </section>
 
@@ -186,7 +197,44 @@ export default function StatisticsRoom() {
           </section>
 
           <section id="stats-part-10" className="space-y-6 scroll-mt-24">
-            <PartHeading number="10" title="Formula Cheatsheet" />
+            <PartHeading number="10" title="Counting Techniques" />
+            <p className="text-sm text-secondary">
+              The multiplication principle, factorials, and the difference between an ordered
+              arrangement (permutation) and an unordered selection (combination) — including what
+              happens when the objects being arranged repeat.
+            </p>
+            <BasicsCheatsheet groups={countingFundamentalsGroups} />
+            <PermutationCombinationCalculator />
+            <WorkedProblemsList problems={part10WorkedProblems} />
+          </section>
+
+          <section id="stats-part-11" className="space-y-6 scroll-mt-24">
+            <PartHeading number="11" title="Random Variables" />
+            <p className="text-sm text-secondary">
+              Turning outcomes into numbers: discrete random variables and the probability mass
+              function, continuous random variables and the probability density function, the
+              cumulative distribution function, and expected value &amp; variance for both.
+            </p>
+            <BasicsCheatsheet groups={randomVariablesFundamentalsGroups} />
+            <DiscreteRandomVariableCalculator />
+            <ContinuousRVExplorer />
+            <WorkedProblemsList problems={part11WorkedProblems} />
+          </section>
+
+          <section id="stats-part-12" className="space-y-6 scroll-mt-24">
+            <PartHeading number="12" title="Special Discrete Distributions" />
+            <p className="text-sm text-secondary">
+              Bernoulli, Binomial, Poisson, Geometric, and Discrete Uniform — five named
+              distributions that show up again and again, each with its own PMF, mean, and
+              variance formula.
+            </p>
+            <BasicsCheatsheet groups={distributionsFundamentalsGroups} />
+            <DistributionExplorer />
+            <WorkedProblemsList problems={part12WorkedProblems} />
+          </section>
+
+          <section id="stats-part-13" className="space-y-6 scroll-mt-24">
+            <PartHeading number="13" title="Formula Cheatsheet" />
             <p className="text-sm text-secondary">
               Every formula used in this room, in one place — grouped by topic for quick lookup
               before an exam.

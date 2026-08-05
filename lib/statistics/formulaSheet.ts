@@ -314,4 +314,118 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       },
     ],
   },
+  {
+    id: "formulas-counting",
+    title: "Counting Techniques",
+    formulas: [
+      {
+        id: "f-multiplication-principle",
+        name: "Multiplication principle",
+        formula: [t("total = m × n × p × ...")],
+        note: "For a sequence of independent choices with m, n, p, ... options each.",
+      },
+      {
+        id: "f-factorial",
+        name: "Factorial",
+        formula: [t("n! = n × (n−1) × (n−2) × ... × 2 × 1,   0! = 1")],
+      },
+      {
+        id: "f-permutation",
+        name: "Permutation (order matters)",
+        formula: [t("nPr = "), frac("n!", "(n − r)!")],
+      },
+      {
+        id: "f-permutation-repetition",
+        name: "Permutation with repetition",
+        formula: [t("n! / (n₁! × n₂! × ... × nₖ!)")],
+        where: ["n₁, n₂, ..., nₖ = how many times each repeated object appears"],
+      },
+      {
+        id: "f-combination",
+        name: "Combination (order doesn't matter)",
+        formula: [t("nCr = "), frac("n!", "r!(n − r)!"), t(" = nPr / r!")],
+      },
+    ],
+  },
+  {
+    id: "formulas-random-variables",
+    title: "Random Variables",
+    formulas: [
+      {
+        id: "f-pmf-requirements",
+        name: "Valid PMF requirements",
+        formula: [t("f(x) ≥ 0 for all x,   Σ f(x) = 1")],
+      },
+      {
+        id: "f-discrete-mean",
+        name: "Mean of a discrete r.v.",
+        formula: [t("E(X) = Σ x·f(x)")],
+      },
+      {
+        id: "f-discrete-variance",
+        name: "Variance of a discrete r.v.",
+        formula: [t("Var(X) = E(X²) − [E(X)]²")],
+      },
+      {
+        id: "f-linearity",
+        name: "Linearity of expectation & variance",
+        formula: [t("E(aX+b) = aE(X)+b,   Var(aX+b) = a²Var(X)")],
+        note: "Adding a constant b never changes the variance.",
+      },
+      {
+        id: "f-pdf-requirements",
+        name: "Valid PDF requirements",
+        formula: [t("f(x) ≥ 0,   ∫f(x)dx = 1 over the whole domain")],
+        note: "P(X = any single point) is always 0 for a continuous r.v.",
+      },
+      {
+        id: "f-continuous-prob",
+        name: "Probability from a PDF",
+        formula: [t("P(a < X < b) = ∫ₐᵇ f(x) dx")],
+      },
+      {
+        id: "f-cdf",
+        name: "Cumulative distribution function",
+        formula: [t("F(x) = P(X ≤ x),   P(a < X < b) = F(b) − F(a)")],
+      },
+    ],
+  },
+  {
+    id: "formulas-distributions",
+    title: "Special Discrete Distributions",
+    formulas: [
+      {
+        id: "f-bernoulli",
+        name: "Bernoulli",
+        formula: [t("p(x) = pˣ(1−p)¹⁻ˣ,   E(X)=p,   Var(X)=p(1−p)")],
+      },
+      {
+        id: "f-binomial",
+        name: "Binomial",
+        formula: [t("P(X=x) = nCx·pˣ(1−p)ⁿ⁻ˣ,   E(X)=np,   Var(X)=np(1−p)")],
+      },
+      {
+        id: "f-poisson",
+        name: "Poisson",
+        formula: [t("P(X=x) = μˣe⁻ᵘ/x!,   E(X)=Var(X)=μ")],
+        note: "Mean and variance are always equal for Poisson — a distinctive signature.",
+      },
+      {
+        id: "f-geometric-trials",
+        name: "Geometric (trials until success)",
+        formula: [t("P(X=x) = p(1−p)ˣ⁻¹,   E(X)=1/p,   Var(X)=(1−p)/p²")],
+      },
+      {
+        id: "f-geometric-failures",
+        name: "Geometric (failures before success)",
+        formula: [t("P(X=x) = p(1−p)ˣ,   E(X)=(1−p)/p,   Var(X)=(1−p)/p²")],
+      },
+      {
+        id: "f-discrete-uniform",
+        name: "Discrete Uniform",
+        formula: [t("f(x)=1/n,   E(X)="), frac("a+b", "2")],
+        note: "Var(X) = [(b−a+1)²−1]/12 for consecutive integers a through b.",
+      },
+    ],
+  },
 ];

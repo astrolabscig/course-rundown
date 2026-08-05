@@ -46,12 +46,12 @@ const rooms = [
   },
   {
     href: "/statistics",
-    tag: "Descriptive Statistics + Probability",
+    tag: "Statistics + Probability",
     tagColor: "text-pink-600 bg-pink-500/10 dark:text-pink-300",
     title: "Statistics",
     description:
-      "Frequency distributions, central tendency, dispersion, position, shape, and probability — real calculators for every formula, not just definitions to memorise.",
-    stat: "100 exam questions · full formula cheatsheet",
+      "Frequency distributions, central tendency, dispersion, probability, counting, random variables, and probability distributions — real calculators for every formula, not just definitions to memorise.",
+    stat: "216 exam questions · full formula cheatsheet",
     icon: "stats",
   },
 ];
@@ -284,7 +284,7 @@ export default function Home() {
             </Link>
 
             <div className="rounded-2xl border border-card-border bg-card p-6 flex flex-col justify-center">
-              <p className="text-4xl font-bold text-heading">800+</p>
+              <p className="text-4xl font-bold text-heading">900+</p>
               <p className="text-sm text-secondary mt-1">original practice questions across every room</p>
             </div>
 
