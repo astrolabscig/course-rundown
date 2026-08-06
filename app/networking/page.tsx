@@ -329,6 +329,11 @@ export default function NetworkingRoom() {
 
           <section id="n-part-10" className="space-y-6 scroll-mt-24">
             <PartHeading number="10" title="MCQ Drill Bank" />
+            <p className="text-sm text-secondary">
+              Subnetting and protocol mechanics, plus a set connecting each concept straight to
+              its computer science application — routing algorithms, distributed systems,
+              cryptography.
+            </p>
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={networkingMcqBank} />
             </div>

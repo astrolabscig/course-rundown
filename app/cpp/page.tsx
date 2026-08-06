@@ -320,8 +320,9 @@ export default function CppRoom() {
           <section id="part-8" className="space-y-6 scroll-mt-24">
             <PartHeading number="8" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
-              A starter set of questions — the full 40-question bank will replace these once the
-              course reference material is added.
+              {mcqBank.length} questions covering core C++/OOP mechanics plus the computer
+              science ideas — complexity, memory, concurrency, compilation — that C++ makes
+              concrete.
             </p>
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={mcqBank} />

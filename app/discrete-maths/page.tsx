@@ -257,7 +257,8 @@ export default function DiscreteMathsRoom() {
             <PartHeading number="12" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
               A quick spot-check spanning every part of this room, from propositional logic all
-              the way to minimum spanning trees.
+              the way to minimum spanning trees — plus a set connecting each concept straight to
+              its computer science application (algorithms, cryptography, circuits, complexity).
             </p>
             <MCQDrill questions={discreteMathsMcqBank} />
           </section>

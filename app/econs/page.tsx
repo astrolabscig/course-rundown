@@ -222,8 +222,9 @@ export default function EconsRoom() {
           <section id="e-part-11" className="space-y-6 scroll-mt-24">
             <PartHeading number="11" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
-              A quick starter set — for full timed practice, use the {econsExamBank.length}-question
-              exam room above.
+              A quick spot-check across every part of this room, plus a set connecting each
+              concept straight to its computer science application — for full timed practice, use
+              the {econsExamBank.length}-question exam room above.
             </p>
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={econsMcqBank} />

@@ -256,7 +256,8 @@ export default function StatisticsRoom() {
             <PartHeading number="14" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
               A quick spot-check spanning every part of this room, from the very first orientation
-              topic all the way through the Normal distribution.
+              topic all the way through the Normal distribution — plus a set connecting each
+              concept straight to its computer science / machine learning application.
             </p>
             <MCQDrill questions={statisticsMcqBank} />
           </section>
