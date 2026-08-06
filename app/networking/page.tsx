@@ -68,6 +68,23 @@ export default function NetworkingRoom() {
             </p>
           </section>
 
+          <a
+            href="/networking/group-assignment"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">CSM 152 Group Assignment →</p>
+              <p className="text-sm text-body mt-0.5">
+                Client-server architecture, server models, Berkeley sockets, and DNS — the full
+                assignment broken down activity by activity, with live simulators for every
+                concept and a step-by-step guide to the evidence you need to gather yourself.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open assignment
+            </span>
+          </a>
+
           <section id="n-part-0" className="space-y-6 scroll-mt-24">
             <PartHeading number="0" title="Networking Fundamentals" />
             <p className="text-sm text-secondary">
