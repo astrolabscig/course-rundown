@@ -23,12 +23,15 @@ import PermutationCombinationCalculator from "@/components/statistics/Permutatio
 import DiscreteRandomVariableCalculator from "@/components/statistics/DiscreteRandomVariableCalculator";
 import ContinuousRVExplorer from "@/components/statistics/ContinuousRVExplorer";
 import DistributionExplorer from "@/components/statistics/DistributionExplorer";
+import NormalDistributionCalculator from "@/components/statistics/NormalDistributionCalculator";
+import NormalApproxBinomialCalculator from "@/components/statistics/NormalApproxBinomialCalculator";
 import { statisticsCurriculum } from "@/lib/statistics/curriculum";
 import { statisticsFundamentalsGroups } from "@/lib/statistics/fundamentals";
 import { probabilityFundamentalsGroups } from "@/lib/statistics/probabilityFundamentals";
 import { countingFundamentalsGroups } from "@/lib/statistics/countingFundamentals";
 import { randomVariablesFundamentalsGroups } from "@/lib/statistics/randomVariablesFundamentals";
 import { distributionsFundamentalsGroups } from "@/lib/statistics/distributionsFundamentals";
+import { normalDistributionFundamentalsGroups } from "@/lib/statistics/normalDistributionFundamentals";
 import { statisticsMcqBank } from "@/lib/statistics/mcqBank";
 import { statisticsExamBank } from "@/lib/statistics/examBank";
 import { statisticsFormulaSheet } from "@/lib/statistics/formulaSheet";
@@ -44,6 +47,7 @@ import {
   part10WorkedProblems,
   part11WorkedProblems,
   part12WorkedProblems,
+  part13WorkedProblems,
 } from "@/lib/statistics/workedProblems";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
@@ -176,15 +180,7 @@ export default function StatisticsRoom() {
           </section>
 
           <section id="stats-part-8" className="space-y-6 scroll-mt-24">
-            <PartHeading number="8" title="MCQ Drill Bank" />
-            <p className="text-sm text-secondary">
-              A quick spot-check spanning every part of this room.
-            </p>
-            <MCQDrill questions={statisticsMcqBank} />
-          </section>
-
-          <section id="stats-part-9" className="space-y-6 scroll-mt-24">
-            <PartHeading number="9" title="Probability" />
+            <PartHeading number="8" title="Probability" />
             <p className="text-sm text-secondary">
               Experiments, sample spaces, and events; the set-operation rules that combine them;
               conditional probability; and the Total Probability Rule and Bayes&apos; Theorem for
@@ -196,8 +192,8 @@ export default function StatisticsRoom() {
             <WorkedProblemsList problems={part9WorkedProblems} />
           </section>
 
-          <section id="stats-part-10" className="space-y-6 scroll-mt-24">
-            <PartHeading number="10" title="Counting Techniques" />
+          <section id="stats-part-9" className="space-y-6 scroll-mt-24">
+            <PartHeading number="9" title="Counting Techniques" />
             <p className="text-sm text-secondary">
               The multiplication principle, factorials, and the difference between an ordered
               arrangement (permutation) and an unordered selection (combination) — including what
@@ -208,8 +204,8 @@ export default function StatisticsRoom() {
             <WorkedProblemsList problems={part10WorkedProblems} />
           </section>
 
-          <section id="stats-part-11" className="space-y-6 scroll-mt-24">
-            <PartHeading number="11" title="Random Variables" />
+          <section id="stats-part-10" className="space-y-6 scroll-mt-24">
+            <PartHeading number="10" title="Random Variables" />
             <p className="text-sm text-secondary">
               Turning outcomes into numbers: discrete random variables and the probability mass
               function, continuous random variables and the probability density function, the
@@ -221,8 +217,8 @@ export default function StatisticsRoom() {
             <WorkedProblemsList problems={part11WorkedProblems} />
           </section>
 
-          <section id="stats-part-12" className="space-y-6 scroll-mt-24">
-            <PartHeading number="12" title="Special Discrete Distributions" />
+          <section id="stats-part-11" className="space-y-6 scroll-mt-24">
+            <PartHeading number="11" title="Special Discrete Distributions" />
             <p className="text-sm text-secondary">
               Bernoulli, Binomial, Poisson, Geometric, and Discrete Uniform — five named
               distributions that show up again and again, each with its own PMF, mean, and
@@ -233,6 +229,20 @@ export default function StatisticsRoom() {
             <WorkedProblemsList problems={part12WorkedProblems} />
           </section>
 
+          <section id="stats-part-12" className="space-y-6 scroll-mt-24">
+            <PartHeading number="12" title="The Normal Distribution" />
+            <p className="text-sm text-secondary">
+              Two more named continuous shapes (Continuous Uniform and Exponential), then the
+              single most important distribution in statistics: the Normal curve, its z-score
+              standardization, and how to approximate a Binomial distribution with it when n is
+              large.
+            </p>
+            <BasicsCheatsheet groups={normalDistributionFundamentalsGroups} />
+            <NormalDistributionCalculator />
+            <NormalApproxBinomialCalculator />
+            <WorkedProblemsList problems={part13WorkedProblems} />
+          </section>
+
           <section id="stats-part-13" className="space-y-6 scroll-mt-24">
             <PartHeading number="13" title="Formula Cheatsheet" />
             <p className="text-sm text-secondary">
@@ -240,6 +250,15 @@ export default function StatisticsRoom() {
               before an exam.
             </p>
             <FormulaCheatsheet sections={statisticsFormulaSheet} />
+          </section>
+
+          <section id="stats-part-14" className="space-y-6 scroll-mt-24">
+            <PartHeading number="14" title="MCQ Drill Bank" />
+            <p className="text-sm text-secondary">
+              A quick spot-check spanning every part of this room, from the very first orientation
+              topic all the way through the Normal distribution.
+            </p>
+            <MCQDrill questions={statisticsMcqBank} />
           </section>
 
           <section id="feedback" className="scroll-mt-24 max-w-2xl">

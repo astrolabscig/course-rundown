@@ -450,3 +450,71 @@ export const part12WorkedProblems: WorkedProblem[] = [
     conclusion: "E(Y)=22.5, Var(Y)=206.25, SD(Y)≈14.3614 — a reminder that scaling a random variable by 5 scales its mean by 5, but its variance by 5²=25.",
   },
 ];
+
+export const part13WorkedProblems: WorkedProblem[] = [
+  {
+    id: "stats-p13-uniform-bus",
+    label: "Continuous Uniform: waiting for a bus",
+    given: "A bus arrives every 20 minutes; waiting time X follows a continuous uniform distribution over [0, 20].",
+    goal: "Find the mean and SD of the waiting time, P(X>9), and P(2<X<10).",
+    steps: [
+      { statement: "E(X) = (a+b)/2 = (0+20)/2 = 10 minutes.", reason: "Continuous uniform mean formula" },
+      { statement: "Var(X) = (b−a)²/12 = 400/12 ≈ 33.33, so SD(X) ≈ 5.77 minutes.", reason: "Continuous uniform variance formula" },
+      { statement: "P(X>9) = (20−9)/20 = 11/20 = 0.55.", reason: "For a uniform distribution, probability is just the fraction of the interval's width covered" },
+      { statement: "P(2<X<10) = (10−2)/20 = 8/20 = 0.40.", reason: "Same idea, applied to the interval (2,10)" },
+    ],
+    conclusion: "Mean=10 min, SD≈5.77 min, P(X>9)=0.55, P(2<X<10)=0.40 — try the uniform preset in the Continuous RV Explorer in Part 11 to see this exact shape.",
+  },
+  {
+    id: "stats-p13-exponential-wait",
+    label: "Exponential: waiting time with mean 10",
+    given: "X follows an Exponential distribution with mean θ=10.",
+    goal: "Find P(X>10), P(X>30), and the value x such that P(X<x)=0.95.",
+    steps: [
+      { statement: "P(X>10) = 1−F(10) = e^(−10/10) = e⁻¹ ≈ 0.3679.", reason: "Exponential survival probability formula" },
+      { statement: "P(X>30) = e^(−30/10) = e⁻³ ≈ 0.0498.", reason: "Same formula, further out in the tail" },
+      { statement: "Set F(x)=0.95: 1−e^(−x/10)=0.95, so e^(−x/10)=0.05.", reason: "Set up the equation to solve for x" },
+      { statement: "−x/10 = ln(0.05), so x = −10·ln(0.05) ≈ 29.96.", reason: "Solve for x by taking the natural log of both sides" },
+    ],
+    conclusion: "P(X>10)≈0.368, P(X>30)≈0.050, and the 95th percentile is x≈29.96 — notice how a mean wait of only 10 still has a real, if small, chance of exceeding 30.",
+  },
+  {
+    id: "stats-p13-normal-measurement",
+    label: "Normal distribution: three probabilities from one μ and σ",
+    given: "A continuous variable is normally distributed with μ=40.5 and σ=5.5.",
+    goal: "Find P(X>48.75), P(X<35), and P(31.15<X<51.5).",
+    steps: [
+      { statement: "For X=48.75: z = (48.75−40.5)/5.5 = 1.5. P(X>48.75) = P(Z>1.5) = 1−Φ(1.5) = 1−0.9332 = 0.0668.", reason: "Standardize, then use the complement for a 'greater than' question" },
+      { statement: "For X=35: z = (35−40.5)/5.5 = −1.0. By symmetry, P(Z<−1.0) = P(Z>1.0) = 1−0.8413 = 0.1587.", reason: "Negative z-scores are read via symmetry with the positive side" },
+      { statement: "For 31.15 and 51.5: z₁ = −1.7, z₂ = 2.0. P(−1.7<Z<2.0) = Φ(2.0)−Φ(−1.7) = 0.9772−(1−0.9554) = 0.9772−0.0446 = 0.9326.", reason: "Standardize both endpoints, then subtract the two areas" },
+    ],
+    conclusion: "P(X>48.75)≈0.0668, P(X<35)≈0.1587, P(31.15<X<51.5)≈0.9326 — try μ=40.5, σ=5.5 in the Normal Distribution Calculator above (it's the default preset).",
+  },
+  {
+    id: "stats-p13-normal-commute",
+    label: "Normal distribution: commute time, including working backward for k",
+    given: "Commute time X ~ N(24, 2²) — mean 24 minutes, SD 2 minutes.",
+    goal: "Find P(24<X<28), P(X<19), P(X>20), and the value k such that P(X>k)=0.025.",
+    steps: [
+      { statement: "P(24<X<28): z-scores are 0 and 2. P(0<Z<2) = Φ(2)−Φ(0) = 0.9772−0.5 = 0.4772.", reason: "Standardize both bounds, then subtract" },
+      { statement: "P(X<19): z = (19−24)/2 = −2.5. P(Z<−2.5) = 1−Φ(2.5) = 1−0.9938 = 0.0062.", reason: "Use symmetry for the negative z-score" },
+      { statement: "P(X>20): z = (20−24)/2 = −2. P(Z>−2) = Φ(2) = 0.9772.", reason: "P(Z > negative z) equals Φ of the positive version by symmetry" },
+      { statement: "Working backward: P(X>k)=0.025 means Φ((k−24)/2)=0.975. Looking up the table, Φ(1.96)=0.975, so (k−24)/2=1.96, giving k=24+2(1.96)=27.92.", reason: "Reverse the standardize-and-lookup process: find the z first, then convert back to x" },
+    ],
+    conclusion: "P(24<X<28)≈0.4772, P(X<19)≈0.0062, P(X>20)≈0.9772, and k≈27.92 — the last part shows how to work BACKWARD from a target probability to an x-value.",
+  },
+  {
+    id: "stats-p13-normal-approx-binomial",
+    label: "Normal Approximation to the Binomial: 150 coin tosses",
+    given: "A fair coin is tossed 150 times; X = number of heads, so X ~ Binomial(n=150, p=0.5).",
+    goal: "Use the normal approximation to find P(X=75) and P(X≥85).",
+    steps: [
+      { statement: "Check conditions: np = 150(0.5) = 75 > 5, and nq = 75 > 5 — both hold, so the normal approximation is appropriate.", reason: "Always verify before applying the approximation" },
+      { statement: "μ = np = 75, σ = √(npq) = √(150×0.5×0.5) = √37.5 ≈ 6.12.", reason: "Match the binomial to its normal approximation" },
+      { statement: "For P(X=75), apply the continuity correction: P(74.5<X<75.5). z₁=(74.5−75)/6.12≈−0.08, z₂=(75.5−75)/6.12≈0.08.", reason: "A discrete point needs to become a small continuous interval" },
+      { statement: "P(−0.08<Z<0.08) = 2×P(0<Z<0.08) = 2×0.0319 = 0.0638.", reason: "Use symmetry around 0 to combine the two half-intervals" },
+      { statement: "For P(X≥85), apply the continuity correction: P(X≥85) = P(X>84.5). z=(84.5−75)/6.12≈1.55. P(Z>1.55) = 0.5000−0.4394 = 0.0606.", reason: "'At least' becomes 'greater than (k−0.5)'" },
+    ],
+    conclusion: "P(X=75)≈0.0638 and P(X≥85)≈0.0606 — try n=150, p=0.5 in the Normal Approximation calculator above (it's the default preset) to reproduce both.",
+  },
+];

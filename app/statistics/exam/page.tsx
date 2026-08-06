@@ -17,10 +17,10 @@ export default function StatisticsExamPage() {
           <p className="text-body max-w-2xl">
             {statisticsExamBank.length} original questions spanning variables and data collection,
             frequency distributions, central tendency, dispersion, position, shape, the empirical
-            rule, probability, counting techniques, random variables, and the special discrete
-            distributions. Configure a topic-focused or comprehensive exam, work through it under
-            a real timer, then review every answer with a full explanation and a link back to the
-            lesson it came from.
+            rule, probability, counting techniques, random variables, the special discrete
+            distributions, and the Normal distribution. Configure a topic-focused or comprehensive
+            exam, work through it under a real timer, then review every answer with a full
+            explanation and a link back to the lesson it came from.
           </p>
         </div>
         <ExamRoom

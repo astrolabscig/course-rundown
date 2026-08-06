@@ -51,7 +51,7 @@ const rooms = [
     title: "Statistics",
     description:
       "Frequency distributions, central tendency, dispersion, probability, counting, random variables, and probability distributions — real calculators for every formula, not just definitions to memorise.",
-    stat: "216 exam questions · full formula cheatsheet",
+    stat: "248 exam questions · full formula cheatsheet",
     icon: "stats",
   },
 ];
@@ -284,7 +284,7 @@ export default function Home() {
             </Link>
 
             <div className="rounded-2xl border border-card-border bg-card p-6 flex flex-col justify-center">
-              <p className="text-4xl font-bold text-heading">900+</p>
+              <p className="text-4xl font-bold text-heading">950+</p>
               <p className="text-sm text-secondary mt-1">original practice questions across every room</p>
             </div>
 

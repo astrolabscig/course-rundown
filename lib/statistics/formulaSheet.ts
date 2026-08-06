@@ -428,4 +428,57 @@ export const statisticsFormulaSheet: FormulaSection[] = [
       },
     ],
   },
+  {
+    id: "formulas-normal",
+    title: "The Normal Distribution",
+    formulas: [
+      {
+        id: "f-continuous-uniform",
+        name: "Continuous Uniform",
+        formula: [t("f(x) = "), frac("1", "b − a"), t(",   a ≤ x ≤ b")],
+        note: "E(X) = (a+b)/2,   Var(X) = (b−a)²/12.",
+      },
+      {
+        id: "f-exponential",
+        name: "Exponential",
+        formula: [t("f(x) = "), frac("1", "θ"), t("e^(−x/θ),   x > 0")],
+        note: "E(X) = θ = 1/λ,   Var(X) = θ² = 1/λ².  Using rate λ=1/θ: f(x)=λe^(−λx).",
+      },
+      {
+        id: "f-normal-pdf",
+        name: "Normal distribution",
+        formula: [t("X ~ N(μ, σ²)")],
+        note: "E(X) = μ,   Var(X) = σ².",
+      },
+      {
+        id: "f-zscore",
+        name: "Z-score (standardization)",
+        formula: [t("Z = "), frac("X − μ", "σ")],
+        note: "Converts any X ~ N(μ,σ²) into the standard normal Z ~ N(0,1).",
+      },
+      {
+        id: "f-normal-probability",
+        name: "Normal probability between two bounds",
+        formula: [t("P(a < X < b) = Φ(z_b) − Φ(z_a)")],
+        where: ["Φ(z) = P(Z ≤ z), the standard normal CDF", "z_a = (a−μ)/σ,  z_b = (b−μ)/σ"],
+      },
+      {
+        id: "f-normal-symmetry",
+        name: "Standard normal symmetry rules",
+        formula: [t("Φ(−k) = 1 − Φ(k),   P(Z>k) = 1−Φ(k),   P(−k<Z<k) = 2Φ(k)−1")],
+      },
+      {
+        id: "f-normal-approx-binomial",
+        name: "Normal approximation to the Binomial",
+        formula: [t("μ = np,   σ = √(npq)")],
+        note: "Valid when np > 5 AND nq > 5.",
+      },
+      {
+        id: "f-continuity-correction",
+        name: "Continuity correction",
+        formula: [t("P(X=k)→P(k−0.5<X<k+0.5);  P(X≤k)→P(X<k+0.5);  P(X≥k)→P(X>k−0.5)")],
+        note: "P(X<k)→P(X<k−0.5);  P(X>k)→P(X>k+0.5).",
+      },
+    ],
+  },
 ];
