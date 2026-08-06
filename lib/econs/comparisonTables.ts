@@ -44,6 +44,18 @@ export const econsComparisonTables: ComparisonTableData[] = [
     ],
   },
   {
+    id: "withdrawals-vs-injections",
+    title: "Withdrawals vs Injections in the Circular Flow",
+    columns: ["Withdrawals (W)", "Injections (J)"],
+    rows: [
+      ["Money that leaks OUT of the domestic household-firm spending flow.", "Money that flows INTO the domestic spending flow from outside it."],
+      ["Components: Savings (S), net Taxes (T), Imports (M).", "Components: Investment (I), Government spending (G), Exports (X)."],
+      ["Each has a marginal propensity: mps, mpt (tax rate), mpm — together, mpw = mps + mpt + mpm.", "Treated as autonomous — driven by interest rates/confidence (I), the budget (G), and foreign demand (X), not by domestic income."],
+      ["If W > J, national income contracts.", "If J > W, national income expands."],
+      ["At equilibrium: W = J exactly.", "At equilibrium: J = W exactly — same condition, viewed from the other side."],
+    ],
+  },
+  {
     id: "current-vs-capital-financial-account",
     title: "Current Account vs Capital & Financial Accounts",
     columns: ["Current Account", "Capital & Financial Accounts"],

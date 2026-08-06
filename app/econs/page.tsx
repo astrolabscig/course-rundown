@@ -7,6 +7,8 @@ import BasicsCheatsheet from "@/components/basics/BasicsCheatsheet";
 import MCQDrill from "@/components/drills/MCQDrill";
 import ComparisonTable from "@/components/reference/ComparisonTable";
 import CircularFlowSimulator from "@/components/econs/CircularFlowSimulator";
+import ConsumptionSavingsExplorer from "@/components/econs/ConsumptionSavingsExplorer";
+import MultiplierEquilibriumCalculator from "@/components/econs/MultiplierEquilibriumCalculator";
 import NationalIncomeCalculator from "@/components/econs/NationalIncomeCalculator";
 import BusinessCycleSimulator from "@/components/econs/BusinessCycleSimulator";
 import LabourMarketSimulator from "@/components/econs/LabourMarketSimulator";
@@ -52,9 +54,9 @@ export default function EconsRoom() {
               Economics II: Macroeconomics — understand the whole economy, not just the terms
             </h1>
             <p className="text-body max-w-2xl">
-              The circular flow, national income, unemployment, inflation, the Phillips curve,
-              the balance of payments, and exchange rates — each with a real calculator or
-              simulation, not just a definition to memorise.
+              The circular flow, the multiplier and equilibrium income, national income, unemployment,
+              inflation, the Phillips curve, the balance of payments, and exchange rates — each
+              with a real calculator or simulation, not just a definition to memorise.
             </p>
           </section>
 
@@ -125,7 +127,24 @@ export default function EconsRoom() {
           </section>
 
           <section id="e-part-2" className="space-y-6 scroll-mt-24">
-            <PartHeading number="2" title="Measuring National Income" />
+            <PartHeading number="2" title="National Income Determination & the Multiplier" />
+            <p className="text-sm text-secondary">
+              How equilibrium national income actually gets pinned down: the consumption and
+              savings functions, withdrawals vs injections, and the multiplier that amplifies any
+              change in autonomous spending.
+            </p>
+            <BasicsCheatsheet
+              groups={econsFundamentalsGroups.filter((g) =>
+                ["consumption-savings-functions", "withdrawals-injections-functions", "equilibrium-multiplier"].includes(g.id)
+              )}
+            />
+            <ConsumptionSavingsExplorer />
+            <MultiplierEquilibriumCalculator />
+            <ComparisonTable data={findTable("withdrawals-vs-injections")} />
+          </section>
+
+          <section id="e-part-3" className="space-y-6 scroll-mt-24">
+            <PartHeading number="3" title="Measuring National Income" />
             <p className="text-sm text-secondary">
               Two real calculators: Nominal vs Real GDP, and the full GDP → GNP → NNP adjustment
               chain.
@@ -133,8 +152,8 @@ export default function EconsRoom() {
             <NationalIncomeCalculator />
           </section>
 
-          <section id="e-part-3" className="space-y-6 scroll-mt-24">
-            <PartHeading number="3" title="Business Cycle & Economic Growth" />
+          <section id="e-part-4" className="space-y-6 scroll-mt-24">
+            <PartHeading number="4" title="Business Cycle & Economic Growth" />
             <p className="text-sm text-secondary">
               Watch national output wobble through the four phases of the business cycle.
             </p>
@@ -142,8 +161,8 @@ export default function EconsRoom() {
             <ComparisonTable data={findTable("actual-vs-potential-growth")} />
           </section>
 
-          <section id="e-part-4" className="space-y-6 scroll-mt-24">
-            <PartHeading number="4" title="Unemployment" />
+          <section id="e-part-5" className="space-y-6 scroll-mt-24">
+            <PartHeading number="5" title="Unemployment" />
             <p className="text-sm text-secondary">
               Toggle between the labour-market scenarios to see exactly where each type of
               unemployment comes from.
@@ -152,8 +171,8 @@ export default function EconsRoom() {
             <ComparisonTable data={findTable("disequilibrium-vs-equilibrium-unemployment")} />
           </section>
 
-          <section id="e-part-5" className="space-y-6 scroll-mt-24">
-            <PartHeading number="5" title="Inflation" />
+          <section id="e-part-6" className="space-y-6 scroll-mt-24">
+            <PartHeading number="6" title="Inflation" />
             <p className="text-sm text-secondary">
               Calculate a real Consumer Price Index and inflation rate, then see the two ways
               inflation can be caused.
@@ -163,16 +182,16 @@ export default function EconsRoom() {
             <ComparisonTable data={findTable("demand-pull-vs-cost-push")} />
           </section>
 
-          <section id="e-part-6" className="space-y-6 scroll-mt-24">
-            <PartHeading number="6" title="The Phillips Curve" />
+          <section id="e-part-7" className="space-y-6 scroll-mt-24">
+            <PartHeading number="7" title="The Phillips Curve" />
             <p className="text-sm text-secondary">
               The classic inflation-unemployment trade-off — and how stagflation broke it.
             </p>
             <PhillipsCurveSimulator />
           </section>
 
-          <section id="e-part-7" className="space-y-6 scroll-mt-24">
-            <PartHeading number="7" title="Balance of Payments" />
+          <section id="e-part-8" className="space-y-6 scroll-mt-24">
+            <PartHeading number="8" title="Balance of Payments" />
             <p className="text-sm text-secondary">
               A country's transactions with the rest of the world, broken into three accounts.
             </p>
@@ -180,8 +199,8 @@ export default function EconsRoom() {
             <ComparisonTable data={findTable("current-vs-capital-financial-account")} />
           </section>
 
-          <section id="e-part-8" className="space-y-6 scroll-mt-24">
-            <PartHeading number="8" title="Exchange Rates" />
+          <section id="e-part-9" className="space-y-6 scroll-mt-24">
+            <PartHeading number="9" title="Exchange Rates" />
             <p className="text-sm text-secondary">
               See exactly why and how the cedi appreciates or depreciates against the dollar.
             </p>
@@ -189,8 +208,8 @@ export default function EconsRoom() {
             <ComparisonTable data={findTable("fixed-vs-floating-exchange-rate")} />
           </section>
 
-          <section id="e-part-9" className="space-y-6 scroll-mt-24">
-            <PartHeading number="9" title="The Four Objectives" />
+          <section id="e-part-10" className="space-y-6 scroll-mt-24">
+            <PartHeading number="10" title="The Four Objectives" />
             <p className="text-sm text-secondary">
               How growth, unemployment, inflation, and the balance of payments all move together
               through the business cycle.
@@ -200,8 +219,8 @@ export default function EconsRoom() {
             />
           </section>
 
-          <section id="e-part-10" className="space-y-6 scroll-mt-24">
-            <PartHeading number="10" title="MCQ Drill Bank" />
+          <section id="e-part-11" className="space-y-6 scroll-mt-24">
+            <PartHeading number="11" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
               A quick starter set — for full timed practice, use the {econsExamBank.length}-question
               exam room above.

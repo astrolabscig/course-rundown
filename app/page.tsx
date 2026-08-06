@@ -30,8 +30,8 @@ const rooms = [
     tagColor: "text-accent-warm bg-accent-warm-bg",
     title: "Economics II",
     description:
-      "The circular flow, national income, unemployment, inflation, the Phillips curve, balance of payments, and exchange rates — with real calculators and simulations for every concept.",
-    stat: "100 exam questions · 80+ Passco questions",
+      "The circular flow, the multiplier and equilibrium income, national income, unemployment, inflation, the Phillips curve, balance of payments, and exchange rates — with real calculators and simulations for every concept.",
+    stat: "116 exam questions · 80+ Passco questions",
     icon: "econs",
   },
   {
@@ -284,7 +284,7 @@ export default function Home() {
             </Link>
 
             <div className="rounded-2xl border border-card-border bg-card p-6 flex flex-col justify-center">
-              <p className="text-4xl font-bold text-heading">950+</p>
+              <p className="text-4xl font-bold text-heading">970+</p>
               <p className="text-sm text-secondary mt-1">original practice questions across every room</p>
             </div>
 
