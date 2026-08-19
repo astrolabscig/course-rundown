@@ -21,13 +21,49 @@ import EncapsulationSimulator from "@/components/networking/EncapsulationSimulat
 import TCPHandshakeSimulator from "@/components/networking/TCPHandshakeSimulator";
 import DNSSimulator from "@/components/networking/DNSSimulator";
 import FirewallSimulator from "@/components/networking/FirewallSimulator";
+import TopologySimulator from "@/components/networking/TopologySimulator";
 import MCQDrill from "@/components/drills/MCQDrill";
 import ComparisonTable from "@/components/reference/ComparisonTable";
+import ExplainerBox from "@/components/ExplainerBox";
 import { networkingCurriculum } from "@/lib/networking/curriculum";
 import { networkingFundamentalsGroups } from "@/lib/networking/fundamentals";
+import { networkSystemsFundamentalsGroups } from "@/lib/networking/networkSystemsFundamentals";
 import { networkingComparisonTables } from "@/lib/networking/comparisonTables";
 import { networkingMcqBank } from "@/lib/networking/mcqBank";
 import { midsemBank } from "@/lib/networking/midsemBank";
+
+function findNsGroup(id: string) {
+  const group = networkSystemsFundamentalsGroups.find((g) => g.id === id);
+  if (!group) throw new Error(`Missing network-systems group: ${id}`);
+  return group;
+}
+
+const componentRoles: [string, string][] = [
+  ["Computer", "Generates or receives user data"],
+  ["Switch", "Connects devices within the LAN"],
+  ["Router", "Connects the LAN to other networks"],
+  ["Modem/ONT", "Terminates the communication service provided by the ISP, depending on access technology"],
+  ["ISP", "Provides connectivity to the wider Internet"],
+];
+
+const internetAccessSteps = [
+  "Your computer generates a request.",
+  "The local network carries the request towards the router.",
+  "The router forwards the packet outside the local network.",
+  "The ISP provides connectivity to other networks.",
+  "Routers across interconnected networks forward the packet towards its destination.",
+  "The destination server responds.",
+  "The response travels back through networks towards your computer.",
+];
+
+const topologyComparisonRows: [string, string, string, string][] = [
+  ["Arrangement", "Shared backbone", "Central device", "Circular connection"],
+  ["Cable requirement", "Relatively low", "Relatively high", "Moderate"],
+  ["Troubleshooting", "More difficult", "Easier", "More difficult"],
+  ["Important failure point", "Backbone", "Central device", "Link/device in a simple ring"],
+  ["Adding devices", "Can be disruptive", "Relatively easy", "Can be difficult"],
+  ["Modern LAN use", "Uncommon", "Very common", "Uncommon"],
+];
 
 const specialAddresses: [string, string][] = [
   ["0.0.0.0", "\"This network/host\" — a placeholder, not a real assignable address."],
@@ -63,8 +99,9 @@ export default function NetworkingRoom() {
               IT — Networking Fundamentals: understand, don&rsquo;t cram
             </h1>
             <p className="text-body max-w-2xl">
-              Network basics, IPv4 addressing, and subnetting — with live calculators that show
-              every step, not just the final answer, so the exam math actually makes sense.
+              Network components, topologies, scalable design, security, IPv4 addressing, and
+              subnetting — with live calculators and simulators that show every step, not just the
+              final answer, so the exam actually makes sense.
             </p>
           </section>
 
@@ -113,7 +150,221 @@ export default function NetworkingRoom() {
           </section>
 
           <section id="n-part-1" className="space-y-6 scroll-mt-24">
-            <PartHeading number="1" title="IPv4 & Address Classes" />
+            <PartHeading number="1" title="Network Components & Architecture" />
+            <p className="text-sm text-secondary">
+              Every device a network is actually built from — end devices, NICs, switches,
+              routers, access points, servers, and the modem/ONT that hands off to your ISP —
+              plus how they all fit together into one working network.
+            </p>
+            <BasicsCheatsheet groups={[findNsGroup("what-is-a-network"), findNsGroup("network-devices")]} />
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-4">
+              <h3 className="text-lg font-semibold text-heading">Putting the components together</h3>
+              <ExplainerBox title="Think about it">
+                What would happen if the switch failed? What if the router failed? What if the
+                Internet connection failed? What if one computer&rsquo;s Ethernet cable failed?
+                (Answer these with the topology simulator in the next part.)
+              </ExplainerBox>
+              <div className="rounded-xl bg-muted p-4 sm:p-6 space-y-3 font-mono text-sm text-center">
+                <p className="font-semibold text-heading">INTERNET</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">ISP</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">Modem / ONT</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">Router</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">Switch</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">PC1 · PC2 · Server · Printer</p>
+                <p className="text-secondary">↕ (from Server)</p>
+                <p className="text-body">Access Point</p>
+                <p className="text-secondary">↕</p>
+                <p className="text-body">Laptop · Phone · Tablet</p>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Component</th>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {componentRoles.map(([c, r]) => (
+                      <tr key={c} className="border-b border-card-border last:border-0">
+                        <td className="p-2 font-mono text-heading whitespace-nowrap align-top">{c}</td>
+                        <td className="p-2 text-body align-top">{r}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
+              <h3 className="text-lg font-semibold text-heading mb-3">What happens when you access the Internet?</h3>
+              <ol className="space-y-1.5 list-decimal list-inside">
+                {internetAccessSteps.map((s) => (
+                  <li key={s} className="text-sm text-body">{s}</li>
+                ))}
+              </ol>
+              <p className="text-xs text-secondary mt-3">Key idea: the Internet is a network of interconnected networks.</p>
+            </div>
+          </section>
+
+          <section id="n-part-2" className="space-y-6 scroll-mt-24">
+            <PartHeading number="2" title="Network Topologies" />
+            <p className="text-sm text-secondary">
+              Bus, star, and ring — how they&rsquo;re arranged, their trade-offs, and exactly what
+              breaks (and what doesn&rsquo;t) when a device or link fails in each one.
+            </p>
+            <BasicsCheatsheet groups={[findNsGroup("network-topologies")]} />
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
+              <h3 className="text-lg font-semibold text-heading mb-1">Topology failure simulator</h3>
+              <p className="text-body text-sm mb-4">
+                Try this: switch between bus, star, and ring, then fail the shared point (backbone
+                / central switch / a ring link) versus one device&rsquo;s own connection, and watch
+                exactly who loses connectivity.
+              </p>
+              <TopologySimulator />
+            </div>
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
+              <h3 className="text-lg font-semibold text-heading mb-3">Comparing the three topologies</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Characteristic</th>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Bus</th>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Star</th>
+                      <th className="text-left p-2 text-heading font-semibold border-b border-card-border">Ring</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topologyComparisonRows.map(([characteristic, bus, star, ring]) => (
+                      <tr key={characteristic} className="border-b border-card-border last:border-0">
+                        <td className="p-2 font-semibold text-heading align-top whitespace-nowrap">{characteristic}</td>
+                        <td className="p-2 text-body align-top">{bus}</td>
+                        <td className="p-2 text-body align-top">{star}</td>
+                        <td className="p-2 text-body align-top">{ring}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section id="n-part-3" className="space-y-6 scroll-mt-24">
+            <PartHeading number="3" title="Scalability & Network Design" />
+            <p className="text-sm text-secondary">
+              How to design a network that satisfies today&rsquo;s requirements without needing a
+              rebuild the moment it grows — plus the exact answer structure exam questions expect.
+            </p>
+            <BasicsCheatsheet groups={[findNsGroup("scalability-and-design")]} />
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
+              <h3 className="text-lg font-semibold text-heading">
+                Worked example: a 40-computer lab with a printer, a server, and Internet access
+              </h3>
+              <div className="space-y-2">
+                {[
+                  ["1. Topology", "Star — easy to add computers, individual connection faults can be isolated, and modern Ethernet switches support efficient communication."],
+                  ["2. Central device", "An appropriately sized switch, or a combination of switches."],
+                  ["3. Transmission medium", "Twisted-pair Ethernet cable connecting desktop computers to the switch."],
+                  ["4. Internet connectivity", "Connect the LAN through a router and the appropriate ISP termination equipment (modem/ONT)."],
+                  ["5. Scalability", "Allow for additional computers, switch ports, future wireless access, and additional bandwidth."],
+                  ["6. Security", "Strong authentication, appropriate firewall controls, malware protection, regular software updates, user security awareness, and regular backups."],
+                ].map(([step, detail]) => (
+                  <div key={step} className="rounded-lg bg-muted p-3">
+                    <p className="text-sm font-semibold text-heading">{step}</p>
+                    <p className="text-sm text-body">{detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
+              <h3 className="text-lg font-semibold text-heading">
+                Authentic learning activity, fully worked: the 50-to-70-computer ICT lab
+              </h3>
+              <p className="text-sm text-body">
+                Scenario: an ICT lab starting with 50 desktop computers, two network printers, one
+                file server, Wi-Fi access for lecturers, and Internet access — expected to grow to
+                70 computers within three years, used for web browsing, online examinations, cloud
+                services, downloading lecture materials, and shared files.
+              </p>
+              <div className="space-y-2">
+                {[
+                  ["Topology", "Star topology. Each computer gets an independent connection to the switch, so a fault on one cable never takes down the exam session for everyone else — critical given online examinations are part of the workload — and adding the extra 20 computers later only means running new cables to free switch ports, not redesigning anything."],
+                  ["Devices required", "One or more Ethernet switches (with spare ports for growth), a router, modem/ONT, one or more wireless access points (for lecturer Wi-Fi), one file server, and two network printers connected into the switch like any other end device."],
+                  ["Transmission media", "Twisted-pair Ethernet for the 50 (soon 70) fixed desktop computers — inexpensive and easy to install at this scale — and Wi-Fi via access points specifically for the lecturers who need mobile access, not the fixed desktops."],
+                  ["Internet connectivity", "The switch feeds into a router, which connects to the ISP's modem/ONT, which terminates the ISP's actual service — the same Computer → Switch → Router → Modem/ONT → ISP → Internet chain as any other design."],
+                  ["Future expansion", "Choose a switch (or switches) with enough spare ports for the 20 additional computers now, rather than buying an exactly-sized switch that would need full replacement later; leave headroom in the IP addressing scheme and confirm the Internet connection's bandwidth can absorb 70 concurrent users rather than 50."],
+                  ["Security measures", "Strong, unique passwords and multi-factor authentication where available for staff/admin access; a firewall between the LAN and the router/Internet connection; malware protection and regular software updates on every machine; regular backups of the file server; and basic Internet-safety and phishing awareness for students using the lab for online exams."],
+                  ["Bandwidth requirements", "Online examinations, cloud services, and downloading lecture materials are all listed as significant bandwidth consumers — the connection needs to comfortably support up to 70 concurrent users doing this simultaneously, not just 50, since the design must hold up after the planned expansion, not only on day one."],
+                ].map(([label, detail]) => (
+                  <div key={label} className="rounded-lg bg-muted p-3">
+                    <p className="text-sm font-semibold text-heading">{label}</p>
+                    <p className="text-sm text-body">{detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
+              <h3 className="text-lg font-semibold text-heading">Challenge activity, fully worked: bus vs star</h3>
+              <p className="text-sm text-body">
+                Designer A recommends bus topology because it requires less cable. Designer B
+                recommends star topology because each computer connects independently to a central
+                switch.
+              </p>
+              <p className="text-sm text-body">
+                <strong className="text-heading">Recommendation: star.</strong> Its advantages —
+                easy fault isolation, easy addition of devices, good performance with switches —
+                directly serve a lab that expects growth and needs to stay usable while individual
+                faults are fixed. Its disadvantage (more cabling than bus) is a one-time cost, not a
+                recurring operational risk.
+              </p>
+              <p className="text-sm text-body">
+                <strong className="text-heading">Disadvantages that still remain:</strong> the
+                central switch is now a single point of failure for the whole lab, and star does
+                need more upfront cabling than bus.
+              </p>
+              <p className="text-sm text-body">
+                <strong className="text-heading">Effect of growth from 50 to 70 computers:</strong>{" "}
+                this strengthens the case for star. Bus topology&rsquo;s main advantage (less cable)
+                matters less as the network grows, while its main weakness (a single backbone
+                failure disabling every device) becomes more costly the more devices depend on that
+                one shared cable. Star&rsquo;s ability to add devices without disrupting the
+                existing network is exactly what a planned expansion needs.
+              </p>
+              <p className="text-sm text-body">
+                <strong className="text-heading">If cost were the dominant constraint:</strong> bus
+                topology&rsquo;s lower cabling cost becomes more tempting for a very small,
+                budget-constrained, non-critical network. But for an institution running online
+                examinations — where a single backbone failure could disrupt an entire cohort
+                mid-exam — the reliability and fault-isolation case for star still outweighs the
+                extra cable cost in most realistic scenarios. The honest exam answer is to state
+                this trade-off explicitly, not to pretend cost has no effect on the decision at all.
+              </p>
+            </div>
+          </section>
+
+          <section id="n-part-4" className="space-y-6 scroll-mt-24">
+            <PartHeading number="4" title="Network Security & Internet Safety" />
+            <p className="text-sm text-secondary">
+              Passwords, phishing, malware, backups, and personal-device security — the practical,
+              everyday side of keeping a network (and yourself) safe.
+            </p>
+            <BasicsCheatsheet groups={[findNsGroup("network-security-and-safety")]} />
+          </section>
+
+          <section id="n-part-5" className="space-y-6 scroll-mt-24">
+            <PartHeading number="5" title="IPv4 & Address Classes" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-heading mb-1">IP address classifier</h3>
@@ -177,8 +428,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-2" className="space-y-6 scroll-mt-24">
-            <PartHeading number="2" title="Subnet Masks & the AND Operation" />
+          <section id="n-part-6" className="space-y-6 scroll-mt-24">
+            <PartHeading number="6" title="Subnet Masks & the AND Operation" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-heading mb-1">
                 Live AND-operation simulator
@@ -191,8 +442,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-3" className="space-y-6 scroll-mt-24">
-            <PartHeading number="3" title="Subnetting Calculator" />
+          <section id="n-part-7" className="space-y-6 scroll-mt-24">
+            <PartHeading number="7" title="Subnetting Calculator" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-heading mb-1">
                 Full step-by-step subnet calculator
@@ -206,8 +457,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-4" className="space-y-6 scroll-mt-24">
-            <PartHeading number="4" title="FLSM & VLSM" />
+          <section id="n-part-8" className="space-y-6 scroll-mt-24">
+            <PartHeading number="8" title="FLSM & VLSM" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-heading mb-1">FLSM lab</h3>
               <p className="text-body text-sm mb-4">
@@ -221,8 +472,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-5" className="space-y-6 scroll-mt-24">
-            <PartHeading number="5" title="CIDR" />
+          <section id="n-part-9" className="space-y-6 scroll-mt-24">
+            <PartHeading number="9" title="CIDR" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-heading mb-1">CIDR block calculator</h3>
               <p className="text-body text-sm mb-4">
@@ -233,8 +484,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-6" className="space-y-6 scroll-mt-24">
-            <PartHeading number="6" title="Protocols & Media Access" />
+          <section id="n-part-10" className="space-y-6 scroll-mt-24">
+            <PartHeading number="10" title="Protocols & Media Access" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-heading mb-1">
                 Watch collisions happen — and get avoided
@@ -266,8 +517,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-7" className="space-y-6 scroll-mt-24">
-            <PartHeading number="7" title="TCP/IP & OSI Layering" />
+          <section id="n-part-11" className="space-y-6 scroll-mt-24">
+            <PartHeading number="11" title="TCP/IP & OSI Layering" />
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-heading mb-1">
@@ -326,8 +577,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-8" className="space-y-6 scroll-mt-24">
-            <PartHeading number="8" title="Speed Tables" />
+          <section id="n-part-12" className="space-y-6 scroll-mt-24">
+            <PartHeading number="12" title="Speed Tables" />
             <div className="space-y-4">
               {networkingComparisonTables.map((table) => (
                 <ComparisonTable key={table.id} data={table} />
@@ -335,8 +586,8 @@ export default function NetworkingRoom() {
             </div>
           </section>
 
-          <section id="n-part-9" className="space-y-6 scroll-mt-24">
-            <PartHeading number="9" title="Subnetting Drill" />
+          <section id="n-part-13" className="space-y-6 scroll-mt-24">
+            <PartHeading number="13" title="Subnetting Drill" />
             <p className="text-sm text-secondary">
               Work out each scenario yourself first, then reveal the full worked answer — this is
               about understanding the steps, not just checking a final number.
@@ -344,20 +595,20 @@ export default function NetworkingRoom() {
             <SubnettingDrill />
           </section>
 
-          <section id="n-part-10" className="space-y-6 scroll-mt-24">
-            <PartHeading number="10" title="MCQ Drill Bank" />
+          <section id="n-part-14" className="space-y-6 scroll-mt-24">
+            <PartHeading number="14" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
-              Subnetting and protocol mechanics, plus a set connecting each concept straight to
-              its computer science application — routing algorithms, distributed systems,
-              cryptography.
+              {networkingMcqBank.length} questions: network components, topologies, scalability,
+              design justification, security & Internet safety, subnetting and protocol mechanics,
+              plus a set connecting each concept straight to its computer science application.
             </p>
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={networkingMcqBank} />
             </div>
           </section>
 
-          <section id="n-part-11" className="space-y-6 scroll-mt-24">
-            <PartHeading number="11" title="CSM 152 Midsem Quiz" />
+          <section id="n-part-15" className="space-y-6 scroll-mt-24">
+            <PartHeading number="15" title="CSM 152 Midsem Quiz" />
             <p className="text-sm text-secondary">
               All {midsemBank.length} questions from a real KNUST CSM 152 mid-semester exam paper,
               including the full practical subnetting scenario at the end — answer, see it marked

@@ -16,12 +16,12 @@ const rooms = [
   },
   {
     href: "/networking",
-    tag: "IPv4 & Subnetting",
+    tag: "Network Design → Subnetting",
     tagColor: "text-teal-600 bg-teal-500/10 dark:text-teal-300",
     title: "IT — Networking Fundamentals",
     description:
-      "Network basics, IPv4 addressing, and subnetting calculations built for the exam — with live calculators, not just formulas to memorise.",
-    stat: "Live subnetting & DHCP/DNS/ARP simulators",
+      "Network components, topologies, scalable design, security, IPv4 addressing, and subnetting — built for the exam, with live calculators and simulators, not just formulas to memorise.",
+    stat: "120-question MCQ bank · Live subnetting, topology & DHCP/DNS/ARP simulators",
     icon: "network",
   },
   {
