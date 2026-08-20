@@ -31,6 +31,7 @@ import { networkSystemsFundamentalsGroups } from "@/lib/networking/networkSystem
 import { networkingComparisonTables } from "@/lib/networking/comparisonTables";
 import { networkingMcqBank } from "@/lib/networking/mcqBank";
 import { midsemBank } from "@/lib/networking/midsemBank";
+import { networkingQuizBank } from "@/lib/networking/quizBank";
 
 function findNsGroup(id: string) {
   const group = networkSystemsFundamentalsGroups.find((g) => g.id === id);
@@ -104,6 +105,24 @@ export default function NetworkingRoom() {
               final answer, so the exam actually makes sense.
             </p>
           </section>
+
+          <a
+            href="/networking/quiz"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{networkingQuizBank.length}-question Concept Quiz →</p>
+              <p className="text-sm text-body mt-0.5">
+                Every concept in this room, filterable by topic — heavy on practical,
+                scenario-based questions (cabling choices, subnetting calculations,
+                troubleshooting) with full step-by-step solutions, not just definitions to
+                memorise.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Start quiz
+            </span>
+          </a>
 
           <a
             href="/networking/group-assignment"

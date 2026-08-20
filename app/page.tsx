@@ -21,7 +21,7 @@ const rooms = [
     title: "IT — Networking Fundamentals",
     description:
       "Network components, topologies, scalable design, security, IPv4 addressing, and subnetting — built for the exam, with live calculators and simulators, not just formulas to memorise.",
-    stat: "120-question MCQ bank · Live subnetting, topology & DHCP/DNS/ARP simulators",
+    stat: "205-question concept quiz · Live subnetting, topology & DHCP/DNS/ARP simulators",
     icon: "network",
   },
   {
