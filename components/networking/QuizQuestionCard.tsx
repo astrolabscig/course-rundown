@@ -1,11 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import CodeBlock from "../CodeBlock";
 import type { QuizQuestion } from "@/lib/networking/quizBank";
 
+export interface AnswerRecord {
+  correct: boolean;
+  selectedIndex?: number;
+  inputValue?: string;
+}
+
 function normalize(s: string): string {
   return s.trim().toLowerCase().replace(/\s+/g, " ").replace(/,/g, "");
+}
+
+// Deterministic per-question shuffle so option order stays stable across
+// re-renders and re-visits (navigating away and back must not scramble a
+// question the user already answered), while avoiding the correct answer
+// always landing in the same position across the bank. FNV-1a gives a
+// well-distributed seed from the id string; mulberry32 is a small, solid
+// PRNG that turns that seed into a good Fisher-Yates shuffle.
+function fnv1a(str: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(seed: number) {
+  let a = seed;
+  return function rand() {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle(seedStr: string, length: number): number[] {
+  const rand = mulberry32(fnv1a(seedStr));
+  const order = Array.from({ length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
 }
 
 const difficultyStyle: Record<string, string> = {
@@ -16,23 +58,33 @@ const difficultyStyle: Record<string, string> = {
 
 export default function QuizQuestionCard({
   question,
+  savedAnswer,
   onAnswered,
 }: {
   question: QuizQuestion;
-  onAnswered: (correct: boolean) => void;
+  savedAnswer: AnswerRecord | null;
+  onAnswered: (record: AnswerRecord) => void;
 }) {
-  const [selected, setSelected] = useState<number | null>(null);
-  const [inputValue, setInputValue] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [selected, setSelected] = useState<number | null>(savedAnswer?.selectedIndex ?? null);
+  const [inputValue, setInputValue] = useState(savedAnswer?.inputValue ?? "");
+  const [submitted, setSubmitted] = useState(savedAnswer !== null);
+  const [isCorrect, setIsCorrect] = useState(savedAnswer?.correct ?? false);
+
+  const shuffleOrder = useMemo(() => {
+    if (question.type !== "mcq" || !question.options) return null;
+    return seededShuffle(question.id, question.options.length);
+  }, [question.id, question.type, question.options]);
+
+  const displayOptions = shuffleOrder ? shuffleOrder.map((i) => question.options![i]) : question.options;
+  const correctDisplayIndex = shuffleOrder ? shuffleOrder.indexOf(question.correctIndex!) : question.correctIndex;
 
   function chooseOption(i: number) {
     if (submitted) return;
     setSelected(i);
-    const correct = i === question.correctIndex;
+    const correct = i === correctDisplayIndex;
     setIsCorrect(correct);
     setSubmitted(true);
-    onAnswered(correct);
+    onAnswered({ correct, selectedIndex: i });
   }
 
   function submitFillIn() {
@@ -42,7 +94,7 @@ export default function QuizQuestionCard({
     const correct = accepted.includes(answer);
     setIsCorrect(correct);
     setSubmitted(true);
-    onAnswered(correct);
+    onAnswered({ correct, inputValue });
   }
 
   return (
@@ -61,9 +113,9 @@ export default function QuizQuestionCard({
 
       {question.type === "mcq" ? (
         <div className="space-y-2">
-          {question.options!.map((opt, i) => {
+          {displayOptions!.map((opt, i) => {
             const isSelected = selected === i;
-            const isCorrectOpt = i === question.correctIndex;
+            const isCorrectOpt = i === correctDisplayIndex;
             let style = "border-card-border hover:border-accent";
             if (submitted) {
               if (isCorrectOpt) style = "border-success bg-success/10";
