@@ -32,6 +32,7 @@ import { networkingComparisonTables } from "@/lib/networking/comparisonTables";
 import { networkingMcqBank } from "@/lib/networking/mcqBank";
 import { midsemBank } from "@/lib/networking/midsemBank";
 import { networkingQuizBank } from "@/lib/networking/quizBank";
+import { csm152PracticeBank } from "@/lib/networking/practiceBank";
 
 function findNsGroup(id: string) {
   const group = networkSystemsFundamentalsGroups.find((g) => g.id === id);
@@ -138,6 +139,23 @@ export default function NetworkingRoom() {
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
               Open assignment
+            </span>
+          </a>
+
+          <a
+            href="/networking/practice-bank"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">{csm152PracticeBank.length}-question CSM 152 Practice Bank →</p>
+              <p className="text-sm text-body mt-0.5">
+                Module-by-module exam prep (Modules 0-8 plus a Mixed Expert Set), tiered
+                foundational → applied → diagnostic, with select-all-that-apply items and a full
+                per-option explanation every time.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Open practice bank
             </span>
           </a>
 
