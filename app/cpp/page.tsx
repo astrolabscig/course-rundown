@@ -35,6 +35,7 @@ import { mcqBank } from "@/lib/mcqBank";
 import { basicsGroups } from "@/lib/basics";
 import { examBank } from "@/lib/examBank";
 import { passcoBank } from "@/lib/passcoBank";
+import { codeCompletionBank } from "@/lib/cpp/codeCompletionBank";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
   return (
@@ -94,6 +95,25 @@ export default function CppRoom() {
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
               Open cheatsheet
+            </span>
+          </a>
+
+          <a
+            href="/cpp/code-lab"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
+          >
+            <div>
+              <p className="text-sm font-semibold text-accent">
+                {codeCompletionBank.length}-question Code Completion Lab →
+              </p>
+              <p className="text-sm text-body mt-0.5">
+                Fill in the missing piece of real, scenario-based C++ snippets — fintech, campus,
+                and e-commerce examples across 19 topics from program structure to classes, with
+                hints, progress tracking, and a weak-topics mode.
+              </p>
+            </div>
+            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
+              Start coding
             </span>
           </a>
 
