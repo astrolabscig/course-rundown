@@ -44,8 +44,8 @@ export default function CodeWalkthrough({
               i === step.highlightLine ? "bg-accent/15 border-l-4 border-accent" : "border-l-4 border-transparent"
             }`}
           >
-            <span className="text-secondary mr-3 select-none">{i + 1}</span>
-            <span className="text-body whitespace-pre">{line || " "}</span>
+            <span className="text-code-text-secondary mr-3 select-none">{i + 1}</span>
+            <span className="text-code-text whitespace-pre">{line || " "}</span>
           </div>
         ))}
       </div>

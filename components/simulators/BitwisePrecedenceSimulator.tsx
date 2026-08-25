@@ -129,7 +129,7 @@ export default function BitwisePrecedenceSimulator() {
           </p>
         </ExplainerBox>
 
-        <div className="rounded-2xl border border-card-border bg-code-bg p-4 font-mono text-lg text-center">
+        <div className="rounded-2xl border border-card-border bg-code-bg p-4 font-mono text-lg text-center text-code-text">
           {precedenceSteps[precIndex].expr}
         </div>
         <div className="rounded-xl bg-muted p-4">

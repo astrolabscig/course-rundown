@@ -98,15 +98,18 @@ export default function CodeCompletionQuestionCard({
       </div>
 
       <div className="rounded-xl border border-card-border bg-code-bg overflow-x-auto">
-        <pre className="p-4 text-sm leading-relaxed whitespace-pre-wrap break-words" style={{ fontFamily: "var(--font-mono)" }}>
+        <pre
+          className="p-4 text-sm leading-relaxed whitespace-pre-wrap break-words text-code-text"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           {segments.map((seg, i) => {
             if (seg.blankId === null) return <Fragment key={i}>{seg.text}</Fragment>;
             const blank = question.blanks.find((b) => b.id === seg.blankId)!;
-            let inputStyle = "border-card-border bg-transparent text-heading focus:border-accent";
+            let inputStyle = "border-card-border bg-white text-code-text focus:border-accent";
             if (checked) {
               inputStyle = results[blank.id]
-                ? "border-success bg-success/10 text-success"
-                : "border-error bg-error/10 text-error";
+                ? "border-code-success bg-code-success-bg text-code-success"
+                : "border-code-error bg-code-error-bg text-code-error";
             }
             return (
               <input

@@ -23,6 +23,16 @@
   --error: #d93025;
   --error-bg: #fce8e6;
   --code-bg: #f6f8fa;
+  /* code-bg stays a fixed light "island" in both themes (see below), so text
+     placed on it needs its own fixed-dark colors instead of --heading/--body/
+     --secondary/--success/--error, which flip to light in dark mode and would
+     become unreadable against a background that never darkens. */
+  --code-text: #1a1625;
+  --code-text-secondary: #6b6478;
+  --code-success: #15803d;
+  --code-success-bg: #dcfce7;
+  --code-error: #d93025;
+  --code-error-bg: #fce8e6;
 }
 
 /* Dark palette — code-bg is intentionally NOT overridden here, so code blocks
@@ -60,6 +70,12 @@
   --color-error: var(--error);
   --color-error-bg: var(--error-bg);
   --color-code-bg: var(--code-bg);
+  --color-code-text: var(--code-text);
+  --color-code-text-secondary: var(--code-text-secondary);
+  --color-code-success: var(--code-success);
+  --color-code-success-bg: var(--code-success-bg);
+  --color-code-error: var(--code-error);
+  --color-code-error-bg: var(--code-error-bg);
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
