@@ -54,6 +54,16 @@ const rooms = [
     stat: "248 exam questions · full formula cheatsheet",
     icon: "stats",
   },
+  {
+    href: "/comm-skills",
+    tag: "Writing & Oral Communication",
+    tagColor: "text-orange-600 bg-orange-500/10 dark:text-orange-300",
+    title: "Communication Skills",
+    description:
+      "Organizational communication, CVs, formal letters, memos, reports, meetings & minutes, and oral communication/interviews — real past exam questions kept word-for-word, plus a full concept bank built from the lecture slides.",
+    stat: "181 past exam questions · 153 concept questions",
+    icon: "comms",
+  },
 ];
 
 const features = [
@@ -158,6 +168,12 @@ function RoomIcon({ name }: { name: string }) {
           <circle cx="18" cy="6" r="2.4" />
           <circle cx="12" cy="18" r="2.4" />
           <path d="M8 7.3 10.5 16M16 7.3 13.5 16M8.3 6h7.4" />
+        </svg>
+      );
+    case "comms":
+      return (
+        <svg {...common}>
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
         </svg>
       );
     default:
