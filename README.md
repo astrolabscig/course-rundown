@@ -1,14 +1,17 @@
-# C++ Course Helper
+# Course Rundown
 
-A Next.js app that helps students pass their C++ course, taught as a full
-curriculum (Parts 0–9: basics cheatsheet, functions, classes, encapsulation,
-abstraction, inheritance, polymorphism, comparison-table reference cards, an
-MCQ drill bank, and an output-prediction drill) built around real interactive
-simulations rather than static prose — a stack/heap memory & pointer
-visualizer, an access-control grid, an abstraction interface/implementation
-toggle, a click-to-build inheritance hierarchy with construction/destruction
-order animation, and a vtable/vptr dispatch simulator. Includes a feedback
-form and a password-protected admin dashboard with usage analytics.
+A Next.js app that helps students pass their courses through real
+interactive practice instead of static notes — live calculators for every
+formula, past-exam and Passco question banks with a real score tracker,
+timed exam simulators, and course-specific interactive simulations (in the
+C++ room alone: a stack/heap memory & pointer visualizer, an access-control
+grid, an abstraction interface/implementation toggle, a click-to-build
+inheritance hierarchy with construction/destruction order animation, and a
+vtable/vptr dispatch simulator). Currently covers five rooms — C++ & OOP,
+IT Networking Fundamentals, Economics II, Discrete Mathematics, and
+Statistics — each built room by room around its own real course material.
+Includes a feedback form and a password-protected admin dashboard with
+usage analytics.
 
 ### Content status
 
