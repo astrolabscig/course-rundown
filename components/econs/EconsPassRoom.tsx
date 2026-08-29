@@ -157,6 +157,7 @@ export default function EconsPassRoom({ bank }: { bank: EconsPassIndexedQuestion
   const question = questions[index];
   const topicLabel = ECONS_PASS_SECTIONS.find((t) => t.id === question.topic)?.label ?? question.topic;
   const answeredCount = answers.filter((a) => a !== null).length;
+  const isLastQuestion = index === questions.length - 1;
 
   return (
     <div className="space-y-4">
@@ -213,18 +214,22 @@ export default function EconsPassRoom({ bank }: { bank: EconsPassIndexedQuestion
         <button
           type="button"
           onClick={() => goTo(index + 1)}
-          disabled={index === questions.length - 1}
+          disabled={isLastQuestion}
           className="px-4 py-2 rounded-full border border-card-border text-sm font-medium text-body hover:border-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Next ▶
         </button>
-        <button
-          type="button"
-          onClick={finish}
-          className="ml-auto px-6 py-2 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition-colors"
-        >
-          Finish
-        </button>
+        {/* Finish only appears on the last question, so it can't be mistaken for
+            Next and clicked accidentally partway through. */}
+        {isLastQuestion && (
+          <button
+            type="button"
+            onClick={finish}
+            className="ml-auto px-6 py-2 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition-colors"
+          >
+            Finish
+          </button>
+        )}
       </div>
     </div>
   );
