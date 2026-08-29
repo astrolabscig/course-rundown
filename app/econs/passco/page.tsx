@@ -1,10 +1,11 @@
 import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
-import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
-import { econsPasscoBank, ECONS_PASS_SECTIONS } from "@/lib/econs/passcoBank";
+import EconsPassRoom from "@/components/econs/EconsPassRoom";
+import { econsPasscoBank, toIndexedQuestions } from "@/lib/econs/passcoBank";
 
 export default function EconsPasscoPage() {
+  const bank = toIndexedQuestions(econsPasscoBank);
   return (
     <div className="flex flex-col flex-1">
       <TopBar showCredit />
@@ -15,15 +16,15 @@ export default function EconsPasscoPage() {
           </Link>
           <h1 className="text-3xl font-semibold text-heading">Economics Passco Quiz</h1>
           <p className="text-body max-w-2xl">
-            {econsPasscoBank.length} real past-exam questions from ECON 152 past-question
-            booklets and end-of-semester papers, each tagged with its source document — questions
-            that share a table or scenario stay right next to each other. Every answer was
-            independently re-verified rather than copied from the source&apos;s marked key; where
-            that check turned up a likely error or a genuine ambiguity in the source, it&apos;s
-            flagged right on the question. Pick an answer to see if you&apos;re right.
+            {bank.length} real past-exam questions — deduplicated from ECON 152 past-question
+            booklets and end-of-semester papers, each tagged with its source document. Every
+            answer was independently re-verified rather than copied from the source&apos;s marked
+            key; where that turned up a likely error or a genuine ambiguity, it&apos;s flagged
+            right on the question. Filter by topic, then work through at your own pace — jump to
+            any question, review your answers, and retry anytime.
           </p>
         </div>
-        <PasscoCheatsheet questions={econsPasscoBank} sections={ECONS_PASS_SECTIONS} />
+        <EconsPassRoom bank={bank} />
       </main>
       <Footer />
     </div>

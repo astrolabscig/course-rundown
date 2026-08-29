@@ -21,7 +21,6 @@ import { econsCurriculum } from "@/lib/econs/curriculum";
 import { econsFundamentalsGroups } from "@/lib/econs/fundamentals";
 import { econsComparisonTables } from "@/lib/econs/comparisonTables";
 import { econsMcqBank } from "@/lib/econs/mcqBank";
-import { econsExamBank } from "@/lib/econs/examBank";
 import { econsPasscoBank } from "@/lib/econs/passcoBank";
 
 function PartHeading({ number, title }: { number: string; title: string }) {
@@ -61,30 +60,14 @@ export default function EconsRoom() {
           </section>
 
           <a
-            href="/econs/exam"
-            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
-          >
-            <div>
-              <p className="text-sm font-semibold text-accent">{econsExamBank.length}-question exam room →</p>
-              <p className="text-sm text-body mt-0.5">
-                Timed, configurable MCQ practice covering the whole syllabus, with per-topic
-                scoring and a full review mode.
-              </p>
-            </div>
-            <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
-              Start exam
-            </span>
-          </a>
-
-          <a
             href="/econs/passco"
             className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4 hover:border-accent transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-accent">{econsPasscoBank.length}-question Passco Quiz →</p>
               <p className="text-sm text-body mt-0.5">
-                Real past-exam questions with correct answers and explanations — filter by
-                topic, click to reveal.
+                Real, deduplicated past-exam questions, independently re-verified — filter by
+                topic, then work through at your own pace with a question palette to jump around.
               </p>
             </div>
             <span className="shrink-0 px-4 py-1.5 rounded-full bg-accent text-white text-sm font-medium">
@@ -243,7 +226,7 @@ export default function EconsRoom() {
             <p className="text-sm text-secondary">
               A quick spot-check across every part of this room, plus a set connecting each
               concept straight to its computer science application — for full timed practice, use
-              the {econsExamBank.length}-question exam room above.
+              the {econsPasscoBank.length}-question Passco Quiz above.
             </p>
             <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6">
               <MCQDrill questions={econsMcqBank} />
