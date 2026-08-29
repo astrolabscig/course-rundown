@@ -2,7 +2,7 @@ import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import PasscoCheatsheet from "@/components/passco/PasscoCheatsheet";
-import { econsPasscoBank } from "@/lib/econs/passcoBank";
+import { econsPasscoBank, ECONS_PASS_SECTIONS } from "@/lib/econs/passcoBank";
 
 export default function EconsPasscoPage() {
   return (
@@ -15,13 +15,15 @@ export default function EconsPasscoPage() {
           </Link>
           <h1 className="text-3xl font-semibold text-heading">Economics Passco Quiz</h1>
           <p className="text-body max-w-2xl">
-            {econsPasscoBank.length} real past-exam questions with correct answers and short
-            explanations, straight from an ECON 152 past-questions booklet, presented in the
-            same order as the source material — questions that share a table or scenario stay
-            right next to each other. Pick an answer to see if you're right.
+            {econsPasscoBank.length} real past-exam questions from ECON 152 past-question
+            booklets and end-of-semester papers, each tagged with its source document — questions
+            that share a table or scenario stay right next to each other. Every answer was
+            independently re-verified rather than copied from the source&apos;s marked key; where
+            that check turned up a likely error or a genuine ambiguity in the source, it&apos;s
+            flagged right on the question. Pick an answer to see if you&apos;re right.
           </p>
         </div>
-        <PasscoCheatsheet questions={econsPasscoBank} />
+        <PasscoCheatsheet questions={econsPasscoBank} sections={ECONS_PASS_SECTIONS} />
       </main>
       <Footer />
     </div>

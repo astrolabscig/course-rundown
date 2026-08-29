@@ -18,6 +18,12 @@ export interface PassStep {
   reason: string;
 }
 
+export interface PassSource {
+  pdf: string;
+  page?: number;
+  originalNumber?: string;
+}
+
 export interface PassQuestion {
   id: string;
   section: string;
@@ -31,6 +37,8 @@ export interface PassQuestion {
   explanation: string;
   steps?: PassStep[];
   analogy?: string;
+  source?: PassSource;
+  sourceIssue?: string;
 }
 
 function normalizeAnswer(s: string): string {
@@ -73,8 +81,25 @@ export default function PassQuestionCard({
 
   return (
     <div className="rounded-2xl border border-card-border bg-card shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-5 sm:p-6 space-y-3">
-      <p className="text-sm text-secondary font-medium">Question {index + 1}</p>
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <p className="text-sm text-secondary font-medium">Question {index + 1}</p>
+        {item.source && (
+          <p className="text-xs text-secondary font-mono">
+            Source: {item.source.pdf}
+            {item.source.page ? ` — p.${item.source.page}` : ""}
+            {item.source.originalNumber ? ` — Q${item.source.originalNumber}` : ""}
+          </p>
+        )}
+      </div>
       <p className="text-body font-medium whitespace-pre-wrap">{item.question}</p>
+      {item.sourceIssue && (
+        <div className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400 mb-1">
+            Source issue
+          </p>
+          <p className="text-sm text-body">{item.sourceIssue}</p>
+        </div>
+      )}
 
       {item.code && <CodeBlock code={item.code} />}
 
