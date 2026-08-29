@@ -207,27 +207,28 @@ export default function EconsPassRoom({ bank }: { bank: EconsPassIndexedQuestion
           type="button"
           onClick={() => goTo(index - 1)}
           disabled={index === 0}
-          className="px-4 py-2 rounded-full border border-card-border text-sm font-medium text-body hover:border-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="px-6 py-2.5 rounded-full border border-card-border text-base font-medium text-body hover:border-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           ◀ Previous
         </button>
-        <button
-          type="button"
-          onClick={() => goTo(index + 1)}
-          disabled={isLastQuestion}
-          className="px-4 py-2 rounded-full border border-card-border text-sm font-medium text-body hover:border-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          Next ▶
-        </button>
-        {/* Finish only appears on the last question, so it can't be mistaken for
-            Next and clicked accidentally partway through. */}
-        {isLastQuestion && (
+        {/* Next sits on the right until the final question, where Finish takes
+            its place — so Finish never appears alongside Next and can't be
+            clicked by mistake partway through. */}
+        {isLastQuestion ? (
           <button
             type="button"
             onClick={finish}
-            className="ml-auto px-6 py-2 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition-colors"
+            className="ml-auto px-6 py-2.5 rounded-full bg-accent text-white text-base font-semibold hover:bg-accent-hover transition-colors"
           >
             Finish
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => goTo(index + 1)}
+            className="ml-auto px-6 py-2.5 rounded-full border border-card-border text-base font-medium text-body hover:border-accent transition-colors"
+          >
+            Next ▶
           </button>
         )}
       </div>
