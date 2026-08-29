@@ -65,4 +65,16 @@ export const econsComparisonTables: ComparisonTableData[] = [
       ["A deficit here must be offset elsewhere in the balance of payments.", "Financial account investment splits into direct, portfolio, and other (mainly short-term) flows."],
     ],
   },
+  {
+    id: "monetary-vs-fiscal-policy",
+    title: "Monetary Policy vs Fiscal Policy Tools",
+    columns: ["Monetary Policy", "Fiscal Policy"],
+    rows: [
+      ["Controlled by the Central Bank.", "Controlled by the government (the budget)."],
+      ["Tools: open market operations, the discount rate, the reserve ratio.", "Tools: government expenditure (G) and taxation (T)."],
+      ["Works by changing the money supply and the interest rate.", "Works by changing injections (G) and withdrawals (T) directly in the circular flow."],
+      ["Open market operations is the most routinely used tool.", "G enters aggregate demand directly; a tax change only affects AD indirectly, after some leaks to saving/imports."],
+      ["Expansionary: buy securities, cut the discount rate, cut the reserve ratio.", "Expansionary: increase G, decrease T."],
+    ],
+  },
 ];

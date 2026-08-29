@@ -227,4 +227,123 @@ export const econsFundamentalsGroups: BasicsGroup[] = [
       },
     ],
   },
+  {
+    id: "money-and-banking",
+    title: "Money, banking & the demand for money",
+    entries: [
+      {
+        id: "what-money-is",
+        title: "What money actually is — and why barter needed replacing",
+        summary: "Money solves barter's three big problems, then does four jobs at once: medium of exchange, unit of account, store of value, standard of deferred payment.",
+        eli5:
+          "Before money, trade meant barter — swapping goods directly. That only works if you happen to want exactly what the other person is offering (the 'double coincidence of wants'), and even then, how do you split a cow to buy a loaf of bread? Money fixes all of this: everyone accepts it (so no coincidence needed), it comes in small units (divisibility), and it's easy to carry (portability). Once you have it, it quietly does four jobs: you use it to BUY things (medium of exchange), to PRICE things (unit of account), to SAVE for later (store of value), and to record DEBTS (standard of deferred payment).",
+        code: "Problems with barter: double coincidence of wants, divisibility, portability\n\nFour functions of money:\n1. Medium of exchange   3. Store of value\n2. Unit of account      4. Standard of deferred payment",
+        points: [
+          "Barter requires a 'double coincidence of wants' — both parties must want exactly what the other is offering.",
+          "Money's four functions: medium of exchange (paying for things), unit of account (pricing/comparing things), store of value (holding wealth over time), standard of deferred payment (recording debt).",
+          "Good money also needs the right characteristics: acceptability, portability, divisibility, homogeneity, duplicability (hard to counterfeit), durability, and stability of value.",
+        ],
+      },
+      {
+        id: "money-terminology",
+        title: "Commodity money, fiat money, near money, money substitutes",
+        summary: "Not everything that acts a bit like money IS money — these terms mark the boundary.",
+        eli5:
+          "Gold coins are 'commodity money' — the metal itself is valuable even melted down. A cedi note is 'fiat money' — worthless as paper, valuable only because the government says so and everyone trusts that. A share certificate is 'near money' — you can turn it into cash fairly easily, but you can't hand it to a taxi driver directly. A credit card is a 'money substitute' — it lets you pay now and settle later, but the card itself isn't a store of value; the money behind it is.",
+        points: [
+          "Commodity money has intrinsic value (e.g. gold); fiat money has none — it's money only by government decree/legal tender status.",
+          "Near money (shares, bonds) stores value and converts readily to cash, but isn't itself a means of exchange.",
+          "A money substitute (e.g. a credit card) is a temporary means of exchange, but doesn't itself store value.",
+          "Narrow money (like M1: cash + checkable deposits) counts only what's directly spendable; broad money (like M2) adds near-cash items like savings/time deposits.",
+        ],
+      },
+      {
+        id: "banking-system-ghana",
+        title: "The banking system, and formal vs informal banking in Ghana",
+        summary: "Banks link savers to borrowers — and in Ghana, the line between 'formal' and 'informal' banking is Central Bank supervision.",
+        eli5:
+          "Think of banks as matchmakers between people with spare cash and people who need to borrow it. They also do three clever tricks: maturity transformation (borrowing short-term from depositors but lending long-term to businesses), risk transformation (spreading one risky loan across thousands of depositors so no single saver is wiped out), and simply being experts at channelling funds efficiently. In Ghana, 'formal' banks (commercial, development, merchant, rural banks) are supervised by the Bank of Ghana; susu collectors, credit unions, and money lenders are 'informal/semi-formal' because they mostly sit outside that supervision.",
+        code: "Formal (Bank of Ghana supervised): Commercial, Development, Merchant, Rural banks\nSemi-formal/Informal: Credit unions, Susu collectors, money lenders, friends/relatives",
+        points: [
+          "Retail banks serve the general public through branches; wholesale banks deal in large-scale finance mainly with companies, often acting as brokers.",
+          "Maturity transformation: banks borrow short-term (deposits) but lend longer-term. Risk transformation: pooling many depositors/borrowers spreads out risk.",
+          "The line between formal and informal banking in Ghana is Central Bank supervision, not the size or type of institution alone.",
+          "Central bank functions include: lender of last resort, issuing notes/coins, government's bank, implementing monetary policy, managing the exchange rate.",
+        ],
+      },
+      {
+        id: "money-creation",
+        title: "Money creation: fractional-reserve banking and the deposit multiplier",
+        summary: "Banks don't just store deposits — by lending out most of each deposit, they multiply the money supply many times over.",
+        eli5:
+          "Say you deposit Gh¢1,000 and your bank must keep 10% (Gh¢100) as a reserve, lending out the rest (Gh¢900). That Gh¢900 gets deposited somewhere else, which then lends out 90% of IT (Gh¢810), and so on. Round after round, this snowballs: total new deposits created eventually reach Gh¢10,000 from your original Gh¢1,000 — the bank 'multiplier' here is 1 ÷ 0.1 = 10. The smaller the required reserve ratio, the bigger this multiplier effect.",
+        code: "Round 1: 1,000 deposited → 100 required reserve → 900 lent out\nRound 2: 900 deposited → 90 required reserve → 810 lent out\nRound 3: 810 deposited → 81 required reserve → 729 lent out\n... converges to Total deposits = 1,000 × (1/0.1) = 10,000\n\nBank (money) multiplier = 1 / required reserve ratio",
+        points: [
+          "Fractional-reserve banking: banks hold only a fraction of deposits as reserves, lending out the rest.",
+          "Required reserves = reserve ratio × total deposits. Excess reserves = total reserves − required reserves (this is what gets lent out).",
+          "The bank/money multiplier = 1 / reserve ratio — a 10% reserve ratio implies a multiplier of 10.",
+          "Money supply rises when: banks hold a lower reserve ratio, the public holds less cash, funds flow in from abroad, or there's a public-sector deficit.",
+        ],
+      },
+      {
+        id: "demand-for-money",
+        title: "The demand for money: L1, L2, and equilibrium in the money market",
+        summary: "People hold money for two broad reasons — everyday transactions (L1) and speculation about bond prices (L2) — and their sum sets the interest rate.",
+        eli5:
+          "Why hold money instead of investing it all? Two reasons. First, you need cash on hand for everyday spending and emergencies — that's L1 (transactionary + precautionary demand), driven mainly by your income, not the interest rate. Second, you might hold money instead of bonds because you're worried bond prices will fall — that's L2 (speculative demand), and it's very sensitive to the interest rate: the higher the rate, the more you give up by holding idle cash instead of interest-bearing assets, so L2 falls. Add L1 and L2 together and you get the total demand for money, which crosses the money supply curve to set the equilibrium interest rate.",
+        code: "L1 = transactionary + precautionary demand (driven by income, fairly interest-inelastic)\nL2 = speculative demand (driven by interest rate expectations, inversely related to the interest rate)\nL = L1 + L2  (total money demand — the 'liquidity preference curve')\n\nEquilibrium: Money supply (MS) = Total money demand (L)",
+        points: [
+          "L1 (transactionary + precautionary) is mainly determined by nominal income, payment frequency, and the availability of credit/debit cards.",
+          "L2 (speculative) is negatively related to the interest rate: a fall in interest rates makes bonds less attractive, so people shift into holding money instead.",
+          "The total demand for money curve (L = L1 + L2) is found by horizontally adding L1 and L2.",
+          "A 'liquidity trap' is the extreme case where further increases in money supply just get held as idle balances, with the interest rate refusing to fall any further.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "monetary-fiscal-policy-tools",
+    title: "Monetary & fiscal policy tools",
+    entries: [
+      {
+        id: "monetary-policy-tools",
+        title: "The three monetary policy tools",
+        summary: "The central bank steers the money supply and interest rates using open market operations, the discount rate, and the reserve ratio.",
+        eli5:
+          "The central bank has three main levers. Open market operations (the one used most often) means buying or selling government securities — buying injects money into the banking system, selling withdraws it. The discount rate is what the central bank charges commercial banks that borrow from it directly — raise it, and banks borrow less, tightening credit. The reserve ratio is the fraction of deposits banks must hold back rather than lend out — raise it, and banks can create less new credit from each cedi deposited.",
+        code: "Expansionary monetary policy: buy securities (OMO), cut the discount rate, cut the reserve ratio\nContractionary monetary policy: sell securities (OMO), raise the discount rate, raise the reserve ratio",
+        points: [
+          "Open market operations (buying/selling government securities) is the tool used most routinely.",
+          "The discount rate is the rate the central bank charges commercial banks that borrow from it — the 'lender of last resort' rate.",
+          "The reserve ratio directly sets the size of the bank/money multiplier (1 / reserve ratio) — raising it shrinks banks' lending capacity.",
+        ],
+      },
+      {
+        id: "fiscal-policy-tools",
+        title: "Fiscal policy: G, T, and the budget balance",
+        summary: "The government's own two levers — spending and taxation — feed straight into the circular flow as an injection and a withdrawal.",
+        eli5:
+          "Fiscal policy is simpler than monetary policy: the government just adjusts how much it spends (G) and how much it taxes (T). Recall G is an injection into the circular flow and T is a withdrawal — so more G or less T both push aggregate demand up (expansionary), while less G or more T pull it down (contractionary). When tax revenue exceeds spending (T > G), that's a budget surplus; when spending exceeds tax revenue (T < G), that's a budget deficit.",
+        code: "Expansionary fiscal policy: increase G, decrease T\nContractionary fiscal policy: decrease G, increase T\n\nBudget surplus: T > G\nBudget deficit:  T < G (government spends more than it collects)",
+        points: [
+          "G (government expenditure) is an injection; T (net taxes) is a withdrawal — this is why fiscal policy works directly through the circular flow model.",
+          "Because G enters aggregate demand directly, a given change in G moves AD by MORE than the same-sized change in T (some of a tax cut leaks into saving/imports before it's ever spent).",
+          "'Stabilisation policy' is the umbrella term for using either expansionary OR contractionary tools to close the gap between actual and potential output, whichever direction is needed.",
+        ],
+      },
+      {
+        id: "fiscal-multiplier-worked",
+        title: "Sizing a fiscal policy move with the multiplier",
+        summary: "The same multiplier from the circular-flow model tells you exactly how big a G or T change needs to be to hit a target rise in aggregate demand.",
+        eli5:
+          "If you know the multiplier, you don't need to guess how big a stimulus should be — you can calculate it directly. Want to shift AD by Gh¢40bn and the multiplier is 10 (because MPS = 0.1)? You only need Gh¢4bn of new government spending, because the multiplier does the rest of the work through successive rounds of spending.",
+        code: "k = 1 / MPS (simplest case)\n\nExample: MPS = 0.1  ->  k = 10\nTarget ΔAD = Gh¢40bn  ->  required ΔG = 40 / 10 = Gh¢4bn",
+        points: [
+          "ΔG (or ΔI) needed for a target ΔAD = ΔAD ÷ k — always divide by the multiplier, don't multiply by it, when working backward from a target.",
+          "A smaller MPS (people save less of each extra cedi) means a BIGGER multiplier, so a SMALLER government spending change achieves the same AD target.",
+          "This is exactly the same multiplier concept as the income-determination model — fiscal policy just uses it deliberately as a policy lever.",
+        ],
+      },
+    ],
+  },
 ];

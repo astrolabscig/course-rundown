@@ -220,7 +220,26 @@ export default function EconsRoom() {
           </section>
 
           <section id="e-part-11" className="space-y-6 scroll-mt-24">
-            <PartHeading number="11" title="MCQ Drill Bank" />
+            <PartHeading number="11" title="Money & Banking" />
+            <p className="text-sm text-secondary">
+              What money actually is, how banks create it out of a fraction of every deposit, and
+              why people hold it instead of bonds.
+            </p>
+            <BasicsCheatsheet groups={econsFundamentalsGroups.filter((g) => g.id === "money-and-banking")} />
+          </section>
+
+          <section id="e-part-12" className="space-y-6 scroll-mt-24">
+            <PartHeading number="12" title="Monetary & Fiscal Policy Tools" />
+            <p className="text-sm text-secondary">
+              The central bank&apos;s three levers versus the government&apos;s own two — and how to
+              size a policy move with the multiplier.
+            </p>
+            <BasicsCheatsheet groups={econsFundamentalsGroups.filter((g) => g.id === "monetary-fiscal-policy-tools")} />
+            <ComparisonTable data={findTable("monetary-vs-fiscal-policy")} />
+          </section>
+
+          <section id="e-part-13" className="space-y-6 scroll-mt-24">
+            <PartHeading number="13" title="MCQ Drill Bank" />
             <p className="text-sm text-secondary">
               A quick spot-check across every part of this room, plus a set connecting each
               concept straight to its computer science application — for full timed practice, use

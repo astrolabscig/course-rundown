@@ -12,6 +12,8 @@ export const econsCurriculum: CurriculumPart[] = [
   { id: "e-part-8", number: "8", title: "Balance of Payments" },
   { id: "e-part-9", number: "9", title: "Exchange Rates" },
   { id: "e-part-10", number: "10", title: "The Four Objectives" },
-  { id: "e-part-11", number: "11", title: "MCQ Drill Bank" },
+  { id: "e-part-11", number: "11", title: "Money & Banking" },
+  { id: "e-part-12", number: "12", title: "Monetary & Fiscal Policy Tools" },
+  { id: "e-part-13", number: "13", title: "MCQ Drill Bank" },
   { id: "feedback", number: "", title: "Feedback" },
 ];
